@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — Loophole AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/pricing.css" />
+</head>
+
+<body>
+
+  <!-- ══════════ ANNOUNCEMENT BAR ══════════ -->
+  <div class="announce-bar">
+    Now in beta — Download free, no account needed <span>→</span>
+  </div>
+
+  <!-- ══════════ NAVBAR ══════════ -->
+  <nav class="top-nav">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.png" alt="Loophole Logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="models.html">Models</a></li>
+      <li><a href="pricing.html" style="color:#fff; background:#f2f2f2;">Pricing</a></li>
+      <li><a href="docs.html">Docs</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="https://github.com" target="_blank" rel="noopener" class="btn-ghost">View on GitHub</a>
+      <button class="btn-dark">Download Free</button>
+      <a href="docs.html" class="btn-outline">Docs</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="ham-bar"></span>
+        <span class="ham-bar"></span>
+        <span class="ham-bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════ DRAWER ══════════ -->
+  <div id="drawerOverlay" class="drawer-overlay" aria-hidden="true"></div>
+  <nav id="mobileDrawer" class="mobile-drawer" aria-label="Mobile navigation">
+    <a href="models.html">Models</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="docs.html">Docs</a>
+    <a href="blog.html">Blog</a>
+    <div class="drawer-actions">
+      <button class="btn-dark">Download Free</button>
+      <a href="https://github.com" target="_blank" rel="noopener" class="btn-outline">View on GitHub</a>
+    </div>
+  </nav>
+
+  <!-- ══════════ PAGE HEADER ══════════ -->
+  <div class="pricing-hero">
+    <h1>Free.<br/>No subscriptions.</h1>
+    <p>Bring your own model. Use local AI. Pay nobody.</p>
+  </div>
+
+  <!-- ══════════ PRICING CARDS ══════════ -->
+  <section class="pricing-section">
+    <div class="pricing-inner">
+      <div class="pricing-grid">
+
+        <!-- SOLO -->
+        <div class="plan-card">
+          <div class="plan-tier">Solo</div>
+          <span class="plan-price">Free</span>
+          <div class="plan-price-note">No account. No expiry. No catch.</div>
+          <div class="plan-divider"></div>
+          <div class="plan-includes-label">Includes</div>
+          <ul class="plan-features">
+            <li>Bring your own API key</li>
+            <li>Local model via Ollama</li>
+            <li>Tab completion</li>
+            <li>Inline chat & refactor</li>
+            <li>VS Code extensions & themes</li>
+            <li>Fully offline capable</li>
+          </ul>
+          <div class="plan-btn-row">
+            <a href="#" class="plan-btn primary">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
+              Download
+            </a>
+            <a href="#" class="plan-btn ghost">Others</a>
+          </div>
+        </div>
+
+        <!-- OPEN -->
+        <div class="plan-card pro">
+          <div class="pro-gradient-blob"></div>
+          <div class="plan-content">
+            <div class="plan-tier">Open</div>
+            <span class="plan-price">Free</span>
+            <div class="plan-price-note">Beta — all features unlocked.</div>
+            <div class="plan-divider"></div>
+            <div class="plan-includes-label">Everything in Solo, plus</div>
+            <ul class="plan-features">
+              <li>Unlimited completions</li>
+              <li>Agent mode</li>
+              <li>Multi-model switching</li>
+              <li>Priority model routing</li>
+              <li>Early access to new models</li>
+              <li>Community & GitHub support</li>
+            </ul>
+            <div class="plan-btn-row">
+              <a href="#" class="plan-btn primary">Get Started</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- TEAM 
+        <div class="plan-card">
+          <div class="plan-tier">Team</div>
+          <span class="plan-price">Free</span>
+          <div class="plan-price-note">Beta — for orgs & small teams.</div>
+          <div class="plan-divider"></div>
+          <div class="plan-includes-label">Everything in Open, plus</div>
+          <ul class="plan-features">
+            <li>Shared team workspace</li>
+            <li>Org-wide privacy mode</li>
+            <li>Centralized billing (post-beta)</li>
+            <li>Admin dashboard</li>
+            <li>SAML / OIDC SSO</li>
+            <li>Dedicated support</li>
+          </ul>
+          <div class="plan-btn-row">
+            <a href="#" class="plan-btn primary">Get Started</a>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FAQ ══════════ -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <h2 class="faq-heading">Questions</h2>
+      <p class="faq-sub">Simple answers. No marketing fluff.</p>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Is it actually free? Forever?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" aria-hidden="true">
+            <div class="faq-a-inner">
+              Yes. Loophole is free to download and use, always. No trial period, no credit card, no hidden fees. The Solo plan never expires. Open and Team are also free during our public beta.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Do I have to pay for AI usage?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" aria-hidden="true">
+            <div class="faq-a-inner">
+              Only if you want to use a cloud model. You plug in your own API key from OpenAI, Anthropic, Gemini, or whoever — you pay them directly at their own rates. Or use a local Ollama model and pay absolutely nothing. Loophole never takes a cut.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Does Loophole see or store my code?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" aria-hidden="true">
+            <div class="faq-a-inner">
+              Never. Zero lines of your code touch our servers. When you use your own API key, requests go straight from your machine to your chosen provider — not through us. We're open source, so you can read every line and verify this yourself.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Can I use it with no internet at all?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" aria-hidden="true">
+            <div class="faq-a-inner">
+              Yes. Connect a local Ollama model and Loophole runs entirely on your device — no internet, no data leaving your machine, no cloud anything. This works on every plan including Solo.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            What's actually different between the plans?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" aria-hidden="true">
+            <div class="faq-a-inner">
+              Solo is the full editor — perfect for one person with their own model. Open adds agent mode, unlimited completions, and multi-model switching. Team adds org-level controls like SSO and an admin dashboard for companies. All three are free right now.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Will it ever cost money?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" aria-hidden="true">
+            <div class="faq-a-inner">
+              Solo is free forever — that's a commitment. Open and Team may introduce optional paid tiers after beta ends, but you'll get at least 30 days notice and a grace period. You will never be charged without choosing to upgrade yourself.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Is Loophole open source?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a" aria-hidden="true">
+            <div class="faq-a-inner">
+              Yes — built on Void, an open-source VS Code fork. All our additions are open source too. Fork it, audit it, extend it, make it yours on GitHub.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CTA ══════════ -->
+  <section class="cta-section">
+    <div class="cta-blob cta-blob-1"></div>
+    <div class="cta-blob cta-blob-2"></div>
+    <div class="cta-blob cta-blob-3"></div>
+    <div class="cta-blob cta-blob-5"></div>
+    <div class="cta-section-content">
+      <h2>Start building today</h2>
+      <p>Download free. Bring your own model. Ship faster.</p>
+      <div class="cta-section-btns">
+        <a href="#" class="cta-btn-primary">Download for free</a>
+        <a href="https://github.com" class="cta-btn-ghost-link">View on GitHub <span>›</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">
+        <img src="assets/logo.png" alt="Loophole Logo" style="filter:invert(1);" />
+        <span class="footer-logo-name">Loophole</span>
+      </a>
+      <div class="footer-links">
+        <a href="models.html">Models</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="docs.html">Docs</a>
+        <a href="blog.html">Blog</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="support.html">Support</a>
+      </div>
+      <a href="https://github.com" class="footer-github" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        GitHub
+      </a>
+      <span class="footer-copy"> 2026 Loophole.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+          i.querySelector('.faq-a').setAttribute('aria-hidden', 'true');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          item.querySelector('.faq-a').setAttribute('aria-hidden', 'false');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

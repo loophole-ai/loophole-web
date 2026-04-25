@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog — Loophole</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/blog.css" />
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announce-bar" id="announceBar">
+    Now in beta — Download free, no account needed <span>→</span>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="top-nav">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.png" alt="Loophole Logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="models.html">Models</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="docs.html">Docs</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="https://github.com" target="_blank" rel="noopener" class="btn-ghost">View on GitHub</a>
+      <button class="btn-dark">Download Free</button>
+      <a href="docs.html" class="btn-outline">Docs</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="ham-bar"></span>
+        <span class="ham-bar"></span>
+        <span class="ham-bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE OVERLAY + DRAWER -->
+  <div id="drawerOverlay" class="drawer-overlay" aria-hidden="true"></div>
+  <nav id="mobileDrawer" class="mobile-drawer" aria-label="Mobile navigation">
+    <a href="models.html">Models</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="docs.html">Docs</a>
+    <a href="blog.html">Blog</a>
+    <div class="drawer-actions">
+      <button class="btn-dark">Download Free</button>
+      <a href="https://github.com" target="_blank" rel="noopener" class="btn-outline">View on GitHub</a>
+    </div>
+  </nav>
+
+  <!-- DARK BLOG BODY -->
+  <div class="blog-page">
+
+    <section class="hero">
+      <h1>Blog</h1>
+      <p>We write about what we're building, why we're building it, and the decisions behind Loophole — one post at a time.</p>
+    </section>
+
+    <hr class="section-divider">
+
+    <div class="blog-list">
+      <div class="blog-item">
+        <div class="blog-post" onclick="togglePost(this)">
+          <span class="post-date">Apr 24, 2026</span>
+          <span class="post-title">Why we created Loophole</span>
+          <span class="post-author">The Loophole Team</span>
+          <span class="post-chevron">›</span>
+        </div>
+        <div class="post-body">
+          <div class="post-body-inner">
+            <p>Loophole started with a simple frustration — we kept running into walls that didn't need to be there. Existing tools were either too rigid, too bloated, or just not built with real workflows in mind. We wanted something that got out of the way and let you actually do the work.</p>
+            <p>So we built it ourselves. Not because it was easy, but because we were tired of waiting for someone else to. Loophole is our answer to the question: what would this look like if it were built right, from the ground up, with no legacy baggage?</p>
+            <p>This post is the beginning of us being more open about what we're doing, why we made certain calls, and where we're headed next. We'll keep writing. Hope you keep reading.</p>
+            <a href="#" class="post-read-more">Read full post &nbsp;›</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">
+        <img src="assets/logo.png" alt="Loophole Logo" style="filter: invert(1);" />
+        <span class="footer-logo-name">Loophole</span>
+      </a>
+      <div class="footer-links">
+        <a href="models.html">Models</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="docs.html">Docs</a>
+        <a href="blog.html">Blog</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="support.html">Support</a>
+      </div>
+      <a href="https://github.com" class="footer-github" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        GitHub
+      </a>
+      <span class="footer-copy"> 2026 Loophole.</span>
+    </div>
+  </footer>
+
+  <script>
+    function togglePost(row) {
+      row.closest('.blog-item').classList.toggle('open');
+    }
+
+    const hamburger = document.getElementById('hamburger');
+    const drawer    = document.getElementById('mobileDrawer');
+    const overlay   = document.getElementById('drawerOverlay');
+
+    function openDrawer() {
+      drawer.classList.add('visible');
+      overlay.classList.add('visible');
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    }
+    function closeDrawer() {
+      drawer.classList.remove('visible');
+      overlay.classList.remove('visible');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+    hamburger.addEventListener('click', () => drawer.classList.contains('visible') ? closeDrawer() : openDrawer());
+    overlay.addEventListener('click', closeDrawer);
+  </script>
+
+</body>
+</html>

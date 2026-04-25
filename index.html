@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loophole AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- ══════════ ANNOUNCEMENT BAR ══════════ -->
+  <div class="announce-bar" id="announceBar">
+    Now in beta — Download free, no account needed <span>→</span>
+  </div>
+
+  <!-- ══════════ NAVBAR ══════════ -->
+  <nav class="top-nav">
+    <a href="#" class="logo">
+      <img src="assets/logo.png" alt="Loophole Logo" />
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="models.html">Models</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="docs.html">Docs</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="https://github.com/loophole-ai/loophole" target="_blank" rel="noopener" class="btn-ghost">View on GitHub</a>
+      <button class="btn-dark">Download Free</button>
+      <a href="docs.html" class="btn-outline">Docs</a>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="ham-bar"></span>
+        <span class="ham-bar"></span>
+        <span class="ham-bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════ OVERLAY + DRAWER ══════════ -->
+  <div id="drawerOverlay" class="drawer-overlay" aria-hidden="true"></div>
+
+  <nav id="mobileDrawer" class="mobile-drawer" aria-label="Mobile navigation">
+    <a href="models.html">Models</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="docs.html">Docs</a>
+    <a href="blog.html">Blog</a>
+    <div class="drawer-actions">
+      <button class="btn-dark">Download Free</button>
+      <a href="https://github.com/loophole-ai/loophole" target="_blank" rel="noopener" class="btn-outline">View on GitHub</a>
+    </div>
+  </nav>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <h1 class="hero-headline">Your code. Your models. No subscriptions.</h1>
+    <p class="hero-sub">Loophole is a free, open-source AI code editor. Bring your own API key, plug in a local model, or go fully offline — you're always in control.</p>
+
+    <!-- Image Section -->
+     <img src="assets/g.png" alt="Loophole" style="width:100%; max-width:900px; border-radius:18px; display:block; margin:0 auto; box-shadow: 0 28px 80px rgba(0,0,0,.18);" />
+  </section>
+
+  <!-- ══════════ TRUSTED BY SECTION ══════════ -->
+  <section class="trusted-section">
+    <div class="trusted-inner">
+      <p class="trusted-heading">Trusted by developers at</p>
+      <div class="trusted-track-wrap">
+        <div class="trusted-track" id="trustedTrack">
+          <!-- Logos set 1 -->
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/github/ffffff" alt=""> GitHub</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/stripe/ffffff" alt=""> Stripe</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/vercel/ffffff" alt=""> Vercel</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/shopify/ffffff" alt=""> Shopify</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/notion/ffffff" alt=""> Notion</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/linear/ffffff" alt=""> Linear</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/figma/ffffff" alt=""> Figma</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/discord/ffffff" alt=""> Discord</div>
+          <!-- Logos set 2 (duplicate for seamless loop) -->
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/github/ffffff" alt=""> GitHub</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/stripe/ffffff" alt=""> Stripe</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/vercel/ffffff" alt=""> Vercel</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/shopify/ffffff" alt=""> Shopify</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/notion/ffffff" alt=""> Notion</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/linear/ffffff" alt=""> Linear</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/figma/ffffff" alt=""> Figma</div>
+          <div class="trusted-logo"><img src="https://cdn.simpleicons.org/discord/ffffff" alt=""> Discord</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ PLAN TO EXECUTION SECTION ══════════ -->
+  <section class="pte-section">
+    <div class="pte-inner">
+
+      <h2 class="pte-heading">Plan to Execution.</h2>
+      <p class="pte-sub">Use any model in Plan or Execution mode — even open source models that don't natively support tool calling.</p>
+
+      <div class="pte-cols">
+
+        <!-- Left: Plan Mode -->
+        <div class="pte-col">
+          <h3 class="pte-col-title">Plan Mode</h3>
+          <p class="pte-col-desc">Plan mode lets you map out your entire feature before writing a single line — define tasks, set context, and hand off to the agent with full confidence.</p>
+          <img src="assets/plan-mode.png" alt="Plan Mode" class="pte-col-img" />
+        </div>
+
+        <!-- Right: Execution Mode -->
+        <div class="pte-col">
+          <h3 class="pte-col-title">Execution Mode</h3>
+          <p class="pte-col-desc">Execution mode is a focused version of Agent mode — it follows your plan step by step, writing code, running tests, and committing changes autonomously.</p>
+          <img src="assets/execution-mode.png" alt="Execution Mode" class="pte-col-img" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════ WORKS EVERYWHERE SECTION ══════════ -->
+  <section class="works-section">
+    <div class="works-inner">
+
+      <h2 class="works-heading">How it works</h2>
+
+      <div class="works-cards">
+
+        <!-- Card 1: Download & open -->
+        <div class="works-card">
+          <div class="works-card-screen">
+            <img src="assets/card-1.png" 
+              alt="API / SDK" 
+               style="width:100%; height:100%; object-fit:cover; display:block; border-radius:12px;" />
+          </div>
+          <div class="works-card-footer">
+            <div class="works-card-label">Download & Open</div>
+            <div class="works-card-desc">Install in under 2 minutes. Built on Void, so your VS Code extensions, themes, and shortcuts work from day one — no setup, no migration.</div>
+          </div>
+        </div>
+
+        <!-- Card 2: Connect your AI -->
+        <div class="works-card">
+          <div class="works-card-screen">
+            <img src="assets/card-2.png" 
+              alt="Connect your AI" 
+              style="width:100%; height:100%; object-fit:cover; display:block; border-radius:12px;"/>
+          </div>
+          <div class="works-card-footer">
+            <div class="works-card-label">Connect your AI</div>
+            <div class="works-card-desc">Paste your API key from OpenAI, Anthropic, or Gemini. Or skip it entirely and connect a local Ollama model — fully offline, no internet required.</div>
+          </div>
+        </div>
+
+        <!-- Card 3: Start Building -->
+        <div class="works-card">
+          <div class="works-card-screen">
+            <img src="assets/card-3.png" 
+              alt="Start building" 
+              style="width:100%; height:100%; object-fit:cover; display:block; border-radius:12px;" />
+          </div>
+          <div class="works-card-footer">
+            <div class="works-card-label">Start building</div>
+            <div class="works-card-desc">Tab to complete, chat to refactor, or let the agent handle it. You write the vision — Loophole writes the code.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FEATURES BOX SECTION ══════════ -->
+  <section class="features-section">
+    <div class="features-inner">
+
+      <h2 class="features-heading">Built for real developers</h2>
+      <p class="features-sub">No subscriptions. No lock-in. Just code.</p>
+      
+      <div class="features-grid">
+        <!-- Card 1 -->
+        <div class="feat-card">
+          <div class="feat-card-title">Tab completion that reads your whole codebase</div>
+          <div class="feat-card-desc">Loophole predicts whole functions and multi-line blocks using your actual project context — not generic patterns.</div>
+          <a href="#" class="feat-card-link">Learn more →</a>
+          <img src="assets/feat-1.png" alt="Automation" class="feat-card-img" />
+        </div>
+
+        <!-- Card 2 -->
+        <div class="feat-card">
+          <div class="feat-card-title">Chat to build, refactor, or explain</div>
+          <div class="feat-card-desc">Ask anything about your code in natural language. Refactor a function, explain a bug, or generate tests — right inside the editor.</div>
+          <a href="#" class="feat-card-link">Learn more →</a>
+          <img src="assets/feat-2.png" alt="Control plane" class="feat-card-img" />
+        </div>
+        <!-- Card 3 -->
+        <div class="feat-card">
+          <div class="feat-card-title">Bring your own API key</div>
+          <div class="feat-card-desc">Works with OpenAI, Anthropic, Google Gemini, Mistral, and more. You pay the provider directly — we charge nothing.</div>
+          <a href="#" class="feat-card-link">Learn more →</a>
+          <img src="assets/feat-3.png" alt="Hosting" class="feat-card-img" />
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="feat-card">
+          <div class="feat-card-title">Agent mode — hands-free coding</div>
+          <div class="feat-card-desc">Let the agent read files, write code, run the terminal, and fix its own errors — while you focus on what matters.</div>
+          <a href="#" class="feat-card-link">Learn more →</a>
+          <img src="assets/feat-4.png" alt="Multi-repo" class="feat-card-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ STATS SECTION ══════════ -->
+  <section class="stats-section">
+    <div class="stats-inner">
+
+      <div class="stat-item">
+        <div class="stat-number">55%+</div>
+        <div class="stat-desc">of users never go back to their old editor</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-number">5min</div>
+        <div class="stat-desc">to first AI completion — download, open, Tab</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-number">10+</div>
+        <div class="stat-desc">providers supported — cloud & local, BYOA or offline</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════ SEE IN ACTION SECTION ══════════ -->
+  <section class="action-section">
+    <div class="action-inner">
+
+      <div class="action-text">
+        <h2 style="color: #A1AEB1"># See Loophole in action</h2>
+      </div>
+
+     <div class="action-video" style="display:flex; align-items:center; justify-content:center; background:#0d0d0d; border:1px dashed rgba(255,255,255,0.12); border-radius:18px; min-height:340px; padding:40px 32px; flex-direction:column; gap:20px; text-align:center;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="6" width="15" height="12" rx="2"/>
+          <path d="M17 9l5-3v12l-5-3V9z"/>
+        </svg>
+        <p style="font-family:'Courier New',monospace; color:rgba(255,255,255,0.3); font-size:13px; line-height:1.9; max-width:400px; margin:0;">
+          <span style="color:#5a9a6f;">// TODO:</span> demo recording in progress.<br/>
+          <span style="color:rgba(255,255,255,0.18);">/* want to record one? reach out on </span><a href="https://github.com/loophole-ai/loophole/discussions" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.4); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.15);">GitHub Discussions</a><span style="color:rgba(255,255,255,0.18);"> */</span>
+        </p>
+        <a href="https://github.com/loophole-ai/loophole/discussions" target="_blank" rel="noopener" style="font-family:'Inter',sans-serif; font-size:12px; font-weight:500; color:rgba(255,255,255,0.45); background:transparent; border:1px solid rgba(255,255,255,0.1); padding:8px 18px; border-radius:6px; text-decoration:none; letter-spacing:0.02em;">
+          Open a discussion →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════ TESTIMONIALS CAROUSEL ══════════ -->
+  <section class="testimonials-carousel">
+    <div class="testimonials-carousel-inner">
+      <div class="tcarousel-stage">
+
+        <div class="tcarousel-slide active">
+          <p class="tcarousel-quote">"I switched from Cursor last month. The fact that I can use my own Anthropic key and nothing goes through Loophole's servers — that alone sold me. The diff view is a bonus."</p>
+          <div class="tcarousel-name">Arjun Mehta</div>
+          <div class="tcarousel-role">Full-stack Developer</div>
+        </div>
+
+        <div class="tcarousel-slide">
+          <p class="tcarousel-quote">"Tab completion is scary good. It finished a 30-line function I was halfway through and got it completely right. I pressed Tab once and it just... knew."</p>
+          <div class="tcarousel-name">Sofia Ribeiro</div>
+          <div class="tcarousel-role">Backend Engineer</div>
+        </div>
+
+        <div class="tcarousel-slide">
+          <p class="tcarousel-quote">"Free, open source, and works offline with Ollama. I'm a security engineer — sending code to third-party clouds is a non-starter for me. Loophole is the only editor I trust."</p>
+          <div class="tcarousel-name">Tyler Nguyen</div>
+          <div class="tcarousel-role">Security-conscious Indie Dev</div>
+        </div>
+
+        <div class="tcarousel-slide">
+          <p class="tcarousel-quote">"Agent mode built my entire REST API while I got coffee. It created the files, wrote the routes, added error handling — and used my own Anthropic key the whole time. No Loophole subscription needed."</p>
+          <div class="tcarousel-name">Priya Sharma</div>
+          <div class="tcarousel-role">Startup Founder & Developer</div>
+        </div>
+
+        <div class="tcarousel-slide">
+          <p class="tcarousel-quote">"Zero migration effort. My VS Code theme, extensions, and keybindings all just worked. It felt like home on day one — except now there's a genuinely smart AI sitting right inside it."</p>
+          <div class="tcarousel-name">Markus Bauer</div>
+          <div class="tcarousel-role">Senior Software Engineer</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Dots -->
+    <div class="tcarousel-dots" id="tcDots"></div>
+  </section>
+
+  <!-- ══════════ ONE PLATFORM SECTION ══════════ -->
+  <section class="platform-section">
+    <div class="platform-header">
+      <h2>Built to make you measurably faster</h2>
+    </div>
+
+    <div class="platform-track-wrap">
+      <div class="platform-track" id="platformTrack">
+
+        <!-- SET 1 -->
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">55%</div>
+            <div class="platform-stat-desc">less time writing boilerplate code with Tab completion</div>
+          </div>
+          <div class="platform-stat-logo">Community Survey</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">3x</div>
+            <div class="platform-stat-desc">faster feature delivery reported by solo developers</div>
+          </div>
+          <div class="platform-stat-logo">Beta Users</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">100%</div>
+            <div class="platform-stat-desc">free — no credit card, no usage limits, no catch</div>
+          </div>
+          <div class="platform-stat-logo">Always</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">10+</div>
+            <div class="platform-stat-desc">models supported — cloud & local, BYOA or offline</div>
+          </div>
+          <div class="platform-stat-logo">Model Support</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">0</div>
+            <div class="platform-stat-desc">lines of your code stored on our servers — ever</div>
+          </div>
+          <div class="platform-stat-logo">Privacy First</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">5min</div>
+            <div class="platform-stat-desc">average setup time from download to first AI completion</div>
+          </div>
+          <div class="platform-stat-logo">Quick Start</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">40%</div>
+            <div class="platform-stat-desc">fewer bugs caught in review after using inline AI suggestions</div>
+          </div>
+          <div class="platform-stat-logo">Dev Feedback</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">VS Code</div>
+            <div class="platform-stat-desc">compatible — all your extensions work on day one</div>
+          </div>
+          <div class="platform-stat-logo">Built on Void</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">Local</div>
+            <div class="platform-stat-desc">model support via Ollama for fully offline, private AI</div>
+          </div>
+          <div class="platform-stat-logo">Offline Ready</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">Open</div>
+            <div class="platform-stat-desc">source — fork it, extend it, make it yours</div>
+          </div>
+          <div class="platform-stat-logo">GitHub</div>
+        </div>
+
+        <!-- SET 2 — duplicate for seamless infinite loop -->
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">55%</div>
+            <div class="platform-stat-desc">less time writing boilerplate code with Tab completion</div>
+          </div>
+          <div class="platform-stat-logo">Community Survey</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">3x</div>
+            <div class="platform-stat-desc">faster feature delivery reported by solo developers</div>
+          </div>
+          <div class="platform-stat-logo">Beta Users</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">100%</div>
+            <div class="platform-stat-desc">free — no credit card, no usage limits, no catch</div>
+          </div>
+          <div class="platform-stat-logo">Always</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">10+</div>
+            <div class="platform-stat-desc">models supported — cloud & local, BYOA or offline</div>
+          </div>
+          <div class="platform-stat-logo">Model Support</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">0</div>
+            <div class="platform-stat-desc">lines of your code stored on our servers — ever</div>
+          </div>
+          <div class="platform-stat-logo">Privacy First</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">5min</div>
+            <div class="platform-stat-desc">average setup time from download to first AI completion</div>
+          </div>
+          <div class="platform-stat-logo">Quick Start</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">40%</div>
+            <div class="platform-stat-desc">fewer bugs caught in review after using inline AI suggestions</div>
+          </div>
+          <div class="platform-stat-logo">Dev Feedback</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">VS Code</div>
+            <div class="platform-stat-desc">compatible — all your extensions work on day one</div>
+          </div>
+          <div class="platform-stat-logo">Built on Void</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">Local</div>
+            <div class="platform-stat-desc">model support via Ollama for fully offline, private AI</div>
+          </div>
+          <div class="platform-stat-logo">Offline Ready</div>
+        </div>
+        <div class="platform-stat-card">
+          <div>
+            <div class="platform-stat-num">Open</div>
+            <div class="platform-stat-desc">source — fork it, extend it, make it yours</div>
+          </div>
+          <div class="platform-stat-logo">GitHub</div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════ CTA SECTION ══════════ -->
+  <section class="cta-section">
+    <div class="cta-blob cta-blob-1"></div>
+    <div class="cta-blob cta-blob-2"></div>
+    <div class="cta-blob cta-blob-3"></div>
+    <div class="cta-blob cta-blob-4"></div>
+    <div class="cta-blob cta-blob-5"></div>
+
+    <div class="cta-section-content">
+      <h2>Try Loophole today</h2>
+      <p>Download Loophole free. Bring your own API key, connect a local Ollama model, or go fully offline. 100% open source — fork it, own it.</p>
+      <div class="cta-section-btns">
+        <a href="#" class="cta-btn-primary">Download for free</a>
+        <a href="https://github.com/loophole-ai/loophole" target="_blank" rel="noopener" class="cta-btn-ghost-link">View on GitHub <span>›</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <a href="index.html" class="footer-logo">
+        <img src="assets/logo.png" alt="Loophole Logo" style="filter: invert(1);" />
+        <span class="footer-logo-name">Loophole</span>
+      </a>
+
+      <div class="footer-links">
+        <a href="models.html">Models</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="docs.html">Docs</a>
+        <a href="blog.html">Blog</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="support.html">Support</a>
+      </div>
+
+      <a href="https://github.com/loophole-ai/loophole" class="footer-github" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        GitHub
+      </a>
+
+      <span class="footer-copy"> 2026 Loophole.</span>
+
+    </div>
+  </footer>
+
+
+  <!-- ══════════ DOWNLOADS SECTION ══════════ -->
+  <section class="downloads-section">
+    <div class="downloads-inner">
+
+      <p class="downloads-eyebrow">All Downloads</p>
+      <h2 class="downloads-heading">Get Loophole today</h2>
+      <p class="downloads-sub">Free & open source. Bring your own AI key or use a local model — <a href="#">view on GitHub</a></p>
+
+      <div class="downloads-grid">
+
+        <!-- MAC -->
+        <div class="dl-col">
+          <svg class="dl-os-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.504 0c-.155 0-.315.008-.48.021C7.309.358 3.913 3.211 3.928 6.936c.009 2.418.975 4.873 2.319 6.777-.311.666-.518 1.352-.643 2.034-.266 1.467-.07 2.862.602 3.905.55.849 1.474 1.348 2.548 1.348h.087c.854-.01 1.783-.348 2.714-.881.615.237 1.263.363 1.917.363.626 0 1.252-.118 1.844-.339.932.535 1.863.877 2.72.888h.09c1.072 0 1.997-.5 2.548-1.348.671-1.043.867-2.437.6-3.905-.125-.682-.333-1.368-.643-2.034 1.342-1.903 2.308-4.355 2.319-6.777.016-3.725-3.38-6.578-7.596-6.914A8.415 8.415 0 0 0 12.504 0zm-3.43 11.343c.56 0 1.013.453 1.013 1.012 0 .56-.453 1.013-1.013 1.013-.559 0-1.012-.453-1.012-1.013 0-.559.453-1.012 1.012-1.012zm6.851 0c.56 0 1.013.453 1.013 1.012 0 .56-.453 1.013-1.013 1.013-.559 0-1.012-.453-1.012-1.013 0-.559.453-1.012 1.012-1.012z"/>
+          </svg>
+          <div class="dl-os-name">Mac</div>
+          <div class="dl-btn-row">
+            <a href="#" class="dl-btn">
+              <span class="dl-btn-ext">.dmg</span>
+              <span class="dl-btn-desc">macOS 12+</span>
+            </a>
+          </div>
+          <div class="dl-formats">
+            <div class="dl-format-row">
+              <div class="dl-format-left">
+                <span class="dl-format-name">.dmg</span>
+                <span class="dl-format-sub">Apple Silicon</span>
+              </div>
+              <div class="dl-arch-tags">
+                <a href="#" class="dl-arch-tag">x64</a>
+                <a href="#" class="dl-arch-tag">ARM64</a>
+              </div>
+            </div>
+            <div class="dl-format-row">
+              <div class="dl-format-left">
+                <span class="dl-format-name">.zip</span>
+              </div>
+              <div class="dl-arch-tags">
+                <a href="#" class="dl-arch-tag">x64</a>
+                <a href="#" class="dl-arch-tag">ARM64</a>
+              </div>
+            </div>
+          </div>
+          <div class="dl-terminal">
+            <span class="dl-terminal-dollar">$</span>
+            <span class="dl-terminal-cmd">brew install --cask loophole</span>
+          </div>
+        </div>
+
+        <!-- LINUX -->
+        <div class="dl-col">
+          <svg class="dl-os-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          <div class="dl-os-name">Linux</div>
+          <div class="dl-btn-row">
+            <a href="#" class="dl-btn">
+              <span class="dl-btn-ext">.deb</span>
+              <span class="dl-btn-desc">Debian, Ubuntu</span>
+            </a>
+            <a href="#" class="dl-btn">
+              <span class="dl-btn-ext">.rpm</span>
+              <span class="dl-btn-desc">Red Hat, Fedora</span>
+            </a>
+          </div>
+          <div class="dl-formats">
+            <div class="dl-format-row">
+              <div class="dl-format-left">
+                <span class="dl-format-name">.deb</span>
+              </div>
+              <div class="dl-arch-tags">
+                <a href="#" class="dl-arch-tag">x64</a>
+                <a href="#" class="dl-arch-tag">ARM64</a>
+              </div>
+            </div>
+            <div class="dl-format-row">
+              <div class="dl-format-left">
+                <span class="dl-format-name">.rpm</span>
+              </div>
+              <div class="dl-arch-tags">
+                <a href="#" class="dl-arch-tag">x64</a>
+                <a href="#" class="dl-arch-tag">ARM64</a>
+              </div>
+            </div>
+            <div class="dl-format-row">
+              <div class="dl-format-left">
+                <span class="dl-format-name">.tar.gz</span>
+                <span class="dl-format-sub">Arch Linux</span>
+              </div>
+              <div class="dl-arch-tags">
+                <a href="#" class="dl-arch-tag">x64</a>
+                <a href="#" class="dl-arch-tag">ARM64</a>
+              </div>
+            </div>
+            <div class="dl-format-row">
+              <div class="dl-format-left">
+                <span class="dl-format-name">AppImage</span>
+              </div>
+              <div class="dl-arch-tags">
+                <a href="#" class="dl-arch-tag">x64</a>
+                <a href="#" class="dl-arch-tag">ARM64</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WINDOWS -->
+        <div class="dl-col">
+          <svg class="dl-os-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+          </svg>
+          <div class="dl-os-name">Windows</div>
+          <div class="dl-btn-row">
+            <a href="#" class="dl-btn">
+              <span class="dl-btn-ext">.exe</span>
+              <span class="dl-btn-desc">Windows 10/11 x64</span>
+            </a>
+            <a href="#" class="dl-btn">
+              <span class="dl-btn-ext">.exe</span>
+              <span class="dl-btn-desc">Windows 10/11 ARM64</span>
+            </a>
+          </div>
+          <div class="dl-formats">
+            <div class="dl-format-row">
+              <div class="dl-format-left">
+                <span class="dl-format-name">.exe</span>
+              </div>
+              <div class="dl-arch-tags">
+                <a href="#" class="dl-arch-tag">x64</a>
+                <a href="#" class="dl-arch-tag">ARM64</a>
+              </div>
+            </div>
+            <div class="dl-format-row">
+              <div class="dl-format-left">
+                <span class="dl-format-name">.msi</span>
+              </div>
+              <div class="dl-arch-tags">
+                <a href="#" class="dl-arch-tag">x64</a>
+                <a href="#" class="dl-arch-tag">ARM64</a>
+              </div>
+            </div>
+          </div>
+          <div class="dl-terminal">
+            <span class="dl-terminal-dollar">$</span>
+            <span class="dl-terminal-cmd">winget install Loophole.Loophole</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
