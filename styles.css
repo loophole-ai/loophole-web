@@ -1424,7 +1424,7 @@ nav.top-nav {
 .downloads-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden; }
 .dl-col { padding: 36px 32px; border-right: 1px solid rgba(255,255,255,0.1); }
 .dl-col:last-child { border-right: none; }
-.dl-os-icon { width: 44px; height: 44px; margin-bottom: 16px; color: rgba(255,255,255,0.8); }
+.dl-os-icon { width: 44px; height: 44px; margin-bottom: 16px; color: rgba(255,255,255,0.8); font-size: 44px; display: block; }
 .dl-os-name { font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 24px; }
 .dl-btn-row { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
 .dl-btn { flex: 1; min-width: 120px; background: rgba(255,255,255,0.95); color: #111; border: none; border-radius: 8px; padding: 12px 14px; text-align: center; text-decoration: none; cursor: pointer; transition: background .18s, transform .15s; display: block; }
