@@ -93,6 +93,11 @@ nav.top-nav {
   background: #f2f2f2;
 }
 
+.nav-links a.active {
+  color: var(--text);
+  background: #f2f2f2;
+}
+
 .nav-right {
   display: flex;
   align-items: center;
@@ -945,7 +950,37 @@ nav.top-nav {
   display: flex;
   justify-content: center;
   gap: 8px;
+}
+
+.tcarousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
   margin-top: 36px;
+}
+
+.tcarousel-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: all .2s;
+}
+
+.tcarousel-arrow:hover {
+  background: #f5f5f5;
+  border-color: #bbb;
+}
+
+.tcarousel-arrow:active {
+  transform: scale(0.95);
 }
 
 .tcarousel-dot {
