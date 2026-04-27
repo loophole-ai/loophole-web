@@ -904,11 +904,11 @@ nav.top-nav {
   display: none;
   flex-direction: column;
   align-items: center;
-  animation: tcFadeIn .38s ease;
 }
 
 .tcarousel-slide.active {
   display: flex;
+  animation: tcFadeIn .38s ease;
 }
 
 @keyframes tcFadeIn {
@@ -972,6 +972,10 @@ nav.top-nav {
   justify-content: center;
   color: var(--text);
   transition: all .2s;
+}
+
+.tcarousel-arrow svg {
+  pointer-events: none;
 }
 
 .tcarousel-arrow:hover {

@@ -1,6 +1,7 @@
 /* ── Platform track: drag to pause ── */
 (function () {
   const track = document.getElementById('platformTrack');
+  if (!track) return;
   let isDown = false, startX, startScroll;
 
   track.addEventListener('mousedown', e => {
@@ -67,12 +68,18 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) clos
     slides[current].classList.remove('active');
     dotsContainer.children[current].classList.remove('active');
     current = (idx + slides.length) % slides.length;
+    // Re-trigger fade-in animation
+    slides[current].style.animation = 'none';
+    slides[current].offsetHeight; // force reflow
+    slides[current].style.animation = '';
     slides[current].classList.add('active');
     dotsContainer.children[current].classList.add('active');
   }
 
-  document.getElementById('tcPrev') && document.getElementById('tcPrev').addEventListener('click', () => goTo(current - 1));
-  document.getElementById('tcNext') && document.getElementById('tcNext').addEventListener('click', () => goTo(current + 1));
+  var prevBtn = document.getElementById('tcPrev');
+  var nextBtn = document.getElementById('tcNext');
+  if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
 
   // Auto-advance every 6s
   setInterval(() => goTo(current + 1), 6000);
