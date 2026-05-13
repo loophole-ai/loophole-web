@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Models — Loophole AI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="css/models.css" />
 </head>
+
 <body>
 
   <!-- ══════════ ANNOUNCEMENT BAR ══════════ -->
@@ -29,7 +33,8 @@
       <li><a href="blog.html">Blog</a></li>
     </ul>
     <div class="nav-right">
-      <a href="https://github.com/loophole-ai/loophole" target="_blank" rel="noopener" class="btn-ghost">View on GitHub</a>
+      <a href="https://github.com/loophole-ai/loophole" target="_blank" rel="noopener" class="btn-ghost">View on
+        GitHub</a>
       <button class="btn-dark">Download Free</button>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
         <span class="ham-bar"></span>
@@ -47,30 +52,508 @@
     <a href="blog.html">Blog</a>
     <div class="drawer-actions">
       <button class="btn-dark">Download Free</button>
-      <a href="https://github.com/loophole-ai/loophole" target="_blank" rel="noopener" class="btn-outline">View on GitHub</a>
+      <a href="https://github.com/loophole-ai/loophole" target="_blank" rel="noopener" class="btn-outline">View on
+        GitHub</a>
     </div>
   </nav>
 
-  <!-- ══════════ COMING SOON HERO ══════════ -->
-  <section class="coming-hero">
-    <p class="coming-eyebrow">// models page</p>
-    <h1 class="coming-title">Every model.<br/>One editor.</h1>
-    <p class="coming-sub">A full breakdown of every supported model — cloud and local — with benchmarks, context windows, pricing, and setup guides. Working on it.</p>
-
-    <div class="coming-model-grid">
-      <span class="coming-model-tag">GPT</span>
-      <span class="coming-model-tag">Claude</span>
-      <span class="coming-model-tag">Gemini</span>
-      <span class="coming-model-tag">Mistral</span>
-      <span class="coming-model-tag">Llama</span>
-      <span class="coming-model-tag">DeepSeek</span>
-      <span class="coming-model-tag">Ollama (local)</span>
-      <span class="coming-model-tag">+ more</span>
+  <!-- ══════════ HERO ══════════ -->
+  <section class="models-hero">
+    <h1 class="models-title">Every model.<br />One editor.</h1>
+    <p class="models-sub">Cloud, local, and enterprise — all supported. Bring your own key, run offline, or route
+      through any provider. You're always in control.</p>
+    <div class="models-hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">20+</span>
+        <span class="hero-stat-label">providers</span>
+      </div>
+      <div class="hero-stat-div"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">150+</span>
+        <span class="hero-stat-label">models</span>
+      </div>
+      <div class="hero-stat-div"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">∞</span>
+        <span class="hero-stat-label">local via Ollama</span>
+      </div>
     </div>
+  </section>
 
+  <!-- ══════════ SECTION: CLOUD PROVIDERS ══════════ -->
+  <section class="models-section">
+    <div class="models-section-inner">
+      <div class="section-head">
+        <h2 class="section-title">Cloud Providers</h2>
+        <p class="section-desc">Frontier models. Bring your own API key — Loophole never stores or proxies your
+          credentials.</p>
+      </div>
+
+      <div class="provider-grid">
+
+        <!-- OpenAI -->
+        <div class="provider-card">
+          <div class="provider-card-head">
+            <div class="provider-meta">
+              <span class="provider-dot" style="background:#10a37f;"></span>
+              <span class="provider-name">OpenAI</span>
+            </div>
+            <span class="provider-count">9 models</span>
+          </div>
+          <ul class="model-list">
+            <li class="model-row"><span class="model-name">gpt-5.5</span></li>
+            <li class="model-row"><span class="model-name">gpt-5.4</span></li>
+            <li class="model-row"><span class="model-name">gpt-5.4-pro</span></li>
+            <li class="model-row"><span class="model-name">gpt-5.4-mini</span></li>
+            <li class="model-row"><span class="model-name">o3</span><span class="badge badge-thinking">thinking</span>
+            </li>
+            <li class="model-row"><span class="model-name">o4-mini</span><span
+                class="badge badge-thinking">thinking</span></li>
+            <li class="model-row"><span class="model-name">gpt-4.1</span></li>
+            <li class="model-row"><span class="model-name">gpt-4.1-mini</span></li>
+            <li class="model-row"><span class="model-name">gpt-4o-mini</span></li>
+          </ul>
+        </div>
+
+        <!-- Anthropic -->
+        <div class="provider-card">
+          <div class="provider-card-head">
+            <div class="provider-meta">
+              <span class="provider-dot" style="background:#cc785c;"></span>
+              <span class="provider-name">Anthropic</span>
+            </div>
+            <span class="provider-count">6 models</span>
+          </div>
+          <ul class="model-list">
+            <li class="model-row"><span class="model-name">claude-opus-4-7</span></li>
+            <li class="model-row"><span class="model-name">claude-opus-4-6</span></li>
+            <li class="model-row"><span class="model-name">claude-opus-4-5-20251101</span></li>
+            <li class="model-row"><span class="model-name">claude-sonnet-4-6</span></li>
+            <li class="model-row"><span class="model-name">claude-sonnet-4-5-20250929</span></li>
+            <li class="model-row"><span class="model-name">claude-haiku-4-5-20251001</span></li>
+          </ul>
+        </div>
+
+        <!-- Google Gemini -->
+        <div class="provider-card">
+          <div class="provider-card-head">
+            <div class="provider-meta">
+              <span class="provider-dot" style="background:#4285f4;"></span>
+              <span class="provider-name">Google Gemini</span>
+            </div>
+            <span class="provider-count">8 models</span>
+          </div>
+          <ul class="model-list">
+            <li class="model-row"><span class="model-name">gemini-3.1-pro-preview</span><span
+                class="badge badge-thinking">thinking</span></li>
+            <li class="model-row"><span class="model-name">gemini-3-flash-preview</span></li>
+            <li class="model-row"><span class="model-name">gemini-3.1-flash-lite</span></li>
+            <li class="model-row"><span class="model-name">gemini-2.5-pro</span><span
+                class="badge badge-thinking">thinking</span></li>
+            <li class="model-row"><span class="model-name">gemini-2.5-flash</span></li>
+            <li class="model-row"><span class="model-name">gemini-2.5-flash-lite</span></li>
+            <li class="model-row"><span class="model-name">gemini-2.0-flash</span></li>
+            <li class="model-row"><span class="model-name">gemini-2.0-flash-lite</span></li>
+          </ul>
+        </div>
+
+        <!-- xAI -->
+        <div class="provider-card">
+          <div class="provider-card-head">
+            <div class="provider-meta">
+              <span class="provider-dot" style="background:#ffffff;"></span>
+              <span class="provider-name">xAI</span>
+            </div>
+            <span class="provider-count">8 models</span>
+          </div>
+          <ul class="model-list">
+            <li class="model-row"><span class="model-name">grok-3</span></li>
+            <li class="model-row"><span class="model-name">grok-3-fast</span></li>
+            <li class="model-row"><span class="model-name">grok-3-mini</span><span
+                class="badge badge-thinking">thinking</span></li>
+            <li class="model-row"><span class="model-name">grok-3-mini-fast</span><span
+                class="badge badge-thinking">thinking</span></li>
+            <li class="model-row"><span class="model-name">grok-4.3</span></li>
+            <li class="model-row"><span class="model-name">grok-4.3-latest</span></li>
+            <li class="model-row"><span class="model-name">grok-4.20-reasoning</span><span
+                class="badge badge-thinking">thinking</span></li>
+            <li class="model-row"><span class="model-name">grok-4.1-fast-reasoning</span><span
+                class="badge badge-thinking">thinking</span></li>
+          </ul>
+        </div>
+
+        <!-- DeepSeek -->
+        <div class="provider-card">
+          <div class="provider-card-head">
+            <div class="provider-meta">
+              <span class="provider-dot" style="background:#4d6bfe;"></span>
+              <span class="provider-name">DeepSeek</span>
+            </div>
+            <span class="provider-count">2 models</span>
+          </div>
+          <ul class="model-list">
+            <li class="model-row"><span class="model-name">deepseek-v4-pro</span></li>
+            <li class="model-row"><span class="model-name">deepseek-v4-flash</span></li>
+          </ul>
+        </div>
+
+        <!-- Mistral -->
+        <div class="provider-card">
+          <div class="provider-card-head">
+            <div class="provider-meta">
+              <span class="provider-dot" style="background:#f7611e;"></span>
+              <span class="provider-name">Mistral</span>
+            </div>
+            <span class="provider-count">6 models</span>
+          </div>
+          <ul class="model-list">
+            <li class="model-row"><span class="model-name">mistral-large-latest</span></li>
+            <li class="model-row"><span class="model-name">magistral-medium-latest</span><span
+                class="badge badge-thinking">thinking</span></li>
+            <li class="model-row"><span class="model-name">magistral-small-latest</span><span
+                class="badge badge-thinking">thinking</span></li>
+            <li class="model-row"><span class="model-name">codestral-latest</span><span
+                class="badge badge-fim">autocomplete</span></li>
+            <li class="model-row"><span class="model-name">devstral-small-2507</span><span
+                class="badge badge-fim">autocomplete</span></li>
+            <li class="model-row"><span class="model-name">ministral-14b-2512</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SECTION: ROUTERS & INFERENCE ══════════ -->
+  <section class="models-section">
+    <div class="models-section-inner">
+      <div class="section-head">
+        <h2 class="section-title">Inference Providers</h2>
+        <p class="section-desc">Fast inference, open-source models, and model routing — all in one place.</p>
+      </div>
+
+      <div class="provider-grid">
+
+        <!-- Groq -->
+        <div class="provider-card">
+          <div class="provider-card-head">
+            <div class="provider-meta">
+              <span class="provider-dot" style="background:#f55036;"></span>
+              <span class="provider-name">Groq</span>
+            </div>
+            <span class="provider-count">6 models</span>
+          </div>
+          <ul class="model-list">
+            <li class="model-row"><span class="model-name">llama-3.3-70b-versatile</span></li>
+            <li class="model-row"><span class="model-name">qwen/qwen3-32b</span></li>
+            <li class="model-row"><span class="model-name">openai/gpt-oss-120b</span></li>
+            <li class="model-row"><span class="model-name">meta-llama/llama-4-scout-17b-16e-instruct</span></li>
+            <li class="model-row"><span class="model-name">groq/compound</span></li>
+            <li class="model-row"><span class="model-name">openai/gpt-oss-20b</span></li>
+          </ul>
+        </div>
+
+
+      </div>
+
+      <!-- OpenRouter — wide card -->
+      <div class="openrouter-card">
+        <div class="openrouter-card-head">
+          <div class="provider-meta">
+            <span class="provider-dot" style="background:#6467f2;"></span>
+            <span class="provider-name">OpenRouter</span>
+          </div>
+          <span class="openrouter-badge">50+ models</span>
+        </div>
+        <p class="openrouter-desc">Route requests to any model from any provider — all via a single OpenRouter API key.
+        </p>
+        <div class="openrouter-families">
+
+          <div class="or-family">
+            <span class="or-family-label">OpenAI</span>
+            <span class="or-model">openai/gpt-5.4</span>
+            <span class="or-model">openai/gpt-5.4-pro</span>
+            <span class="or-model">openai/o4-mini-high</span>
+            <span class="or-model">openai/o4-mini</span>
+          </div>
+
+          <div class="or-family">
+            <span class="or-family-label">Anthropic</span>
+            <span class="or-model">anthropic/claude-opus-4.7</span>
+            <span class="or-model">anthropic/claude-opus-4.6</span>
+            <span class="or-model">anthropic/claude-sonnet-4.6</span>
+            <span class="or-model">anthropic/claude-sonnet-4.5</span>
+            <span class="or-model">anthropic/claude-sonnet-4</span>
+            <span class="or-model">anthropic/claude-haiku-4.5</span>
+            <span class="or-model">anthropic/claude-3.5-haiku</span>
+          </div>
+
+          <div class="or-family">
+            <span class="or-family-label">Google</span>
+            <span class="or-model">google/gemini-3.1-pro-preview</span>
+            <span class="or-model">google/gemini-3-flash-preview</span>
+            <span class="or-model">google/gemini-2.5-pro</span>
+            <span class="or-model">google/gemini-2.5-flash</span>
+            <span class="or-model">google/gemini-2.5-flash-lite</span>
+          </div>
+
+          <div class="or-family">
+            <span class="or-family-label">Meta Llama</span>
+            <span class="or-model">meta-llama/llama-4-maverick</span>
+            <span class="or-model">meta-llama/llama-4-scout</span>
+            <span class="or-model">meta-llama/llama-3.1-70b-instruct</span>
+            <span class="or-model">meta-llama/llama-3.3-70b-instruct</span>
+          </div>
+
+          <div class="or-family">
+            <span class="or-family-label">DeepSeek</span>
+            <span class="or-model">deepseek/deepseek-v3.2</span>
+            <span class="or-model">deepseek/deepseek-r1</span>
+            <span class="or-model free-tag">deepseek/deepseek-r1:free</span>
+          </div>
+
+          <div class="or-family">
+            <span class="or-family-label">xAI</span>
+            <span class="or-model">x-ai/grok-4</span>
+            <span class="or-model">x-ai/grok-4.1-fast</span>
+            <span class="or-model">x-ai/grok-3</span>
+            <span class="or-model">x-ai/grok-3-mini</span>
+          </div>
+
+          <div class="or-family">
+            <span class="or-family-label">Mistral</span>
+            <span class="or-model">mistralai/mistral-large-2512</span>
+            <span class="or-model">mistralai/mistral-medium-3</span>
+            <span class="or-model">mistralai/mistral-medium-3.1</span>
+            <span class="or-model">mistralai/mistral-small-3.2-24b-instruct</span>
+            <span class="or-model">mistralai/codestral-2508</span>
+            <span class="or-model free-tag">mistralai/devstral-small:free</span>
+            <span class="or-model free-tag">mistralai/mistral-small-3.1-24b-instruct:free</span>
+          </div>
+
+          <div class="or-family">
+            <span class="or-family-label">Qwen</span>
+            <span class="or-model">qwen/qwen3-235b-a22b</span>
+            <span class="or-model">qwen/qwen-2.5-72b-instruct</span>
+            <span class="or-model">qwen/qwen3-32b</span>
+            <span class="or-model">qwen/qwen-2.5-coder-32b-instruct</span>
+            <span class="or-model">qwen/qwen3.6-plus</span>
+            <span class="or-model">qwen/qwen3.5-flash-02-23</span>
+          </div>
+
+          <div class="or-family">
+            <span class="or-family-label">Moonshot</span>
+            <span class="or-model">moonshotai/kimi-k2.6</span>
+            <span class="or-model">moonshotai/kimi-k2.5</span>
+          </div>
+
+          <div class="or-family">
+            <span class="or-family-label">Perplexity</span>
+            <span class="or-model">perplexity/sonar-pro</span>
+            <span class="or-model">perplexity/sonar</span>
+          </div>
+
+          <div class="or-family">
+            <span class="or-family-label">GLM / Z-AI</span>
+            <span class="or-model">z-ai/glm-5.1</span>
+            <span class="or-model">z-ai/glm-5-turbo</span>
+          </div>
+
+          <div class="or-family">
+            <span class="or-family-label">NVIDIA</span>
+            <span class="or-model">nvidia/nemotron-3-super-120b-a12b</span>
+            <span class="or-model">nvidia/nemotron-3-nano-30b-a3b</span>
+            <span class="or-model free-tag">nvidia/nemotron-3-super-120b-a12b:free</span>
+            <span class="or-model free-tag">nvidia/nemotron-3-nano-30b-a3b:free</span>
+          </div>
+
+          <div class="or-family">
+            <span class="or-family-label">MiniMax</span>
+            <span class="or-model">minimax/minimax-m2.7</span>
+            <span class="or-model">minimax/minimax-m2.5</span>
+            <span class="or-model free-tag">minimax/minimax-m2.5:free</span>
+            <span class="or-model">minimax/minimax-m2</span>
+          </div>
+
+          <div class="or-family">
+            <span class="or-family-label">Others</span>
+            <span class="or-model">inception/mercury-2</span>
+            <span class="or-model">microsoft/phi-4</span>
+            <span class="or-model">microsoft/phi-4-mini-instruct</span>
+            <span class="or-model">openrouter/auto</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════ SECTION: LOCAL ══════════ -->
+  <section class="models-section">
+    <div class="models-section-inner">
+      <div class="section-head">
+        <h2 class="section-title">Local & Self-Hosted</h2>
+        <p class="section-desc">Run fully offline. No internet, no API key, no data leaving your machine.</p>
+      </div>
+
+      <div class="local-grid">
+
+        <div class="local-card">
+          <div class="local-card-head">
+            <div class="provider-meta">
+              <span class="provider-dot" style="background:#fff;"></span>
+              <span class="provider-name">Ollama</span>
+            </div>
+            <span class="badge badge-local">local</span>
+          </div>
+          <p class="local-card-desc">Models are auto-detected from your local Ollama instance. Pull any model from the
+            Ollama library and it appears instantly.</p>
+          <div class="local-card-endpoint">
+            <span class="endpoint-label">default endpoint</span>
+            <code class="endpoint-val">http://127.0.0.1:11434</code>
+          </div>
+          <div class="local-examples">
+            <span class="local-example">llama3.3</span>
+            <span class="local-example">deepseek-r1</span>
+            <span class="local-example">qwen3</span>
+            <span class="local-example">mistral</span>
+            <span class="local-example">codellama</span>
+            <span class="local-example">+ any Ollama model</span>
+          </div>
+        </div>
+
+        <div class="local-card">
+          <div class="local-card-head">
+            <div class="provider-meta">
+              <span class="provider-dot" style="background:#9b6dff;"></span>
+              <span class="provider-name">LM Studio</span>
+            </div>
+            <span class="badge badge-local">local</span>
+          </div>
+          <p class="local-card-desc">Connect to LM Studio's local server. Download models from Hugging Face directly
+            inside LM Studio and use them in Loophole.</p>
+          <div class="local-card-endpoint">
+            <span class="endpoint-label">default endpoint</span>
+            <code class="endpoint-val">http://localhost:1234</code>
+          </div>
+          <div class="local-examples">
+            <span class="local-example">Any GGUF model</span>
+            <span class="local-example">HuggingFace models</span>
+            <span class="local-example">+ any LM Studio model</span>
+          </div>
+        </div>
+
+        <div class="local-card">
+          <div class="local-card-head">
+            <div class="provider-meta">
+              <span class="provider-dot" style="background:#5a9a6f;"></span>
+              <span class="provider-name">vLLM</span>
+            </div>
+            <span class="badge badge-local">local</span>
+          </div>
+          <p class="local-card-desc">Point Loophole at your vLLM server. Models are auto-detected. Ideal for running
+            high-throughput inference on your own hardware.</p>
+          <div class="local-card-endpoint">
+            <span class="endpoint-label">default endpoint</span>
+            <code class="endpoint-val">http://localhost:8000</code>
+          </div>
+          <div class="local-examples">
+            <span class="local-example">Any vLLM-compatible model</span>
+            <span class="local-example">Self-hosted inference</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SECTION: ENTERPRISE ══════════ -->
+  <section class="models-section section-last">
+    <div class="models-section-inner">
+      <div class="section-head">
+        <h2 class="section-title">Enterprise & Custom</h2>
+        <p class="section-desc">Deploy on your own infrastructure, behind your VPC, or via a custom endpoint. Full
+          control, no vendor lock-in.</p>
+      </div>
+
+      <div class="enterprise-grid">
+
+        <div class="enterprise-card">
+          <div class="ent-head">
+            <span class="provider-dot" style="background:#4285f4;"></span>
+            <span class="provider-name">Google Vertex AI</span>
+          </div>
+          <p class="ent-desc">Gemini and third-party models via Google Cloud. Configure region and project ID.</p>
+          <div class="ent-config">
+            <span class="ent-cfg-item">region <code>us-west2</code></span>
+            <span class="ent-cfg-item">project ID</span>
+          </div>
+        </div>
+
+        <div class="enterprise-card">
+          <div class="ent-head">
+            <span class="provider-dot" style="background:#0078d4;"></span>
+            <span class="provider-name">Microsoft Azure</span>
+          </div>
+          <p class="ent-desc">Azure AI Foundry models via your Azure resource. Supports GPT-4o and more.</p>
+          <div class="ent-config">
+            <span class="ent-cfg-item">resource name</span>
+            <span class="ent-cfg-item">API key</span>
+            <span class="ent-cfg-item">api-version <code>2024-05-01</code></span>
+          </div>
+        </div>
+
+        <div class="enterprise-card">
+          <div class="ent-head">
+            <span class="provider-dot" style="background:#ff9900;"></span>
+            <span class="provider-name">AWS Bedrock</span>
+          </div>
+          <p class="ent-desc">Access Claude, Llama, and more via Amazon Bedrock in your own AWS account.</p>
+          <div class="ent-config">
+            <span class="ent-cfg-item">region <code>us-east-1</code></span>
+            <span class="ent-cfg-item">AWS credentials</span>
+          </div>
+        </div>
+
+        <div class="enterprise-card">
+          <div class="ent-head">
+            <span class="provider-dot" style="background:#5a9a6f;"></span>
+            <span class="provider-name">LiteLLM</span>
+          </div>
+          <p class="ent-desc">Proxy 100+ models through your own LiteLLM gateway. One endpoint, any backend.</p>
+          <div class="ent-config">
+            <span class="ent-cfg-item">custom endpoint</span>
+          </div>
+        </div>
+
+        <div class="enterprise-card">
+          <div class="ent-head">
+            <span class="provider-dot" style="background:#aaa;"></span>
+            <span class="provider-name">OpenAI-Compatible</span>
+          </div>
+          <p class="ent-desc">Anything that speaks OpenAI's API. Custom headers, endpoint, and API key — full control.
+          </p>
+          <div class="ent-config">
+            <span class="ent-cfg-item">endpoint URL</span>
+            <span class="ent-cfg-item">API key</span>
+            <span class="ent-cfg-item">custom headers JSON</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CTA ══════════ -->
+  <section class="models-cta">
+    <h2 class="models-cta-title">Pick a model.<br />Start building.</h2>
+    <p class="models-cta-sub">Download Loophole, connect any provider, and write code with AI — no subscription needed.
+    </p>
     <div class="coming-btn-row">
-      <a href="index.html" class="coming-btn-primary">Back to home</a>
-      <a href="https://github.com/loophole-ai/loophole" target="_blank" rel="noopener" class="coming-btn-ghost">Star on GitHub →</a>
+      <a href="index.html" class="coming-btn-primary">Download Free</a>
+      <a href="https://github.com/loophole-ai/loophole" target="_blank" rel="noopener" class="coming-btn-ghost">View on
+        GitHub →</a>
     </div>
   </section>
 
@@ -90,13 +573,17 @@
         <a href="support.html">Support</a>
       </div>
       <a href="https://github.com/loophole-ai/loophole" class="footer-github" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+        </svg>
         GitHub
       </a>
-      <span class="footer-copy"> 2026 Loophole.</span>
+      <span class="footer-copy">© 2026 Loophole.</span>
     </div>
   </footer>
 
   <script src="script.js"></script>
 </body>
+
 </html>
