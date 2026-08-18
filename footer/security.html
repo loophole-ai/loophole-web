@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Policy - Loophole</title>
+    <meta name="description" content="Security policy, vulnerability reporting, and best practices for Loophole IDE.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #fafafa;
+            --bg-container: #ffffff;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --border-color: #e5e5e5;
+            --accent-black: #000000;
+            --font-stack: 'Space Mono', monospace;
+            --container-width: 1024px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 14px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .site-container {
+            background-color: var(--bg-container);
+            width: 100%;
+            max-width: var(--container-width);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        a { text-decoration: none; color: inherit; cursor: pointer; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .section-box { border-bottom: 1px solid var(--border-color); width: 100%; padding: 60px 40px; }
+        .btn {
+            padding: 12px 24px;
+            border: 1px solid var(--accent-black);
+            font-family: var(--font-stack);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-black { background: var(--accent-black); color: white; }
+        .btn-black:hover { background: #333; }
+        nav {
+            width: 100%;
+            height: 70px;
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+        }
+        .logo { font-weight: 700; font-size: 20px; letter-spacing: -1px; }
+        .nav-links { gap: 30px; font-size: 13px; color: var(--text-muted); }
+        .nav-links a:hover { color: var(--text-main); }
+        .feature-strong { color: var(--text-main); font-weight: 700; }
+        .policy-block { margin-bottom: 40px; }
+        .policy-block:last-child { margin-bottom: 0; }
+        .callout {
+            border: 1px solid var(--border-color);
+            background: #f9f9f9;
+            padding: 20px 24px;
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+        .callout strong { color: var(--text-main); }
+        .step-list { margin-top: 12px; padding-left: 0; list-style: none; counter-reset: steps; }
+        .step-list li {
+            counter-increment: steps;
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.8;
+            padding: 8px 0 8px 36px;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .step-list li:last-child { border-bottom: none; }
+        .step-list li::before {
+            content: counter(steps);
+            position: absolute;
+            left: 0;
+            top: 8px;
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 12px;
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .best-practices-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .practice-card {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+        }
+        .practice-card .title { font-weight: 700; font-size: 13px; margin-bottom: 8px; }
+        .practice-card p { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+        footer { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); }
+        .footer-col { border-right: 1px solid var(--border-color); padding: 30px 40px; text-align: center; font-size: 13px; color: var(--text-muted); border-top: 1px solid var(--border-color); }
+        .footer-col:last-child { border-right: none; }
+        .footer-col a:hover { color: var(--text-main); }
+        .legal { width: 100%; padding: 30px; text-align: center; font-size: 12px; color: #999; border-top: 1px solid var(--border-color); }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            footer { grid-template-columns: 1fr; }
+            .footer-col { border-right: none; }
+            .section-box { padding: 40px 24px; }
+            .best-practices-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-container">
+
+        <nav>
+            <a href="../index.html" class="logo">LOOPHOLE</a>
+            <div class="flex items-center">
+                <div class="nav-links flex items-center" style="margin-right: 30px;">
+                    <a href="https://github.com/loophole-ai/loophole-ide/releases">GitHub</a>
+                    <a href="https://github.com/loophole-ai/loophole-ide/wiki">Docs</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="acceptable-use.html">Acceptable Use</a>
+                    <a href="security.html">Security</a>
+                </div>
+                <a href="https://github.com/loophole-ai/loophole-ide/releases"><button class="btn btn-black" style="padding: 8px 16px; font-size: 12px;">Download</button></a>
+            </div>
+        </nav>
+
+        <section class="section-box">
+            <h1 style="font-size: 36px; margin-bottom: 20px; letter-spacing: -1px;">Security Policy</h1>
+            <p style="color: var(--text-muted); margin-bottom: 50px;">Last updated: August 18, 2026</p>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Security Architecture</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    Loophole is designed with security as a foundational property. Because Loophole has no backend server, there is no central infrastructure to compromise and no single point of failure that could expose all users' data simultaneously. All AI requests are made directly from your machine to the AI provider's API over HTTPS. API keys are stored in the operating system's native secure credential storage — never in plaintext config files. The agentic engine's tool calls (file edits, terminal commands, MCP tool invocations) each have independent approval controls, giving you fine-grained oversight over what the agent is permitted to do without manual confirmation.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Supported Versions</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    Security updates are provided exclusively for the latest stable release of Loophole. We strongly recommend always running the most recent version. Older versions may contain known vulnerabilities that will not receive backported patches. Check the <a href="https://github.com/loophole-ai/loophole-ide/releases" style="border-bottom: 1px solid var(--text-muted);">releases page</a> for the current stable version.
+                </p>
+                <div class="callout">
+                    <strong>Current support policy:</strong> Only the latest stable release receives security patches. If you are running an older version, upgrade before reporting a vulnerability — it may already be fixed.
+                </div>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Reporting a Vulnerability</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    <strong style="color: var(--text-main);">Do not report security vulnerabilities through public GitHub issues.</strong> Public disclosure before a fix is available puts all Loophole users at risk. Please use the private reporting process below.
+                </p>
+                <ol class="step-list" style="margin-top: 16px;">
+                    <li>Email <a href="mailto:hi@loopholeeditor.in" style="border-bottom: 1px solid var(--text-muted);">hi@loopholeeditor.in</a> with the subject line "Security Vulnerability Report"</li>
+                    <li>Describe the vulnerability in detail — what it is, what it affects, and its potential impact</li>
+                    <li>Include steps to reproduce the issue, or a proof-of-concept if available</li>
+                    <li>Include your preferred contact method and whether you would like to be credited in the security advisory</li>
+                    <li>Wait for our acknowledgment before making any public disclosure</li>
+                </ol>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8; margin-top: 16px;">
+                    We aim to acknowledge all vulnerability reports within 48 hours and to provide an initial assessment within 7 days.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Responsible Disclosure Process</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    We follow a coordinated disclosure model. When you report a vulnerability privately, we commit to:
+                </p>
+                <ol class="step-list" style="margin-top: 16px;">
+                    <li>Acknowledging your report within 48 hours</li>
+                    <li>Investigating and validating the reported issue with you</li>
+                    <li>Developing and testing a fix, keeping you informed of progress</li>
+                    <li>Releasing a patched version and publishing a security advisory</li>
+                    <li>Crediting you by name or handle in the advisory, if you wish</li>
+                </ol>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8; margin-top: 16px;">
+                    We appreciate the security research community's work in keeping open-source software safe. We ask that you give us reasonable time to address the issue before any public disclosure.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Security Best Practices</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8; margin-bottom: 16px;">Follow these practices to use Loophole safely:</p>
+                <div class="best-practices-grid">
+                    <div class="practice-card">
+                        <div class="title">Keep Loophole updated</div>
+                        <p>Always run the latest stable version. Security patches are only released for the current version. Check the releases page regularly or enable update notifications.</p>
+                    </div>
+                    <div class="practice-card">
+                        <div class="title">Vet extensions and MCP servers</div>
+                        <p>Only install VS Code extensions and connect MCP servers from sources you trust. Extensions can access your filesystem and run code. Review extension permissions before installation.</p>
+                    </div>
+                    <div class="practice-card">
+                        <div class="title">Use approval controls for agents</div>
+                        <p>Keep per-category approval controls enabled for file edits, terminal commands, and MCP tool calls. Review what the agent plans to do before enabling auto-approve for any category.</p>
+                    </div>
+                    <div class="practice-card">
+                        <div class="title">Protect your API keys</div>
+                        <p>Treat AI provider API keys as sensitive credentials. Never commit them to source control. Use per-provider key rotation if you suspect a key has been exposed.</p>
+                    </div>
+                    <div class="practice-card">
+                        <div class="title">Review AI-generated code</div>
+                        <p>Loophole's AI features can generate code with security vulnerabilities. Always review AI suggestions before committing or deploying, especially code handling auth, input validation, or network requests.</p>
+                    </div>
+                    <div class="practice-card">
+                        <div class="title">Use local models for sensitive work</div>
+                        <p>When working with highly sensitive code, prefer local models via Ollama, vLLM, or LM Studio. In fully local mode, no data leaves your machine at all.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">AI Provider Security</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    Loophole sends AI requests directly from your machine to your chosen provider's API over HTTPS. No data passes through Loophole servers or any intermediate relay. However, the security of data in transit and at rest at the provider is subject to the provider's own security practices. Review the security documentation of Anthropic, OpenAI, Google, DeepSeek, or any other provider you use — especially for sensitive or regulated codebases. Many enterprise-tier AI providers offer data processing agreements (DPAs), zero retention policies, and SOC 2 compliance.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Open Source Auditability</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    The complete Loophole source code is publicly available at <a href="https://github.com/loophole-ai/loophole-ide/releases" style="border-bottom: 1px solid var(--text-muted);">github.com/loophole-ai/loophole-ide</a>. Security teams, enterprise procurement reviewers, and individual users can audit every network call, every credential handling path, and every agentic tool implementation directly in the source. We believe open-source auditability is the highest standard of security transparency available. If you find something in the code that contradicts our security claims, please report it via the vulnerability disclosure process above.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Contact</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    For private vulnerability reports: <a href="mailto:hi@loopholeeditor.in" style="border-bottom: 1px solid var(--text-muted);">hi@loopholeeditor.in</a><br>
+                    For general security questions: <a href="https://github.com/loophole-ai/loophole-ide/discussions" style="border-bottom: 1px solid var(--text-muted);">GitHub Discussions</a><br>
+                    For non-security issues: <a href="https://github.com/loophole-ai/loophole-ide/issues/new" style="border-bottom: 1px solid var(--text-muted);">GitHub Issues</a>
+                </p>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-col"><a href="privacy.html">Privacy Policy</a></div>
+            <div class="footer-col"><a href="terms.html">Terms of Service</a></div>
+            <div class="footer-col"><a href="acceptable-use.html">Acceptable Use</a></div>
+            <div class="footer-col"><a href="security.html">Security</a></div>
+        </footer>
+        <div class="legal">
+            &copy; 2026 Loophole IDE &nbsp;•&nbsp; Licensed under AGPL-3.0
+        </div>
+
+    </div>
+</body>
+</html>

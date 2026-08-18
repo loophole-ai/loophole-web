@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Loophole</title>
+    <meta name="description" content="Terms of Service for Loophole IDE — the open-source AI code editor.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #fafafa;
+            --bg-container: #ffffff;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --border-color: #e5e5e5;
+            --accent-black: #000000;
+            --font-stack: 'Space Mono', monospace;
+            --container-width: 1024px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 14px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .site-container {
+            background-color: var(--bg-container);
+            width: 100%;
+            max-width: var(--container-width);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        a { text-decoration: none; color: inherit; cursor: pointer; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .section-box { border-bottom: 1px solid var(--border-color); width: 100%; padding: 60px 40px; }
+        .btn {
+            padding: 12px 24px;
+            border: 1px solid var(--accent-black);
+            font-family: var(--font-stack);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-black { background: var(--accent-black); color: white; }
+        .btn-black:hover { background: #333; }
+        nav {
+            width: 100%;
+            height: 70px;
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+        }
+        .logo { font-weight: 700; font-size: 20px; letter-spacing: -1px; }
+        .nav-links { gap: 30px; font-size: 13px; color: var(--text-muted); }
+        .nav-links a:hover { color: var(--text-main); }
+        .feature-strong { color: var(--text-main); font-weight: 700; }
+        .policy-block { margin-bottom: 40px; }
+        .policy-block:last-child { margin-bottom: 0; }
+        footer { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); }
+        .footer-col { border-right: 1px solid var(--border-color); padding: 30px 40px; text-align: center; font-size: 13px; color: var(--text-muted); border-top: 1px solid var(--border-color); }
+        .footer-col:last-child { border-right: none; }
+        .footer-col a:hover { color: var(--text-main); }
+        .legal { width: 100%; padding: 30px; text-align: center; font-size: 12px; color: #999; border-top: 1px solid var(--border-color); }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            footer { grid-template-columns: 1fr; }
+            .footer-col { border-right: none; }
+            .section-box { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-container">
+
+        <nav>
+            <a href="../index.html" class="logo">LOOPHOLE</a>
+            <div class="flex items-center">
+                <div class="nav-links flex items-center" style="margin-right: 30px;">
+                    <a href="https://github.com/loophole-ai/loophole-ide/releases">GitHub</a>
+                    <a href="https://github.com/loophole-ai/loophole-ide/wiki">Docs</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="acceptable-use.html">Acceptable Use</a>
+                    <a href="security.html">Security</a>
+                </div>
+                <a href="https://github.com/loophole-ai/loophole-ide/releases"><button class="btn btn-black" style="padding: 8px 16px; font-size: 12px;">Download</button></a>
+            </div>
+        </nav>
+
+        <section class="section-box">
+            <h1 style="font-size: 36px; margin-bottom: 20px; letter-spacing: -1px;">Terms of Service</h1>
+            <p style="color: var(--text-muted); margin-bottom: 50px;">Last updated: August 18, 2026</p>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Acceptance of Terms</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    By downloading, installing, or using Loophole IDE, you agree to these Terms of Service. Loophole is free and open-source software licensed under the GNU Affero General Public License v3.0 (AGPL-3.0). These terms govern your use of the Loophole software, website, and related services. If you do not agree to these terms, do not use Loophole.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Open-Source License</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    Loophole is licensed under the <a href="https://github.com/loophole-ai/loophole-ide/blob/main/LICENSE.txt" style="border-bottom: 1px solid var(--text-muted);">AGPL-3.0 license</a>. This means you are free to use, modify, and distribute Loophole, provided that any modifications or derivative works you distribute are also released under AGPL-3.0 with full source code. Loophole incorporates code from Void Editor (Apache 2.0) and VS Code (MIT). See the repository for full license notices and third-party attributions.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Use of the Software</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    Loophole is provided as a general-purpose code editor. You may use Loophole for personal, commercial, educational, and open-source projects. You are responsible for your use of the software, including the prompts you send to AI providers, the code you write or generate, and compliance with any applicable laws or third-party terms. Loophole connects to AI providers you configure — you are responsible for your own accounts and usage with those providers.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">AI Provider Accounts and API Keys</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    Loophole supports 20+ AI providers including Anthropic, OpenAI, Google Gemini, DeepSeek, xAI, Mistral, Groq, Cohere, Perplexity, OpenRouter, Together AI, Fireworks AI, Inception Labs, LiteLLM, Google Vertex AI, Microsoft Azure, AWS Bedrock, and local runners such as Ollama, vLLM, and LM Studio. Your use of these providers is governed by their respective terms of service. You are solely responsible for obtaining API keys, managing usage costs, and complying with provider-specific policies. Loophole has no affiliation with or responsibility for any third-party AI provider.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Your Code and Content</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    You retain all ownership and intellectual property rights to the code and content you create using Loophole. Loophole does not claim any rights to your work. Because all AI requests go directly from your machine to your chosen provider, Loophole never receives or processes your source code. Any rights or obligations regarding AI-generated code are governed by the terms of the provider you used to generate it.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Agentic Features and Approval Controls</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    Loophole includes an agentic engine capable of reading files, writing files, executing terminal commands, managing tasks, and spawning sub-agents. These capabilities are powerful and require careful use. Loophole provides per-category approval controls — file edits, terminal commands, and MCP tool calls each have configurable confirmation requirements. You are responsible for reviewing and approving any agentic actions before they execute. Enable auto-approve only when you understand and accept the risks of automated tool use.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Extensions and MCP Servers</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    Loophole supports VS Code extensions and Model Context Protocol (MCP) servers, which can extend the editor and agent with additional capabilities. Only install extensions and connect MCP servers from sources you trust. Loophole makes no representations about the safety, reliability, or privacy practices of third-party extensions or MCP servers. You assume full responsibility for any third-party integrations you configure.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Disclaimer of Warranties</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    Loophole is provided "as is" without warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement. The Loophole project contributors do not warrant that the software will be error-free, uninterrupted, or suitable for any particular use. AI-generated suggestions are probabilistic outputs and may be incorrect, incomplete, or unsafe — always review AI-generated code before use.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Limitation of Liability</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    To the maximum extent permitted by law, the Loophole contributors shall not be liable for any direct, indirect, incidental, consequential, or special damages arising from your use of or inability to use Loophole, including data loss, business interruption, or costs incurred from AI provider usage. This limitation applies regardless of the theory of liability and even if Loophole contributors have been advised of the possibility of such damages.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Contributing</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    Contributions to Loophole are welcome and governed by the <a href="https://github.com/loophole-ai/loophole-ide/blob/main/HOW_TO_CONTRIBUTE.md" style="border-bottom: 1px solid var(--text-muted);">Contributing Guide</a>. By submitting a pull request or contribution, you agree that your contribution will be licensed under AGPL-3.0 and you represent that you have the right to make the contribution. Please review the contributing guide before submitting.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Changes to These Terms</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    We may update these Terms of Service from time to time. Changes will be announced in the repository and the "Last updated" date above will be revised. Continued use of Loophole after changes take effect constitutes acceptance of the updated terms.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Contact</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    For questions about these terms, please open an issue on our <a href="https://github.com/loophole-ai/loophole-ide/issues/new" style="border-bottom: 1px solid var(--text-muted);">GitHub repository</a> or start a <a href="https://github.com/loophole-ai/loophole-ide/discussions" style="border-bottom: 1px solid var(--text-muted);">discussion</a>.
+                </p>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-col"><a href="privacy.html">Privacy Policy</a></div>
+            <div class="footer-col"><a href="terms.html">Terms of Service</a></div>
+            <div class="footer-col"><a href="acceptable-use.html">Acceptable Use</a></div>
+            <div class="footer-col"><a href="security.html">Security</a></div>
+        </footer>
+        <div class="legal">
+            &copy; 2026 Loophole IDE &nbsp;•&nbsp; Licensed under AGPL-3.0
+        </div>
+
+    </div>
+</body>
+</html>

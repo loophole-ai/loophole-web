@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Loophole</title>
+    <meta name="description" content="Privacy is our architecture. Learn how Loophole handles your code and data with a direct-to-provider approach.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #fafafa;
+            --bg-container: #ffffff;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --border-color: #e5e5e5;
+            --accent-black: #000000;
+            --font-stack: 'Space Mono', monospace;
+            --container-width: 1024px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 14px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .site-container {
+            background-color: var(--bg-container);
+            width: 100%;
+            max-width: var(--container-width);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        a { text-decoration: none; color: inherit; cursor: pointer; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .section-box { border-bottom: 1px solid var(--border-color); width: 100%; padding: 60px 40px; }
+        .btn {
+            padding: 12px 24px;
+            border: 1px solid var(--accent-black);
+            font-family: var(--font-stack);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-black { background: var(--accent-black); color: white; }
+        .btn-black:hover { background: #333; }
+        nav {
+            width: 100%;
+            height: 70px;
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+        }
+        .logo { font-weight: 700; font-size: 20px; letter-spacing: -1px; }
+        .nav-links { gap: 30px; font-size: 13px; color: var(--text-muted); }
+        .nav-links a:hover { color: var(--text-main); }
+        .feature-strong { color: var(--text-main); font-weight: 700; }
+        .policy-block { margin-bottom: 40px; }
+        .policy-block:last-child { margin-bottom: 0; }
+        footer { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); }
+        .footer-col { border-right: 1px solid var(--border-color); padding: 30px 40px; text-align: center; font-size: 13px; color: var(--text-muted); border-top: 1px solid var(--border-color); }
+        .footer-col:last-child { border-right: none; }
+        .footer-col a:hover { color: var(--text-main); }
+        .legal { width: 100%; padding: 30px; text-align: center; font-size: 12px; color: #999; border-top: 1px solid var(--border-color); }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            footer { grid-template-columns: 1fr; }
+            .footer-col { border-right: none; }
+            .section-box { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-container">
+
+        <nav>
+            <a href="../index.html" class="logo">LOOPHOLE</a>
+            <div class="flex items-center">
+                <div class="nav-links flex items-center" style="margin-right: 30px;">
+                    <a href="https://github.com/loophole-ai/loophole-ide/releases">GitHub</a>
+                    <a href="https://github.com/loophole-ai/loophole-ide/wiki">Docs</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="acceptable-use.html">Acceptable Use</a>
+                    <a href="security.html">Security</a>
+                </div>
+                <a href="https://github.com/loophole-ai/loophole-ide/releases"><button class="btn btn-black" style="padding: 8px 16px; font-size: 12px;">Download</button></a>
+            </div>
+        </nav>
+
+        <section class="section-box">
+            <h1 style="font-size: 36px; margin-bottom: 20px; letter-spacing: -1px;">Privacy Policy</h1>
+            <p style="color: var(--text-muted); margin-bottom: 50px;">Last updated: August 18, 2026</p>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Overview</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    Loophole is an open-source, AI-native code editor built with privacy as a foundational design principle, not an afterthought. The core guarantee is simple: <strong style="color: var(--text-main);">your code never passes through a Loophole server.</strong> Every AI request travels directly from your machine to the provider you choose. We have no backend infrastructure capable of seeing your code, your prompts, or your editor activity.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">No Data Collection</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    Loophole does not collect, store, or transmit your source code, project files, file paths, editor state, or any content you write or edit. All workspace indexing — the context Loophole gathers to power AI features — happens entirely on your local machine. We have no visibility into your codebase and no infrastructure to receive it. Your intellectual property remains yours alone.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">API Key Storage</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    When you provide API keys for AI providers such as Anthropic, OpenAI, Google Gemini, DeepSeek, or any of the 20+ supported providers, those keys are stored locally using the operating system's secure credential storage. We never transmit your API keys to any Loophole-controlled server. All API requests originate from your machine and go directly to the provider's public API endpoint. You retain full control over your credentials at all times.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">How AI Requests Flow</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    When you send a chat message, use Quick Edit, or trigger autocomplete, Loophole assembles context from your open files and workspace structure locally, converts it to the provider's message format, and sends it over an Electron IPC channel to the main process. The main process then makes the HTTP call directly to the provider's API — not through any Loophole relay — and streams the response back to your editor in real time. The only data that ever leaves your machine is what you explicitly send to a provider.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Third-Party AI Providers</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    When you use Loophole with cloud-based AI providers, your prompts and code snippets are sent directly to those providers subject to their respective privacy policies and data retention practices. Loophole acts as a local client only — no data passes through our servers. We strongly recommend reviewing the privacy policies of Anthropic, OpenAI, Google, or any other provider you choose. Many enterprise-tier plans include zero data retention options. When you use local models via Ollama, vLLM, or LM Studio, no data leaves your machine at all.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Local-Only Mode</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    Loophole supports fully local inference via Ollama, vLLM, and LM Studio, which are auto-detected and whose model lists refresh automatically. In local mode, no internet connection is required for AI features, and no data of any kind leaves your device. This mode is ideal for sensitive codebases, proprietary projects, classified environments, or air-gapped systems where any external data transfer is unacceptable.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Anonymous Usage Analytics</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    With your explicit opt-in, Loophole may collect anonymous usage statistics — such as feature interaction patterns, error logs, and performance metrics. This data is fully anonymized and contains no code, file contents, file paths, or personally identifiable information. Analytics help us understand how developers use Loophole and where to focus improvement efforts. You can opt out at any time in settings, and opting out has no effect on editor functionality.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Open Source Transparency</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    The entire Loophole codebase is publicly available at <a href="https://github.com/loophole-ai/loophole-ide/releases" style="border-bottom: 1px solid var(--text-muted);">github.com/loophole-ai/loophole-ide</a> under the AGPL-3.0 license. You can verify every privacy claim in this policy by reading the source code directly. We believe that open-source auditability is the strongest privacy guarantee we can offer. If you discover a discrepancy between this policy and the code, please report it immediately.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Updates to This Policy</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    We may update this policy to reflect changes in our practices or for legal compliance. Significant changes will be announced in the repository and the "Last updated" date above will be revised. Continued use of Loophole after any update constitutes acceptance of the revised policy.
+                </p>
+            </div>
+
+            <div class="policy-block">
+                <div class="feature-strong" style="margin-bottom: 12px; font-size: 16px;">Contact</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    For privacy-related questions or concerns, please open an issue on our <a href="https://github.com/loophole-ai/loophole-ide/issues/new" style="border-bottom: 1px solid var(--text-muted);">GitHub repository</a> or email us at <a href="mailto:hi@loopholeeditor.in" style="border-bottom: 1px solid var(--text-muted);">hi@loopholeeditor.in</a>. We take all privacy inquiries seriously and aim to respond within 48 hours.
+                </p>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-col"><a href="privacy.html">Privacy Policy</a></div>
+            <div class="footer-col"><a href="terms.html">Terms of Service</a></div>
+            <div class="footer-col"><a href="acceptable-use.html">Acceptable Use</a></div>
+            <div class="footer-col"><a href="security.html">Security</a></div>
+        </footer>
+        <div class="legal">
+            &copy; 2026 Loophole IDE &nbsp;•&nbsp; Licensed under AGPL-3.0
+        </div>
+
+    </div>
+</body>
+</html>

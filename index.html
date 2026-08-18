@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loophole — The Open-Source AI Code Editor</title>
+<meta name="description" content="Loophole is a free, open-source AI code editor built on top of Void. Inline diffs, Plan & Execution modes, multi-model support, custom rules and skills — no vendor lock-in.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&family=Funnel+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/rulers.css">
+</head>
+<body>
+
+  <header>
+    <div class="announce">
+      <div class="announce-inner">
+        <span>Loophole 2.0 is out now. <a href="#">Learn More &rarr;</a></span>
+      </div>
+    </div>
+
+    <nav>
+      <div class="brand">
+        <span class="mark">
+          <img src="assets/logo/logo.png" alt="Loophole logo">
+        </span>
+        loophole
+      </div>
+
+      <ul class="nav-links">
+        <li>
+          <a href="#">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            PRICING
+          </a>
+        </li>
+        <li class="nav-dropdown">
+          <button class="nav-dropdown-toggle" onclick="this.closest('.nav-dropdown').classList.toggle('open')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M10 10v10"/></svg>
+            RESOURCES
+            <svg class="chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="#">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Buy
+            </a></li>
+          </ul>
+        </li>
+        <li class="nav-dropdown">
+          <button class="nav-dropdown-toggle" onclick="this.closest('.nav-dropdown').classList.toggle('open')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
+            MODELS
+            <svg class="chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="#">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Buy
+            </a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://github.com/loophole-ai/loophole-ide" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            GITHUB
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-right">
+        <div class="cta-group">
+          <a href="https://github.com/loophole-ai/loophole-ide/releases" class="btn-signup">Download</a>
+        </div>
+        <button class="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> PRICING</a>
+      <div class="mob-dropdown">
+        <button class="mob-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M10 10v10"/></svg> RESOURCES</span>
+          <svg class="mob-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="mob-dropdown-menu">
+          <a href="#"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Buy</a>
+        </div>
+      </div>
+      <div class="mob-dropdown">
+        <button class="mob-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg> MODELS</span>
+          <svg class="mob-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="mob-dropdown-menu">
+          <a href="#"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Buy</a>
+        </div>
+      </div>
+      <a href="https://github.com/loophole-ai/loophole-ide" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> GITHUB</a>
+      <div class="mob-download">
+        <a href="https://github.com/loophole-ai/loophole-ide/releases" class="btn-signup">Download</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════════════════════════════
+         HERO — top ruler canvas
+    ════════════════════════════════════════ -->
+
+    <div class="hero-wrapper">
+      <section class="hero">
+
+        <!-- Upgraded corner crosshair nodes -->
+        <div class="corner-node top-left"><div class="node-dot"></div></div>
+        <div class="corner-node top-right"><div class="node-dot"></div></div>
+        <div class="corner-node bottom-left"><div class="node-dot"></div></div>
+        <div class="corner-node bottom-right"><div class="node-dot"></div></div>
+
+        <div class="hero-glow"></div>
+        <div class="grain"></div>
+        <div class="grid-bg"></div>
+
+        <div class="hero-content">
+          <h1 style="font-size: 70px;">The open-source AI code editor<br>that thinks while you code.</h1>
+        </div>
+
+        <div class="hero-footer">
+          <p style="color: #555364;">Built on top of Void editor (a fork of VS Code) with AI features integrated directly into the core editor experience.</p>
+          <a href="#" class="learn-more">Learn More
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 4v16m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <!-- Hero bottom ruler canvas -->
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════
+       SECTION TRANSITION: Open Source
+  ════════════════════════════════════════ -->
+  <div class="section-transition section-transition--dark section-transition--bordered">
+    <span class="section-transition__label section-transition__label--highlight">~ ~ ~ IT IS OPEN SOURCE ~ ~ ~</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       IMAGE SHOWCASE SECTION
+  ════════════════════════════════════════ -->
+  <section class="image-showcase">
+    <canvas class="ruler-canvas image-showcase-ruler" data-dir="h" data-flip="true" data-labels="true"></canvas>
+    <div class="image-showcase-inner">
+      <div class="image-showcase-label">PREVIEW</div>
+      <div class="image-showcase-frame">
+        <div class="corner-node top-left"><div class="node-dot"></div></div>
+        <div class="corner-node top-right"><div class="node-dot"></div></div>
+        <div class="corner-node bottom-left"><div class="node-dot"></div></div>
+        <div class="corner-node bottom-right"><div class="node-dot"></div></div>
+        <img src="assets/preview/loopholepreview.webp" alt="Loophole IDE Preview" class="showcase-img" />
+      </div>
+    </div>
+  </section>
+  <canvas class="ruler-canvas" data-dir="h" data-flip="false" data-labels="true"></canvas>
+
+
+  <!-- ═══════════════════════════════════════
+       SECTION TRANSITION: Loophole Editor
+  ════════════════════════════════════════ -->
+
+  <!-- ═══════════════════════════════════════
+       LOOPHOLE EDITOR INTRO SECTION
+  ════════════════════════════════════════ -->
+  <section class="loophole-editor-intro">
+    <div class="lei-inner">
+      <div class="lei-tag">[ Loophole Editor ]</div>
+      <h2 class="lei-heading">Code that listens before you even finish thinking.</h2>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       HOW IT WORKS — STEPS SECTION
+  ════════════════════════════════════════ -->
+  <canvas class="ruler-canvas" data-dir="h" data-flip="true" data-labels="true"></canvas>
+  <section class="hiw-section">
+    <div class="hiw-inner">
+
+      <div class="hiw-step">
+        <div class="hiw-step-outer">
+          <div class="corner-node top-left"><div class="node-dot"></div></div>
+          <div class="corner-node top-right"><div class="node-dot"></div></div>
+          <div class="corner-node bottom-left"><div class="node-dot"></div></div>
+          <div class="corner-node bottom-right"><div class="node-dot"></div></div>
+          <div class="hiw-step-frame-gap"><div class="hiw-step-frame">
+            <div class="hiw-step-img-placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+          </div></div>
+        </div>
+        <div class="hiw-step-info">
+          <div class="hiw-step-num">01</div>
+          <h3 class="hiw-step-title">Understands the change</h3>
+          <p class="hiw-step-desc">Loophole reads your file, your repo, your intent — and figures out exactly what needs to happen before writing a single line.</p>
+        </div>
+      </div>
+
+      <div class="hiw-step hiw-step--reverse">
+        <div class="hiw-step-outer">
+          <div class="corner-node top-left"><div class="node-dot"></div></div>
+          <div class="corner-node top-right"><div class="node-dot"></div></div>
+          <div class="corner-node bottom-left"><div class="node-dot"></div></div>
+          <div class="corner-node bottom-right"><div class="node-dot"></div></div>
+          <div class="hiw-step-frame-gap"><div class="hiw-step-frame">
+            <div class="hiw-step-img-placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+          </div></div>
+        </div>
+        <div class="hiw-step-info">
+          <div class="hiw-step-num">02</div>
+          <h3 class="hiw-step-title">Plans before it acts</h3>
+          <p class="hiw-step-desc">A structured execution plan is laid out first. You see the full picture — what gets touched, what stays, what gets created — before any edit lands.</p>
+        </div>
+      </div>
+
+      <div class="hiw-step">
+        <div class="hiw-step-outer">
+          <div class="corner-node top-left"><div class="node-dot"></div></div>
+          <div class="corner-node top-right"><div class="node-dot"></div></div>
+          <div class="corner-node bottom-left"><div class="node-dot"></div></div>
+          <div class="corner-node bottom-right"><div class="node-dot"></div></div>
+          <div class="hiw-step-frame-gap"><div class="hiw-step-frame">
+            <div class="hiw-step-img-placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
+            </div>
+          </div></div>
+        </div>
+        <div class="hiw-step-info">
+          <div class="hiw-step-num">03</div>
+          <h3 class="hiw-step-title">Applies inline, with diffs</h3>
+          <p class="hiw-step-desc">Changes appear as inline diffs right in your editor. Accept, reject, or refine — you're always in control of what makes it into your codebase.</p>
+        </div>
+      </div>
+
+    </div>
+    <canvas class="ruler-canvas hiw-ruler-bottom" data-dir="h" data-flip="false" data-labels="true"></canvas>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PROVIDERS — ruler canvas on top
+  ════════════════════════════════════════ -->
+
+
+  <section class="providers ruler-frame">
+    <h2>Any model, your infrastructure.</h2>
+    <p class="subtitle">Loophole works with every major provider. Bring your own key, your own endpoint, or your own weights and keep your workflow exactly the same.</p>
+    <div class="providers-label">Supported Providers</div>
+    <div class="providers-grid">
+      <div class="provider-logo"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/openai.svg" alt="OpenAI" /></div>
+      <div class="provider-logo"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/anthropic.svg" alt="Anthropic" /></div>
+      <div class="provider-logo"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/gemini.svg" alt="Google" /></div>
+      <div class="provider-logo"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/deepseek.svg" alt="DeepSeek" /></div>
+      <div class="provider-logo"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/openrouter.svg" alt="OpenRouter" /></div>
+      <div class="provider-logo"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/ollama.svg" alt="Ollama" /></div>
+      <div class="provider-logo"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/vllm.svg" alt="vLLM" /></div>
+      <div class="provider-logo"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/lmstudio.svg" alt="LM Studio" /></div>
+      <div class="provider-logo"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/mistral.svg" alt="Mistral" /></div>
+      <div class="provider-logo"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/groq.svg" alt="Groq" /></div>
+      <div class="provider-logo"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/xai.svg" alt="xAI" /></div>
+      <div class="provider-logo"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/perplexity.svg" alt="Perplexity" /></div>
+    </div>
+  </section>
+
+
+
+  <!-- ═══════════════════════════════════════
+       MORE FEATURES SECTION
+  ════════════════════════════════════════ -->
+
+  <div class="section-dissolve">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" class="dissolve-svg">
+      <rect x="120.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.03"/><rect x="140.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.10"/><rect x="160.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="180.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="200.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="220.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.10"/><rect x="240.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.03"/><rect x="840.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.03"/><rect x="860.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.10"/><rect x="880.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="900.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="920.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="940.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.10"/><rect x="960.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.03"/><rect x="80.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.13"/><rect x="100.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.24"/><rect x="120.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.33"/><rect x="140.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.40"/><rect x="160.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="180.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="200.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="220.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.40"/><rect x="240.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.33"/><rect x="260.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.24"/><rect x="280.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.13"/><rect x="800.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.13"/><rect x="820.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.24"/><rect x="840.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.33"/><rect x="860.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.40"/><rect x="880.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="900.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="920.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="940.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.40"/><rect x="960.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.33"/><rect x="980.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.24"/><rect x="1000.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.13"/><rect x="20.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.01"/><rect x="40.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="60.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="80.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.43"/><rect x="100.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.54"/><rect x="120.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.63"/><rect x="140.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.70"/><rect x="160.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="180.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.75"/><rect x="200.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="220.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.70"/><rect x="240.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.63"/><rect x="260.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.54"/><rect x="280.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.43"/><rect x="300.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="320.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="340.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.01"/><rect x="740.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.01"/><rect x="760.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="780.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="800.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.43"/><rect x="820.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.54"/><rect x="840.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.63"/><rect x="860.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.70"/><rect x="880.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="900.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.75"/><rect x="920.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="940.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.70"/><rect x="960.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.63"/><rect x="980.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.54"/><rect x="1000.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.43"/><rect x="1020.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="1040.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="1060.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.01"/><rect x="0.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="20.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.31"/><rect x="40.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="60.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="80.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.73"/><rect x="100.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.84"/><rect x="120.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.93"/><rect x="140.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="160.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="180.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="200.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="220.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="240.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.93"/><rect x="260.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.84"/><rect x="280.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.73"/><rect x="300.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="320.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="340.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.31"/><rect x="360.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="720.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="740.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.31"/><rect x="760.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="780.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="800.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.73"/><rect x="820.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.84"/><rect x="840.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.93"/><rect x="860.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="880.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="900.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="920.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="940.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="960.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.93"/><rect x="980.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.84"/><rect x="1000.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.73"/><rect x="1020.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="1040.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="1060.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.31"/><rect x="1080.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="0.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="20.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.61"/><rect x="40.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.76"/><rect x="60.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="80.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="100.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="120.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="140.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="160.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="180.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="200.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="220.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="240.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="260.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="280.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="300.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="320.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.76"/><rect x="340.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.61"/><rect x="360.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="380.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.29"/><rect x="400.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="680.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="700.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.29"/><rect x="720.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="740.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.61"/><rect x="760.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.76"/><rect x="780.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="800.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="820.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="840.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="860.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="880.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="900.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="920.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="940.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="960.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="980.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1000.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1020.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="1040.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.76"/><rect x="1060.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.61"/><rect x="1080.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="1100.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.29"/><rect x="1120.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="1140.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.00"/><rect x="1400.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="1420.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.29"/><rect x="0.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.75"/><rect x="20.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.91"/><rect x="40.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="60.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="80.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="100.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="120.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="140.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="160.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="180.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="200.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="220.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="240.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="260.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="280.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="300.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="320.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="340.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.91"/><rect x="360.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.75"/><rect x="380.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.59"/><rect x="400.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="420.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="440.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.17"/><rect x="460.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.06"/><rect x="620.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.06"/><rect x="640.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.17"/><rect x="660.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="680.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="700.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.59"/><rect x="720.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.75"/><rect x="740.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.91"/><rect x="760.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="780.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="800.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="820.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="840.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="860.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="880.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="900.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="920.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="940.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="960.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="980.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1000.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1020.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1040.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1060.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.91"/><rect x="1080.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.75"/><rect x="1100.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.59"/><rect x="1120.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="1140.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="1160.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.17"/><rect x="1180.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.06"/><rect x="1340.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.06"/><rect x="1360.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.17"/><rect x="1380.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="1400.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="1420.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.59"/><rect x="0.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="20.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="40.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="60.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="80.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="100.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="120.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="140.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="160.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="180.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="200.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="220.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="240.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="260.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="280.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="300.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="320.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="340.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="360.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="380.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.89"/><rect x="400.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="420.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="440.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.47"/><rect x="460.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.36"/><rect x="480.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.27"/><rect x="500.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.20"/><rect x="520.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="540.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="560.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="580.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.20"/><rect x="600.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.27"/><rect x="620.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.36"/><rect x="640.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.47"/><rect x="660.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="680.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="700.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.89"/><rect x="720.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="740.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="760.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="780.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="800.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="820.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="840.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="860.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="880.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="900.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="920.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="940.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="960.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="980.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1000.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1020.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1040.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1060.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1080.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1100.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.89"/><rect x="1120.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="1140.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="1160.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.47"/><rect x="1180.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.36"/><rect x="1200.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.27"/><rect x="1220.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.20"/><rect x="1240.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="1260.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="1280.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="1300.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.20"/><rect x="1320.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.27"/><rect x="1340.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.36"/><rect x="1360.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.47"/><rect x="1380.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="1400.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="1420.0" y="48.0" width="20.0" height="6.0" fill="#444255" opacity="0.89"/><rect x="0.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="20.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="40.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="60.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="80.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="100.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="120.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="140.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="160.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="180.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="200.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="220.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="240.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="260.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="280.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="300.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="320.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="340.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="360.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="380.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="400.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="420.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="440.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.77"/><rect x="460.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.66"/><rect x="480.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.57"/><rect x="500.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.50"/><rect x="520.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="540.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="560.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="580.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.50"/><rect x="600.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.57"/><rect x="620.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.66"/><rect x="640.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.77"/><rect x="660.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="680.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="700.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="720.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="740.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="760.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="780.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="800.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="820.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="840.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="860.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="880.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="900.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="920.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="940.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="960.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="980.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1000.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1020.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1040.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1060.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1080.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1100.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1120.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1140.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="1160.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.77"/><rect x="1180.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.66"/><rect x="1200.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.57"/><rect x="1220.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.50"/><rect x="1240.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="1260.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="1280.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="1300.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.50"/><rect x="1320.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.57"/><rect x="1340.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.66"/><rect x="1360.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.77"/><rect x="1380.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="1400.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1420.0" y="54.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/>
+    </svg>
+  </div>
+
+  <section class="more-features">
+
+    <!-- Top: label + heading + CTA -->
+    <div class="mf-header">
+      <div class="mf-label">[ MORE FEATURES ]</div>
+      <h2 class="mf-heading">Explore everything<br>Loophole can do</h2>
+      <p class="mf-subheading">Find out more about how developers are using Loophole to ship faster.</p>
+    </div>
+
+    <!-- Middle: image previews (hatched frame style like hiw) -->
+    <div class="mf-previews">
+
+      <div class="mf-preview-item">
+        <div class="mf-preview-outer">
+          <div class="mf-preview-gap">
+            <div class="mf-preview-frame">
+              <div class="mf-preview-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mf-preview-info">
+          <h3>Inline Diffs</h3>
+          <p>See exactly what changed, line by line, right inside your editor without switching context.</p>
+          <a href="#" class="mf-learn">Learn more →</a>
+        </div>
+      </div>
+
+      <div class="mf-preview-item">
+        <div class="mf-preview-outer">
+          <div class="mf-preview-gap">
+            <div class="mf-preview-frame">
+              <div class="mf-preview-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mf-preview-info">
+          <h3>Zero Latency Context</h3>
+          <p>Loophole indexes your entire codebase locally so suggestions arrive before you finish typing.</p>
+          <a href="#" class="mf-learn">Learn more →</a>
+        </div>
+      </div>
+
+      <div class="mf-preview-item">
+        <div class="mf-preview-outer">
+          <div class="mf-preview-gap">
+            <div class="mf-preview-frame">
+              <div class="mf-preview-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mf-preview-info">
+          <h3>Privacy First</h3>
+          <p>Your code never leaves your machine unless you choose it to. Full local inference support included.</p>
+          <a href="#" class="mf-learn">Learn more →</a>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- Providers bottom ruler -->
+
+
+  <!-- ═══════════════════════════════════════
+       ARTICLES SECTION
+  ════════════════════════════════════════ -->
+
+
+  <div class="section-dissolve section-dissolve--bottom">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" class="dissolve-svg">
+      <rect x="0.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="20.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="40.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="60.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="80.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="100.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="120.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="140.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="160.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="180.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="200.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="220.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="240.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="260.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="280.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="300.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="320.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="340.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="360.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="380.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="400.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="420.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="440.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.77"/><rect x="460.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.66"/><rect x="480.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.57"/><rect x="500.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.50"/><rect x="520.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="540.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="560.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="580.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.50"/><rect x="600.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.57"/><rect x="620.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.66"/><rect x="640.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.77"/><rect x="660.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="680.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="700.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="720.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="740.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="760.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="780.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="800.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="820.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="840.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="860.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="880.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="900.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="920.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="940.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="960.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="980.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1000.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1020.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1040.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1060.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1080.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1100.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1120.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1140.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="1160.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.77"/><rect x="1180.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.66"/><rect x="1200.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.57"/><rect x="1220.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.50"/><rect x="1240.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="1260.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="1280.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="1300.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.50"/><rect x="1320.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.57"/><rect x="1340.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.66"/><rect x="1360.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.77"/><rect x="1380.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="1400.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1420.0" y="0.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="0.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="20.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="40.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="60.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="80.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="100.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="120.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="140.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="160.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="180.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="200.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="220.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="240.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="260.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="280.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="300.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="320.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="340.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="360.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="380.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.89"/><rect x="400.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="420.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="440.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.47"/><rect x="460.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.36"/><rect x="480.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.27"/><rect x="500.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.20"/><rect x="520.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="540.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="560.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="580.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.20"/><rect x="600.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.27"/><rect x="620.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.36"/><rect x="640.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.47"/><rect x="660.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="680.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="700.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.89"/><rect x="720.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="740.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="760.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="780.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="800.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="820.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="840.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="860.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="880.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="900.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="920.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="940.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="960.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="980.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1000.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1020.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1040.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1060.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1080.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1100.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.89"/><rect x="1120.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="1140.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="1160.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.47"/><rect x="1180.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.36"/><rect x="1200.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.27"/><rect x="1220.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.20"/><rect x="1240.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="1260.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="1280.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="1300.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.20"/><rect x="1320.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.27"/><rect x="1340.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.36"/><rect x="1360.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.47"/><rect x="1380.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="1400.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="1420.0" y="6.0" width="20.0" height="6.0" fill="#444255" opacity="0.89"/><rect x="0.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.75"/><rect x="20.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.91"/><rect x="40.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="60.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="80.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="100.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="120.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="140.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="160.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="180.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="200.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="220.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="240.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="260.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="280.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="300.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="320.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="340.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.91"/><rect x="360.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.75"/><rect x="380.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.59"/><rect x="400.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="420.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="440.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.17"/><rect x="460.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.06"/><rect x="620.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.06"/><rect x="640.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.17"/><rect x="660.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="680.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="700.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.59"/><rect x="720.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.75"/><rect x="740.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.91"/><rect x="760.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="780.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="800.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="820.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="840.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="860.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="880.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="900.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="920.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="940.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="960.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="980.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1000.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1020.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1040.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1060.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.91"/><rect x="1080.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.75"/><rect x="1100.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.59"/><rect x="1120.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="1140.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="1160.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.17"/><rect x="1180.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.06"/><rect x="1340.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.06"/><rect x="1360.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.17"/><rect x="1380.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="1400.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="1420.0" y="12.0" width="20.0" height="6.0" fill="#444255" opacity="0.59"/><rect x="0.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="20.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.61"/><rect x="40.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.76"/><rect x="60.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="80.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="100.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="120.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="140.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="160.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="180.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="200.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="220.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="240.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="260.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="280.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="300.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="320.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.76"/><rect x="340.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.61"/><rect x="360.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="380.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.29"/><rect x="400.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="680.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="700.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.29"/><rect x="720.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="740.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.61"/><rect x="760.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.76"/><rect x="780.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="800.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="820.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="840.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="860.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="880.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="900.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="920.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="940.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="960.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="980.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1000.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="1020.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.90"/><rect x="1040.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.76"/><rect x="1060.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.61"/><rect x="1080.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="1100.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.29"/><rect x="1120.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="1140.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.00"/><rect x="1400.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="1420.0" y="18.0" width="20.0" height="6.0" fill="#444255" opacity="0.29"/><rect x="0.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="20.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.31"/><rect x="40.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="60.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="80.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.73"/><rect x="100.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.84"/><rect x="120.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.93"/><rect x="140.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="160.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="180.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="200.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="220.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="240.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.93"/><rect x="260.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.84"/><rect x="280.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.73"/><rect x="300.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="320.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="340.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.31"/><rect x="360.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="720.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="740.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.31"/><rect x="760.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="780.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="800.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.73"/><rect x="820.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.84"/><rect x="840.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.93"/><rect x="860.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="880.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="900.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="920.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="940.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="1.00"/><rect x="960.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.93"/><rect x="980.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.84"/><rect x="1000.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.73"/><rect x="1020.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.60"/><rect x="1040.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.46"/><rect x="1060.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.31"/><rect x="1080.0" y="24.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="20.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.01"/><rect x="40.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="60.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="80.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.43"/><rect x="100.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.54"/><rect x="120.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.63"/><rect x="140.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.70"/><rect x="160.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="180.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.75"/><rect x="200.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="220.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.70"/><rect x="240.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.63"/><rect x="260.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.54"/><rect x="280.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.43"/><rect x="300.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="320.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="340.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.01"/><rect x="740.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.01"/><rect x="760.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="780.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="800.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.43"/><rect x="820.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.54"/><rect x="840.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.63"/><rect x="860.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.70"/><rect x="880.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="900.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.75"/><rect x="920.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.74"/><rect x="940.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.70"/><rect x="960.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.63"/><rect x="980.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.54"/><rect x="1000.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.43"/><rect x="1020.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.30"/><rect x="1040.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.16"/><rect x="1060.0" y="30.0" width="20.0" height="6.0" fill="#444255" opacity="0.01"/><rect x="80.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.13"/><rect x="100.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.24"/><rect x="120.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.33"/><rect x="140.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.40"/><rect x="160.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="180.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="200.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="220.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.40"/><rect x="240.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.33"/><rect x="260.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.24"/><rect x="280.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.13"/><rect x="800.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.13"/><rect x="820.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.24"/><rect x="840.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.33"/><rect x="860.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.40"/><rect x="880.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="900.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.45"/><rect x="920.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.44"/><rect x="940.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.40"/><rect x="960.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.33"/><rect x="980.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.24"/><rect x="1000.0" y="36.0" width="20.0" height="6.0" fill="#444255" opacity="0.13"/><rect x="120.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.03"/><rect x="140.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.10"/><rect x="160.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="180.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="200.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="220.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.10"/><rect x="240.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.03"/><rect x="840.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.03"/><rect x="860.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.10"/><rect x="880.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="900.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.15"/><rect x="920.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.14"/><rect x="940.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.10"/><rect x="960.0" y="42.0" width="20.0" height="6.0" fill="#444255" opacity="0.03"/>
+    </svg>
+  </div>
+
+  <section class="articles ruler-frame">
+    <div class="articles-label">Latest</div>
+    <div class="articles-grid">
+
+      <a href="#" class="article-card">
+        <div class="article-thumb">
+          <div class="thumb-placeholder">Loophole 2.0</div>
+        </div>
+        <div class="article-title">Loophole 2.0: The Fastest AI IDE Yet</div>
+        <div class="article-date">07.09.26</div>
+      </a>
+
+      <a href="#" class="article-card">
+        <div class="article-thumb">
+          <div class="thumb-placeholder">Context Engine</div>
+        </div>
+        <div class="article-title">How Loophole's Context Engine Understands Your Codebase</div>
+        <div class="article-date">06.29.26</div>
+      </a>
+
+      <a href="#" class="article-card">
+        <div class="article-thumb">
+          <div class="thumb-placeholder">AI Extensions</div>
+        </div>
+        <div class="article-title">Introducing Loophole AI Extensions</div>
+        <div class="article-date">06.08.26</div>
+      </a>
+
+      <a href="#" class="article-card">
+        <div class="article-thumb">
+          <div class="thumb-placeholder">Building the future</div>
+        </div>
+        <div class="article-title">Estimating the Productivity of an AI Software Engineer</div>
+        <div class="article-date">06.04.26</div>
+      </a>
+
+    </div>
+    <canvas class="ruler-canvas articles-ruler-bottom" data-dir="h" data-flip="false" data-labels="true"></canvas>
+  </section>
+
+  <!-- Articles bottom ruler -->
+
+
+  <!-- ═══════════════════════════════════════
+       SECTION TRANSITION: CTA
+  ════════════════════════════════════════ -->
+  <div class="section-transition section-transition--dark">
+    <span class="section-transition__label section-transition__label--highlight">~ ~ ~ DOWNLOAD ~ ~ ~</span>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       CTA BANNER — ruler top
+  ════════════════════════════════════════ -->
+
+  <section class="cta-banner ruler-frame">
+    <div class="cta-left">
+      <h2>Code at the speed<br>of thought.</h2>
+      <a href="https://github.com/loophole-ai/loophole-ide/releases" class="cta-btn">
+        Download &nbsp;→
+      </a>
+    </div>
+
+    <div class="cta-logo">
+      <!-- black hole ascii goes here -->
+    </div>
+  </section>
+
+  <!-- CTA bottom ruler -->
+
+
+  <!-- ═══════════════════════════════════════
+       FOOTER TRANSITION
+  ════════════════════════════════════════ -->
+  <div class="section-transition" style="background:#d9dad9;">
+    <canvas class="ruler-canvas" data-dir="h" data-flip="false" data-labels="false"></canvas>
+    <span class="section-transition__label section-transition__label--highlight">EOF</span>
+  </div>
+
+
+  <footer>
+    <div class="footer-ruler-corners"></div>
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <span class="mark">
+          <img src="assets/logo/logo.png" alt="Loophole logo">
+        </span>
+        loophole
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <a href="https://github.com/loophole-ai/loophole-ide" target="_blank">GitHub</a>
+          <a href="https://x.com/loopholeai" target="_blank">X [Twitter]</a>
+        </div>
+
+        <div class="footer-col">
+          <a href="footer/privacy.html">Privacy Policy</a>
+          <a href="footer/terms.html">Terms of Service</a>
+          <a href="footer/acceptable-use.html">Acceptable Use</a>
+          <a href="footer/security.html">Security</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Loophole AI. All rights reserved.</span>
+    </div>
+  </footer>
+
+<script src="js/main.js"></script>
+<script src="js/index.js"></script>
+<script src="js/rulers.js"></script>
+<script src="js/blackhole.js"></script>
+
+<script>
+document.addEventListener('click', function(e) {
+  document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
+    if (!d.contains(e.target)) d.classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>

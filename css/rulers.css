@@ -1,0 +1,671 @@
+/* ===================================================
+   RULER / MEASUREMENT LINE SYSTEM
+   Inspired by Greptile + Zed design tool aesthetic
+   =================================================== */
+
+/* ---- CSS Custom Properties for ruler system ---- */
+:root {
+  --ruler-color:        rgba(0, 0, 0, 0.13);
+  --ruler-color-strong: rgba(0, 0, 0, 0.22);
+  --ruler-tick-color:   rgba(0, 0, 0, 0.18);
+  --ruler-text-color:   rgba(0, 0, 0, 0.28);
+  --ruler-dot-bg:       #ffffff;
+  --ruler-dot-border:   rgba(0, 0, 0, 0.38);
+  --ruler-dot-size:     6px;
+  --ruler-accent:       rgba(0, 240, 152, 0.55); /* neon accent tint for active corners */
+}
+
+/* ===========================================
+   UTILITY: ruler-section wrapper
+   Wraps any section to give it the full
+   measurement-line treatment
+   =========================================== */
+.ruler-section {
+  position: relative;
+}
+
+/* ---- Top edge ruler bar ---- */
+.ruler-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ruler-color-strong);
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* ===========================================
+   RULER EDGE — horizontal measuring strip
+   Attaches to the top or bottom of sections
+   =========================================== */
+.ruler-edge {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.ruler-edge--top    { border-bottom: 1px solid var(--ruler-color-strong); }
+.ruler-edge--bottom { border-top:    1px solid var(--ruler-color-strong); }
+
+/* SVG fills the ruler edge (rendered via JS) */
+.ruler-edge svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ===========================================
+   FULL-WIDTH RULER DIVIDERS between sections
+   =========================================== */
+.ruler-divider {
+  position: relative;
+  width: 100%;
+  height: 28px;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* The main line through the center */
+.ruler-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ruler-color-strong);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+/* Tick marks rendered as SVG background pattern */
+.ruler-divider::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    /* major tick every 80px */
+    repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent 79px,
+      var(--ruler-tick-color) 79px,
+      var(--ruler-tick-color) 80px
+    );
+  background-size: 80px 100%;
+  z-index: 0;
+}
+
+/* label inside ruler divider */
+.ruler-divider__label {
+  position: relative;
+  z-index: 2;
+  background: var(--black);
+  padding: 0 14px;
+  font-family: 'Space Mono', monospace;
+  font-size: 8.5px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ruler-text-color);
+  white-space: nowrap;
+  user-select: none;
+  margin-left: 40px;
+}
+
+/* left tick cluster on ruler divider */
+.ruler-divider__ticks {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  z-index: 2;
+  background: linear-gradient(to right, var(--black) 60%, transparent);
+}
+
+/* ===========================================
+   CORNER CROSSHAIR NODES — upgraded
+   Replaces the old .corner-dot
+   =========================================== */
+.corner-node {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  z-index: 30;
+  pointer-events: none;
+}
+
+/* The actual crosshair lines */
+.corner-node::before,
+.corner-node::after {
+  content: '';
+  position: absolute;
+  background: var(--ruler-dot-border);
+}
+
+/* Horizontal arm */
+.corner-node::before {
+  height: 1px;
+  width: 14px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+/* Vertical arm */
+.corner-node::after {
+  width: 1px;
+  height: 14px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+/* Center circle on crosshair */
+.corner-node .node-dot {
+  position: absolute;
+  width: var(--ruler-dot-size);
+  height: var(--ruler-dot-size);
+  background: var(--ruler-dot-bg);
+  border: 1.5px solid var(--ruler-dot-border);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* Positions */
+.corner-node.top-left     { top: -7px;  left: -7px;  }
+.corner-node.top-right    { top: -7px;  right: -7px; }
+.corner-node.bottom-left  { bottom: -7px; left: -7px;  }
+.corner-node.bottom-right { bottom: -7px; right: -7px; }
+
+/* Extended crosshair arms for hero (same principle as before but cleaner) */
+.hero .corner-node.top-left::before    { width: 32px; }
+.hero .corner-node.top-right::before   { width: 32px; right: 0; left: auto; }
+.hero .corner-node.bottom-left::before { width: 32px; }
+.hero .corner-node.bottom-right::before{ width: 32px; right: 0; left: auto; }
+
+.hero .corner-node.top-left::after    { height: 32px; }
+.hero .corner-node.top-right::after   { height: 32px; }
+.hero .corner-node.bottom-left::after { height: 32px; bottom: 0; top: auto; }
+.hero .corner-node.bottom-right::after{ height: 32px; bottom: 0; top: auto; }
+
+/* ===========================================
+   SIDE RULER — vertical measurement strip
+   on left/right edge of framed sections
+   =========================================== */
+.side-ruler {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  z-index: 15;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.side-ruler--left  { left: -20px; border-right: 1px solid var(--ruler-color-strong); }
+.side-ruler--right { right: -20px; border-left:  1px solid var(--ruler-color-strong); }
+
+/* Tick marks going down the side ruler */
+.side-ruler::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 39px,
+      var(--ruler-tick-color) 39px,
+      var(--ruler-tick-color) 40px
+    );
+  background-size: 100% 40px;
+}
+
+/* ===========================================
+   SECTION EDGE RULER — full viewport width
+   decorative ruler strip at top of sections
+   =========================================== */
+.section-ruler {
+  width: 100%;
+  height: 22px;
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.section-ruler--light { background: var(--black); }
+.section-ruler--mid   { background: #dedfde; }
+
+/* The baseline */
+.section-ruler::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ruler-color-strong);
+}
+
+/* Major tick every 80px, minor tick every 20px */
+.section-ruler::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 22px;
+  background-image:
+    /* minor ticks: 4px tall every 20px */
+    repeating-linear-gradient(
+      to right,
+      transparent 0px,
+      transparent 19px,
+      var(--ruler-color) 19px,
+      var(--ruler-color) 20px
+    ),
+    /* major ticks: 10px tall every 80px */
+    repeating-linear-gradient(
+      to right,
+      transparent 0px,
+      transparent 79px,
+      var(--ruler-tick-color) 79px,
+      var(--ruler-tick-color) 80px
+    );
+  background-position: bottom, bottom;
+  mask-image:
+    repeating-linear-gradient(
+      to right,
+      transparent 0px,
+      transparent 19px,
+      black 19px,
+      black 20px
+    ),
+    repeating-linear-gradient(
+      to right,
+      transparent 0px,
+      transparent 79px,
+      black 79px,
+      black 80px
+    );
+  -webkit-mask-composite: source-over;
+  mask-composite: add;
+}
+
+/* ruler-strip removed — no horizontal canvas rulers */
+
+/* ===========================================
+   HERO WRAPPER — upgraded border system
+   =========================================== */
+.hero-wrapper {
+  position: relative;
+}
+
+/* Full bleed horizontal rules at hero edges */
+.hero-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 30px;     /* matches padding-top of wrapper */
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ruler-color-strong);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.hero-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ruler-color-strong);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ===========================================
+   HERO VERTICAL DOTTED COLUMNS — upgraded
+   Replaces old ::before / ::after on .hero
+   =========================================== */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -40px;
+  right: -40px;
+  border-top: none;
+  border-bottom: none;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -30px;
+  bottom: -10px;
+  border-left: 1px solid var(--ruler-color-strong);
+  border-right: 1px solid var(--ruler-color-strong);
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* install-frame side rulers */
+.install-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -40px;
+  right: -40px;
+  border-top: none;
+  border-bottom: none;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.install-frame::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -10px;
+  bottom: -10px;
+  border-left: 1px solid var(--ruler-color-strong);
+  border-right: 1px solid var(--ruler-color-strong);
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* ===========================================
+   SECTION RULER CANVAS — JS draws tick marks
+   =========================================== */
+.ruler-canvas {
+  display: block;
+  width: 100%;
+  height: 24px;
+  pointer-events: none;
+}
+
+/* ===========================================
+   RULER FRAME — wraps pte-section / providers
+   with full cross-hair ruler treatment
+   =========================================== */
+.ruler-frame {
+  position: relative;
+}
+
+/* Left vertical rule */
+.ruler-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 40px;
+  width: 1px;
+  background: var(--ruler-color);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Right vertical rule */
+.ruler-frame::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 40px;
+  width: 1px;
+  background: var(--ruler-color);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ===========================================
+   PROVIDERS SECTION RULER OVERLAY
+   =========================================== */
+.providers {
+  position: relative;
+}
+
+/* ===========================================
+   ARTICLES SECTION — bottom ruler
+   =========================================== */
+.articles {
+  position: relative;
+}
+
+/* ===========================================
+   CTA BANNER — ruler side arms
+   =========================================== */
+.cta-banner {
+  position: relative;
+}
+
+/* ===========================================
+   TICK LABEL — small measurement number
+   =========================================== */
+.tick-label {
+  position: absolute;
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: var(--ruler-text-color);
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: 0.04em;
+}
+
+/* ===========================================
+   SECTION TRANSITION — the full-bleed ruler
+   between every major section
+   =========================================== */
+.section-transition {
+  width: 100%;
+  height: 28px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-transition--dark { background: var(--black); }
+.section-transition--mid  { background: #dedfde; }
+
+/* canvas fills the strip — ticks drawn by rulers.js */
+.section-transition canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ===========================================
+   SECTION ENDING LINES — bottom border on
+   every major section block
+   =========================================== */
+.hero-wrapper,
+.providers,
+.articles,
+.cta-banner {
+  border-bottom: 1px solid var(--ruler-color-strong);
+}
+
+/* highlighter variant — light mint green marker background */
+.section-transition__label--highlight {
+  background: rgba(0, 240, 152, 0.18) !important;
+  color: rgba(0, 0, 0, 0.55) !important;
+  padding: 1px 5px !important;
+  border-radius: 2px;
+}
+
+/* label floating on transition */
+.section-transition__label {
+  position: relative;
+  z-index: 2;
+  margin-left: 60px;
+  font-family: 'Space Mono', monospace;
+  font-size: 7.5px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ruler-text-color);
+  user-select: none;
+  background: inherit;
+  padding: 0 10px;
+}
+
+/* dot on either end of the label */
+.section-transition__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ruler-dot-bg);
+  border: 1.5px solid var(--ruler-dot-border);
+  flex-shrink: 0;
+}
+
+/* ===========================================
+   BLUEPRINT GRID overlay (subtle, hero only)
+   =========================================== */
+/* Already handled by .grid-bg in index.css */
+
+/* ===========================================
+   RESPONSIVE — hide side rulers on mobile
+   =========================================== */
+@media (max-width: 700px) {
+  .side-ruler { display: none; }
+  .ruler-frame::before,
+  .ruler-frame::after { display: none; }
+  .section-transition__label { margin-left: 16px; }
+
+  /* Remove hero borders and corner decorations on mobile */
+  .hero::after,
+  .hero-wrapper::before,
+  .hero-wrapper::after { display: none; }
+  .hero .corner-node { display: none; }
+}
+/* ── Bigger section-transition labels on desktop ── */
+@media (min-width: 991px) {
+  .section-transition__label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    padding: 0 14px;
+  }
+  .section-transition__label--highlight {
+    padding: 2px 8px !important;
+    border-radius: 3px;
+  }
+}
+
+.section-transition__label--highlight {
+  white-space: nowrap;
+}
+/* ── Ruler canvas mobile fixes ─────────────────── */
+.ruler-canvas {
+  width: 100%;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 700px) {
+  /* Hide standalone ruler canvases between sections on mobile — 
+     section borders act as dividers instead */
+  .image-showcase-ruler,
+  .hiw-ruler-bottom,
+  .articles-ruler-bottom {
+    display: none;
+  }
+
+  /* The section-transition canvases still render but need to be flush */
+  .section-transition canvas {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Make sure sections that rely on rulers for borders get a fallback */
+  .image-showcase {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hiw-section {
+    border-top: 1px solid var(--line);
+  }
+
+  .articles {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+}
+@media (max-width: 700px) {
+  .open-source-vruler {
+    height: 40px;
+  }
+}
+
+/* ===========================================
+   MOBILE — hide ALL ruler lines completely
+   =========================================== */
+@media (max-width: 700px) {
+  /* Hide all ruler canvases */
+  .ruler-canvas,
+  canvas[data-dir] { display: none !important; }
+
+  /* Hide ruler edge strips */
+  .ruler-edge { display: none !important; }
+
+  /* Hide ruler section borders */
+  .ruler-section::before { display: none !important; }
+
+  /* Hide ruler frame vertical lines */
+  .ruler-frame::before,
+  .ruler-frame::after { display: none !important; }
+
+  /* Hide side rulers */
+  .side-ruler { display: none !important; }
+
+  /* Hide corner node decorations */
+  .corner-node { display: none !important; }
+
+  /* Hide hero ruler decorations */
+  .hero::after,
+  .hero-wrapper::before,
+  .hero-wrapper::after { display: none !important; }
+
+}
+
+/* Collapse height of hidden ruler canvases on mobile so they leave no gap */
+@media (max-width: 700px) {
+  .ruler-canvas,
+  canvas[data-dir] {
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
