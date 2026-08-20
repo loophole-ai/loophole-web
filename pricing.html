@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing · Loophole Editor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #fafafa;
+            --bg-container: #ffffff;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --border-color: #e5e5e5;
+            --accent-black: #000000;
+            --accent-green: #00f098;
+            --font-stack: 'Space Mono', monospace;
+            --container-width: 1024px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 14px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .site-container {
+            background-color: var(--bg-container);
+            width: 100%;
+            max-width: var(--container-width);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        a { text-decoration: none; color: inherit; cursor: pointer; }
+        .section-box { border-bottom: 1px solid var(--border-color); width: 100%; padding: 60px 40px; }
+
+        /* ── Nav ── */
+        nav {
+            background: #eeeeee;
+            height: 64px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 18px;
+            color: #242230;
+            letter-spacing: -0.01em;
+            text-decoration: none;
+        }
+        .brand .mark img { display: block; width: 28px; height: 28px; filter: invert(1); }
+        .nav-links-main {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+            flex: 1;
+            justify-content: flex-end;
+            padding-right: 28px;
+        }
+        .nav-links-main a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #454354;
+            text-decoration: none;
+            font-size: 12.5px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: color 0.18s ease;
+        }
+        .nav-links-main a:hover { color: #111118; }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-toggle {
+            background: none; border: none; cursor: pointer; padding: 0;
+            display: inline-flex; align-items: center; gap: 6px;
+            color: #454354; font-size: 12.5px; font-weight: 600;
+            letter-spacing: 0.06em; text-transform: uppercase;
+            font-family: 'Space Mono', monospace; transition: color 0.18s ease;
+        }
+        .nav-dropdown-toggle:hover { color: #111118; }
+        .nav-dropdown-menu {
+            display: none; position: absolute; top: calc(100% + 8px);
+            left: 50%; transform: translateX(-50%);
+            background: #f5f5f4; border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 4px; list-style: none; padding: 4px;
+            min-width: 130px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); z-index: 999;
+        }
+        .nav-dropdown.open .nav-dropdown-menu { display: block; }
+        .nav-dropdown-menu li a {
+            display: flex; align-items: center; gap: 7px; padding: 7px 12px;
+            font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em;
+            text-transform: uppercase; color: rgba(0,0,0,0.6);
+            border-radius: 3px; white-space: nowrap;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        .nav-dropdown-menu li a:hover { background: rgba(0,0,0,0.06); color: rgba(0,0,0,0.9); }
+        .nav-right { display: flex; align-items: center; gap: 0; height: 100%; padding-left: 12px; }
+        .cta-group { display: inline-flex; align-items: center; height: 38px; }
+        .btn-signup {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700; font-size: 12px; color: #111118;
+            background: var(--accent-green); text-decoration: none;
+            padding: 10px 28px 10px 24px; height: 38px;
+            display: inline-flex; align-items: center; justify-content: center;
+            clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+            transition: background-color 0.2s ease;
+        }
+        .btn-signup:hover { background: #03dc8b; }
+        .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; background: none; border: none; padding: 8px; margin-left: 12px; }
+        .hamburger span { display: block; width: 22px; height: 2px; background: #111118; transition: transform 0.25s ease, opacity 0.15s ease; }
+        .hamburger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+        .mobile-menu { display: none; flex-direction: column; background: #eeeeee; border-top: 1px solid rgba(0,0,0,0.12); border-bottom: 1px solid rgba(0,0,0,0.12); overflow: hidden; max-height: 0; transition: max-height 0.35s ease, opacity 0.3s ease; opacity: 0; }
+        .mobile-menu.open { max-height: 700px; opacity: 1; }
+        .mobile-menu a { color: #111118; text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,0.12); display: flex; align-items: center; gap: 10px; }
+        .mobile-menu .mob-download { padding: 16px 20px; display: flex; gap: 12px; }
+        .mobile-menu .mob-download .btn-signup { flex: 1; clip-path: none; border-radius: 6px; justify-content: center; margin: 0; height: 42px; font-size: 13px; }
+        .mob-dropdown { width: 100%; border-bottom: 1px solid rgba(0,0,0,0.12); }
+        .mob-dropdown-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; background: none; border: none; cursor: pointer; padding: 16px 20px; font-family: 'Space Mono', monospace; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #111118; box-sizing: border-box; }
+        .mob-dropdown-toggle span { display: flex; align-items: center; gap: 10px; }
+        .mob-chevron { transition: transform 0.2s ease; flex-shrink: 0; }
+        .mob-dropdown.open .mob-chevron { transform: rotate(180deg); }
+        .mob-dropdown-menu { display: none; flex-direction: column; padding: 0 20px 8px 44px; }
+        .mob-dropdown.open .mob-dropdown-menu { display: flex; }
+        .mob-dropdown-menu a { display: flex; align-items: center; gap: 7px; padding: 10px 0; font-size: 13px; border-bottom: none; opacity: 0.65; }
+        .mob-dropdown-menu a:hover { opacity: 1; }
+        @media (max-width: 990px) {
+            nav { padding: 0 16px; height: 56px; }
+            .nav-links-main { display: none; }
+            .cta-group { display: none; }
+            .hamburger { display: flex; }
+            .mobile-menu { display: flex; }
+        }
+
+        /* ── Footer ── */
+        footer { width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); }
+        .footer-col { border-right: 1px solid var(--border-color); padding: 30px 40px; text-align: center; font-size: 13px; color: var(--text-muted); border-top: 1px solid var(--border-color); }
+        .footer-col:last-child { border-right: none; }
+        .footer-col a:hover { color: var(--text-main); }
+        .legal { width: 100%; padding: 30px; text-align: center; font-size: 12px; color: #999; border-top: 1px solid var(--border-color); }
+
+        /* ── Pricing hero ── */
+        .pricing-hero {
+            padding: 60px 40px 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .pricing-hero-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .pricing-hero h1 {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+            line-height: 1.1;
+        }
+        .pricing-hero p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 560px;
+        }
+
+        /* ── Plan cards ── */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .plan-card {
+            padding: 40px;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+        .plan-card:last-child { border-right: none; }
+        .plan-tag {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            min-height: 14px;
+        }
+        .plan-tag.green { color: #009960; }
+        .plan-name {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .plan-price {
+            font-size: 44px;
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .plan-price-note {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .plan-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .plan-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            flex: 1;
+            margin-bottom: 32px;
+        }
+        .plan-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+        .plan-features li.dim { color: var(--text-muted); }
+        .plan-features li svg { flex-shrink: 0; margin-top: 1px; }
+        .check-icon { color: #009960; }
+        .cross-icon { color: #ccc; }
+        .plan-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-stack);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 12px 20px;
+            border: 1px solid var(--accent-black);
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            color: var(--accent-black);
+            background: transparent;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .plan-btn:hover { background: var(--accent-black); color: #fff; }
+        .plan-btn.filled { background: var(--accent-black); color: #fff; }
+        .plan-btn.filled:hover { background: #333; }
+        .plan-btn.disabled { border-color: #ddd; color: #bbb; cursor: default; }
+        .plan-btn.disabled:hover { background: transparent; color: #bbb; }
+
+        /* ── Compare table ── */
+        .compare-section { padding: 60px 40px; border-bottom: 1px solid var(--border-color); }
+        .compare-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .compare-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 36px;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        .compare-table th {
+            text-align: left;
+            padding: 10px 14px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .compare-table th:not(:first-child) { text-align: center; }
+        .compare-table td {
+            padding: 13px 14px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-main);
+            vertical-align: middle;
+        }
+        .compare-table td:not(:first-child) { text-align: center; }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table .group-row td {
+            background: #f8f8f8;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 8px 14px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* ── Blog strip ── */
+        .blog-strip { border-bottom: 1px solid var(--border-color); padding: 60px 40px; }
+        .blog-strip-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+        .blog-strip-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .blog-card {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .blog-card:hover .blog-thumb img { transform: scale(1.03); }
+        .blog-thumb {
+            width: 100%;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: #f0f0f0;
+        }
+        .blog-thumb img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            transition: transform 0.3s ease;
+        }
+        .blog-card-title {
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.5;
+            letter-spacing: -0.2px;
+        }
+        .blog-card-date {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ── FAQ ── */
+        .faq-section { padding: 60px 40px; border-bottom: 1px solid var(--border-color); }
+        .faq-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .faq-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 40px;
+        }
+        .faq-list { max-width: 780px; }
+        .faq-item { border-top: 1px solid var(--border-color); }
+        .faq-item:last-child { border-bottom: 1px solid var(--border-color); }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            font-family: var(--font-stack);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-align: left;
+            gap: 16px;
+            letter-spacing: -0.2px;
+            transition: color 0.15s;
+        }
+        .faq-question:hover { color: #444; }
+        .faq-icon {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, background 0.15s;
+            color: var(--text-muted);
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+            background: #111;
+            border-color: #111;
+            color: #fff;
+        }
+        .faq-answer {
+            display: none;
+            padding: 0 0 22px;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.9;
+            max-width: 640px;
+        }
+        .faq-item.open .faq-answer { display: block; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            body { padding: 0; }
+            .site-container { border: none; box-shadow: none; }
+            .pricing-hero { padding: 40px 24px 32px; }
+            .pricing-hero h1 { font-size: 28px; }
+            .plans-grid { grid-template-columns: 1fr; }
+            .plan-card { border-right: none; border-bottom: 1px solid var(--border-color); }
+            .plan-card:last-child { border-bottom: none; }
+            .compare-section { padding: 40px 24px; overflow-x: auto; }
+            .blog-strip { padding: 40px 24px; }
+            .blog-strip-grid { grid-template-columns: repeat(2, 1fr); }
+            .faq-section { padding: 40px 24px; }
+            .section-box { padding: 40px 24px; }
+            footer { grid-template-columns: 1fr; }
+            .footer-col { border-right: none; }
+        }
+        @media (max-width: 480px) {
+            .blog-strip-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-container">
+
+        <nav>
+            <a class="brand" href="index.html">
+                <span class="mark">
+                    <img src="assets/logo/logo.png" alt="Loophole logo">
+                </span>
+                loophole
+            </a>
+            <ul class="nav-links-main">
+                <li>
+                    <a href="pricing.html">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        PRICING
+                    </a>
+                </li>
+                <li class="nav-dropdown">
+                    <button class="nav-dropdown-toggle" onclick="this.closest('.nav-dropdown').classList.toggle('open')">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M10 10v10"/></svg>
+                        RESOURCES
+                        <svg class="chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="blog.html">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h12"/></svg>
+                            Blog
+                        </a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="models.html">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
+                        MODELS
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/loophole-ai/loophole-ide" target="_blank">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                        GITHUB
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-right">
+                <div class="cta-group">
+                    <a href="https://github.com/loophole-ai/loophole-ide/releases" class="btn-signup">Download</a>
+                </div>
+                <button class="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="pricing.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> PRICING</a>
+            <div class="mob-dropdown">
+                <button class="mob-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M10 10v10"/></svg> RESOURCES</span>
+                    <svg class="mob-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="mob-dropdown-menu">
+                    <a href="blog.html"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h12"/></svg> Blog</a>
+                </div>
+            </div>
+            <a href="models.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg> MODELS</a>
+            <a href="https://github.com/loophole-ai/loophole-ide" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> GITHUB</a>
+            <div class="mob-download">
+                <a href="https://github.com/loophole-ai/loophole-ide/releases" class="btn-signup">Download</a>
+            </div>
+        </div>
+
+        <!-- HERO -->
+        <div class="pricing-hero">
+            <div class="pricing-hero-label">Pricing</div>
+            <h1 style="margin-bottom: 12px; letter-spacing: -1px;">Free.<br>Always.</h1>
+            <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">Loophole is open-source. No subscriptions, no seats, no hidden fees. Pay only what you owe directly to your AI provider — we take nothing.</p>
+        </div>
+
+        <!-- PLAN CARDS -->
+        <div class="plans-grid">
+
+            <!-- Community -->
+            <div class="plan-card">
+                <div class="plan-tag">&nbsp;</div>
+                <div class="plan-name">Community</div>
+                <div class="plan-price">$0</div>
+                <div class="plan-price-note">/ month</div>
+                <div class="plan-desc">Everything you need to build, shipped free. Download, run, and never pay us a cent.</div>
+                <ul class="plan-features">
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Full editor — all features unlocked
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        20+ AI provider integrations
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Bring your own API key
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Local & custom model endpoints
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        VS Code extension support
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        MCP server integration
+                    </li>
+                    <li class="dim">
+                        <svg class="cross-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        Priority support
+                    </li>
+                    <li class="dim">
+                        <svg class="cross-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        Team sync (coming soon)
+                    </li>
+                </ul>
+                <a href="https://github.com/loophole-ai/loophole-ide/releases" class="plan-btn">Download Free</a>
+            </div>
+
+            <!-- Pro -->
+            <div class="plan-card">
+                <div class="plan-tag green">Most Popular</div>
+                <div class="plan-name">Pro</div>
+                <div class="plan-price">$0</div>
+                <div class="plan-price-note">/ month</div>
+                <div class="plan-desc">The same free editor with no strings. Self-host or run locally — your data never leaves your machine.</div>
+                <ul class="plan-features">
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Everything in Community
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Plan & Execution modes
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Inline diff & approval controls
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Custom rules & skills
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Context Engine (full codebase)
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Multi-model in one session
+                    </li>
+                    <li class="dim">
+                        <svg class="cross-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        Priority support
+                    </li>
+                    <li class="dim">
+                        <svg class="cross-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        Team sync (coming soon)
+                    </li>
+                </ul>
+                <a href="https://github.com/loophole-ai/loophole-ide/releases" class="plan-btn filled">Get Started Free</a>
+            </div>
+
+            <!-- Team -->
+            <div class="plan-card">
+                <div class="plan-tag">Coming Soon</div>
+                <div class="plan-name">Team</div>
+                <div class="plan-price">TBD</div>
+                <div class="plan-price-note">&nbsp;</div>
+                <div class="plan-desc">Shared context, shared rules, and a single key for your whole team. Built for organisations that ship together.</div>
+                <ul class="plan-features">
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Everything in Pro
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Shared rules & skill libraries
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Centralised API key management
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Usage analytics per seat
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Team context sync
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Priority support channel
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        SSO / SAML (planned)
+                    </li>
+                    <li>
+                        <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        Self-host option
+                    </li>
+                </ul>
+                <a href="https://github.com/loophole-ai/loophole-ide/discussions" class="plan-btn disabled">Join Waitlist</a>
+            </div>
+
+        </div>
+
+        <!-- COMPARE TABLE -->
+        <div class="compare-section">
+            <div class="compare-label">Feature breakdown</div>
+            <div class="compare-title">What's included</div>
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Community</th>
+                        <th>Pro</th>
+                        <th>Team</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="4">Core Editor</td></tr>
+                    <tr>
+                        <td>Inline diffs & approval controls</td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                    </tr>
+                    <tr>
+                        <td>Plan & Execution modes</td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                    </tr>
+                    <tr>
+                        <td>VS Code extension support</td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                    </tr>
+                    <tr class="group-row"><td colspan="4">AI & Models</td></tr>
+                    <tr>
+                        <td>Bring your own API key</td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                    </tr>
+                    <tr>
+                        <td>Local model endpoints (Ollama, vLLM)</td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                    </tr>
+                    <tr>
+                        <td>Centralised API key management</td>
+                        <td><svg class="cross-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></td>
+                        <td><svg class="cross-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                    </tr>
+                    <tr class="group-row"><td colspan="4">Team & Collaboration</td></tr>
+                    <tr>
+                        <td>Shared rules & skill libraries</td>
+                        <td><svg class="cross-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></td>
+                        <td><svg class="cross-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                    </tr>
+                    <tr>
+                        <td>Usage analytics per seat</td>
+                        <td><svg class="cross-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></td>
+                        <td><svg class="cross-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                    </tr>
+                    <tr>
+                        <td>Priority support</td>
+                        <td><svg class="cross-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></td>
+                        <td><svg class="cross-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></td>
+                        <td><svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-section">
+            <div class="faq-label">FAQ</div>
+            <div class="faq-title" style="font-size: 24px; margin-bottom: 40px;">Questions, answered.</div>
+
+            <div class="faq-list">
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this.parentElement)">
+                        Is Loophole really free? What's the catch?
+                        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+                    </button>
+                    <div class="faq-answer">No catch. Loophole is open-source under an MIT-style licence — you can read every line of code on GitHub. We don't charge for the editor. The only costs you'll ever pay are directly to your chosen AI provider for API usage, and those bills go straight to them, not through us.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this.parentElement)">
+                        Do I need to give Loophole my API keys?
+                        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+                    </button>
+                    <div class="faq-answer">No. Your API keys are stored locally on your machine in your own config file and are never sent to Loophole's servers — because Loophole doesn't have servers. Requests go directly from your editor to your provider's endpoint. We never see your keys, your prompts, or your code.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this.parentElement)">
+                        How much will I actually pay for AI usage?
+                        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+                    </button>
+                    <div class="faq-answer">It depends entirely on which model you pick and how much you use it. Light everyday work on a model like Claude Haiku or Gemini Flash costs pennies per day. Heavy agentic sessions with frontier models can be a few dollars per session. You can also run entirely free using local models via Ollama or vLLM at zero cost per token.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this.parentElement)">
+                        Can I use Loophole offline or with a local model?
+                        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+                    </button>
+                    <div class="faq-answer">Yes. Loophole supports any OpenAI-compatible endpoint, which means Ollama, vLLM, LM Studio, and any other local inference server work out of the box. You get the full editor experience — inline diffs, Plan mode, agentic runs — at zero token cost and complete air-gap privacy.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this.parentElement)">
+                        What's the difference between Community and Pro?
+                        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+                    </button>
+                    <div class="faq-answer">Currently, nothing. Both are the same open-source build downloaded from GitHub. The distinction exists to prepare for the Team plan launch, which will add shared infrastructure on top of the existing free core. Every feature you see today is in both and always will be.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this.parentElement)">
+                        When is the Team plan launching and what will it cost?
+                        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+                    </button>
+                    <div class="faq-answer">We're actively building it but haven't set a date or price yet. Join the waitlist on the GitHub Discussions page and you'll be the first to know. We're committed to keeping it affordable — our philosophy is that tooling shouldn't eat your AI budget.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this.parentElement)">
+                        Does Loophole send my code to any external server?
+                        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+                    </button>
+                    <div class="faq-answer">Only to the AI provider you explicitly configure. Your code is sent to whichever endpoint you've pointed Loophole at — OpenAI, Anthropic, your own Ollama instance, or anyone else. Nothing is sent to Loophole. The editor has no telemetry, no analytics, and no call-home to our infrastructure.</div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this.parentElement)">
+                        Can I contribute to or fork Loophole?
+                        <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+                    </button>
+                    <div class="faq-answer">Absolutely. Loophole is built on Void, itself a fork of VS Code, and the entire codebase is on GitHub. PRs, issues, and forks are all welcome. If you build something interesting on top of Loophole, share it in Discussions — we actively spotlight community work.</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-col"><a href="https://github.com/loophole-ai/loophole-ide">Github</a></div>
+            <div class="footer-col"><a href="https://github.com/loophole-ai/loophole-ide/issues">Github Issues</a></div>
+        </footer>
+        <div class="legal">
+            &copy; 2026 Loophole IDE &nbsp;
+        </div>
+
+    </div>
+
+    <script>
+        function toggleFaq(item) {
+            var isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
+            if (!isOpen) item.classList.add('open');
+        }
+        (function() {
+            var hamburger = document.querySelector('.hamburger');
+            var mobileMenu = document.getElementById('mobileMenu');
+            if (!hamburger || !mobileMenu) return;
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('open');
+            });
+        })();
+        document.addEventListener('click', function(e) {
+            document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
+                if (!d.contains(e.target)) d.classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>
