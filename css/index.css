@@ -1352,7 +1352,7 @@
   font-size: clamp(9px, 1.2vw, 15px);
   line-height: 1.2;
   white-space: pre;
-  color: #fecefd;
+  color: #000000;
 }
 
 /* Hide wormhole on mobile */
