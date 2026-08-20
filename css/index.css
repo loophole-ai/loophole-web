@@ -987,7 +987,7 @@
   font-family: 'Funnel Display', sans-serif;
   font-size: clamp(32px, 5vw, 52px);
   font-weight: 800;
-  color: var(--mf-text);
+  color: #fecefd;
   line-height: 1.1;
   margin: 0 0 16px;
 }
@@ -1087,7 +1087,7 @@
   font-family: 'Funnel Display', sans-serif;
   font-size: 18px;
   font-weight: 700;
-  color: var(--mf-text);
+  color: #fecefd;
   margin: 0;
 }
 

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Models - Loophole</title>
     <meta name="description" content="AI models supported by Loophole IDE — Claude, OpenAI, xAI, Gemini, DeepSeek, Mistral, Groq, Inception, and more.">
+    <link rel="icon" href="assets/logo/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -29,14 +30,12 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            padding: 40px 20px;
+            padding: 0;
         }
         .site-container {
             background-color: var(--bg-container);
             width: 100%;
             max-width: var(--container-width);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
         }
@@ -166,7 +165,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+            border-radius: 4px;
             transition: background-color 0.2s ease;
         }
         .btn-signup:hover { background: #03dc8b; }
@@ -179,7 +178,7 @@
         .mobile-menu.open { max-height: 700px; opacity: 1; }
         .mobile-menu a { color: #111118; text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,0.12); display: flex; align-items: center; gap: 10px; }
         .mobile-menu .mob-download { padding: 16px 20px; display: flex; gap: 12px; }
-        .mobile-menu .mob-download .btn-signup { flex: 1; clip-path: none; border-radius: 6px; justify-content: center; margin: 0; height: 42px; font-size: 13px; }
+        .mobile-menu .mob-download .btn-signup { flex: 1; border-radius: 6px; justify-content: center; margin: 0; height: 42px; font-size: 13px; }
         .mob-dropdown { width: 100%; border-bottom: 1px solid rgba(0,0,0,0.12); }
         .mob-dropdown-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; background: none; border: none; cursor: pointer; padding: 16px 20px; font-family: 'Space Mono', monospace; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #111118; box-sizing: border-box; }
         .mob-dropdown-toggle span { display: flex; align-items: center; gap: 10px; }
@@ -359,6 +358,8 @@
         }
 
         @media (max-width: 768px) {
+            body { padding: 0; }
+            .site-container { border: none; box-shadow: none; }
             .nav-links { display: none; }
             footer { grid-template-columns: 1fr; }
             .footer-col { border-right: none; }
