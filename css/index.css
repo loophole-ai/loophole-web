@@ -1333,6 +1333,10 @@
 }
 
 /* ---------- wormhole ascii (.wormhole-logo) ---------- */
+.hiw-section {
+  position: relative;
+}
+
 .wormhole-logo {
   position: absolute;
   left: 0;
@@ -1341,8 +1345,13 @@
   display: flex;
   align-items: center;
   pointer-events: none;
-  z-index: 10;
+  z-index: 0;
   opacity: 0.8;
+}
+
+.hiw-inner {
+  position: relative;
+  z-index: 1;
 }
 
 .wormhole-logo pre {
