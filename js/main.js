@@ -1,6 +1,3 @@
-/* ===== MAIN JS — shared across all pages ===== */
-
-// Mobile hamburger menu toggle
 (function () {
   const hamburger = document.querySelector('.hamburger');
   const mobileMenu = document.getElementById('mobileMenu');

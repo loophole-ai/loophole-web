@@ -1,22 +1,15 @@
-/* =====================================================
-   RULER SYSTEM — draws measurement tick marks on
-   canvas elements & handles resize
-   ===================================================== */
-
 const RULER = {
-  /* visual config */
-  MINOR_TICK_EVERY:  12,   // px between minor ticks
-  MAJOR_TICK_EVERY:  60,   // px between major ticks (must be multiple of minor)
-  MINOR_TICK_H:       8,   // height of minor tick
-  MAJOR_TICK_H:      18,   // height of major tick
-  LABEL_EVERY:      160,   // px between number labels on horizontal rulers
+  MINOR_TICK_EVERY:  12,   
+  MAJOR_TICK_EVERY:  60,   
+  MINOR_TICK_H:       8,  
+  MAJOR_TICK_H:      18,   
+  LABEL_EVERY:      160, 
   LABEL_FONT:  '7px "Space Mono", monospace',
   COLOR_MINOR:  'rgba(0,0,0,0.22)',
   COLOR_MAJOR:  'rgba(0,0,0,0.42)',
   COLOR_LABEL:  'rgba(0,0,0,0.30)',
   COLOR_LINE:   'rgba(0,0,0,0.35)',
 
-  /* Draw a horizontal ruler into a canvas */
   drawH(canvas, { flip = false, showLabels = true, offsetX = 0 } = {}) {
     const dpr = window.devicePixelRatio || 1;
     const W   = canvas.offsetWidth;
@@ -27,7 +20,6 @@ const RULER = {
     ctx.scale(dpr, dpr);
     ctx.clearRect(0, 0, W, H);
 
-    // baseline
     const baseY = flip ? 0 : H;
     ctx.strokeStyle = RULER.COLOR_LINE;
     ctx.lineWidth = 1;
@@ -36,7 +28,6 @@ const RULER = {
     ctx.lineTo(W, baseY);
     ctx.stroke();
 
-    // ticks
     for (let x = 0; x <= W; x += RULER.MINOR_TICK_EVERY) {
       const isMajor = (x % RULER.MAJOR_TICK_EVERY) === 0;
       const tickH   = isMajor ? RULER.MAJOR_TICK_H : RULER.MINOR_TICK_H;
@@ -51,12 +42,9 @@ const RULER = {
         ctx.lineTo(x, H - tickH);
       }
       ctx.stroke();
-
-      // no number labels
     }
   },
 
-  /* Draw a vertical ruler into a canvas */
   drawV(canvas, { flip = false, showLabels = false } = {}) {
     const dpr = window.devicePixelRatio || 1;
     const W   = canvas.offsetWidth;
@@ -67,7 +55,6 @@ const RULER = {
     ctx.scale(dpr, dpr);
     ctx.clearRect(0, 0, W, H);
 
-    // baseline
     const baseX = flip ? W : 0;
     ctx.strokeStyle = RULER.COLOR_LINE;
     ctx.lineWidth = 1;
@@ -76,7 +63,6 @@ const RULER = {
     ctx.lineTo(baseX, H);
     ctx.stroke();
 
-    // ticks
     for (let y = 0; y <= H; y += RULER.MINOR_TICK_EVERY) {
       const isMajor = (y % RULER.MAJOR_TICK_EVERY) === 0;
       const tickW   = isMajor ? RULER.MAJOR_TICK_H : RULER.MINOR_TICK_H;
@@ -94,7 +80,6 @@ const RULER = {
     }
   },
 
-  /* Init all ruler canvases on the page */
   initAll() {
     document.querySelectorAll('.ruler-canvas[data-dir="h"]').forEach(c => {
       RULER.drawH(c, {
@@ -111,7 +96,6 @@ const RULER = {
   }
 };
 
-/* Draw on load and on resize (debounced) */
 document.addEventListener('DOMContentLoaded', () => {
   RULER.initAll();
 });

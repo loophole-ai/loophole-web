@@ -1,6 +1,3 @@
-/* ===== GLOBAL STYLES — shared across all pages ===== */
-
-/* ---------- design tokens ---------- */
 :root {
   --black: #e5e6e5;
   --nav-bg: #eeeeee;
@@ -14,12 +11,8 @@
   --line: rgba(0, 0, 0, 0.12);
   --white: #111118;
   --mid: #555364;
-
-  /* ASCII logo controls — edit these to customise */
-  /* black hole ascii vars */
 }
 
-/* ---------- reset ---------- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
@@ -31,7 +24,6 @@ html, body {
 
 body { min-height: 100vh; }
 
-/* ---------- grain texture ---------- */
 .grain {
   position: absolute;
   inset: 0;
@@ -43,7 +35,6 @@ body { min-height: 100vh; }
 
 header { position: relative; }
 
-/* ---------- navbar ---------- */
 nav {
   position: relative;
   background: var(--nav-bg);
@@ -133,7 +124,6 @@ nav {
   padding-left: 12px;
 }
 
-/* ---------- Polygon Ribbon Action Buttons ---------- */
 .cta-group {
   display: inline-flex;
   align-items: center;
@@ -220,7 +210,7 @@ nav {
     flex-shrink: 0;
   }
   .cta-group {
-    display: none; /* hide polygon buttons on mobile, use drawer instead */
+    display: none;
   }
   .hamburger {
     display: flex;
@@ -228,7 +218,6 @@ nav {
   }
 }
 
-/* ---------- mobile drawer ---------- */
 .mobile-menu {
   display: none;
   flex-direction: column;
@@ -272,7 +261,6 @@ nav {
   font-size: 13px;
 }
 
-/* ---------- announcement bar ---------- */
 .announce {
   position: relative;
   width: 100%;
@@ -332,7 +320,6 @@ nav {
   opacity: 0.75;
 }
 
-/* ---------- footer ---------- */
 footer {
   background: #d9dad9;
   border-top: 1px solid var(--line);
@@ -399,16 +386,12 @@ footer {
   .footer-cols { margin-left: 0; gap: 40px; }
 }
 
-/* ========================================================
-   GLOBAL RULER BORDER SYSTEM
-   ======================================================== */
 :root {
   --ruler-color: rgba(0, 0, 0, 0.18);
   --ruler-tick-color: rgba(0, 0, 0, 0.28);
   --ruler-height: 28px;
 }
 
-/* Footer ruler top edge */
 footer {
   position: relative;
   overflow: visible;
@@ -452,7 +435,6 @@ footer::before {
 
 .footer-ruler-corners::before { left: -5px; }
 .footer-ruler-corners::after  { right: -5px; }
-/* ── Nav Dropdown ─────────────────────────────── */
 .nav-dropdown {
   position: relative;
 }
@@ -528,7 +510,6 @@ footer::before {
   transform: rotate(180deg);
 }
 
-/* ── Mobile Dropdown ──────────────────────────── */
 .mob-dropdown {
   width: 100%;
   border-bottom: 1px solid var(--line);

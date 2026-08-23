@@ -448,9 +448,6 @@
             <h1 style="font-size: 36px; margin-bottom: 12px; letter-spacing: -1px;">Supported Models</h1>
             <p style="color: var(--text-muted); margin-bottom: 56px; font-size: 13px; line-height: 1.8;">Loophole connects directly to your chosen AI provider. Bring your own API key — no middleman, no markup. Click any model to expand its details. Pricing shown is per 1M tokens and reflects each provider's published rates at time of writing — always confirm current pricing with the provider.</p>
 
-            <!-- ══════════════════════════════════
-                 ANTHROPIC
-            ══════════════════════════════════ -->
             <div class="provider-block">
                 <div class="provider-header">
                     <span class="provider-label">Provider</span>
@@ -633,9 +630,6 @@
                 </div>
             </div>
 
-            <!-- ══════════════════════════════════
-                 OPENAI
-            ══════════════════════════════════ -->
             <div class="provider-block">
                 <div class="provider-header">
                     <span class="provider-label">Provider</span>
@@ -904,9 +898,6 @@
                 </div>
             </div>
 
-            <!-- ══════════════════════════════════
-                 XAI
-            ══════════════════════════════════ -->
             <div class="provider-block">
                 <div class="provider-header">
                     <span class="provider-label">Provider</span>
@@ -1022,9 +1013,6 @@
                 </div>
             </div>
 
-            <!-- ══════════════════════════════════
-                 GEMINI
-            ══════════════════════════════════ -->
             <div class="provider-block">
                 <div class="provider-header">
                     <span class="provider-label">Provider</span>
@@ -1163,9 +1151,6 @@
                 </div>
             </div>
 
-            <!-- ══════════════════════════════════
-                 DEEPSEEK
-            ══════════════════════════════════ -->
             <div class="provider-block">
                 <div class="provider-header">
                     <span class="provider-label">Provider</span>
@@ -1218,9 +1203,6 @@
                 </div>
             </div>
 
-            <!-- ══════════════════════════════════
-                 MISTRAL
-            ══════════════════════════════════ -->
             <div class="provider-block">
                 <div class="provider-header">
                     <span class="provider-label">Provider</span>
@@ -1338,9 +1320,6 @@
                 </div>
             </div>
 
-            <!-- ══════════════════════════════════
-                 GROQ
-            ══════════════════════════════════ -->
             <div class="provider-block">
                 <div class="provider-header">
                     <span class="provider-label">Provider</span>
@@ -1457,9 +1436,6 @@
                 </div>
             </div>
 
-            <!-- ══════════════════════════════════
-                 INCEPTION LABS
-            ══════════════════════════════════ -->
             <div class="provider-block">
                 <div class="provider-header">
                     <span class="provider-label">Provider</span>
@@ -1534,9 +1510,6 @@
                 </div>
             </div>
 
-            <!-- ══════════════════════════════════
-                 OPENROUTER
-            ══════════════════════════════════ -->
             <div class="provider-block">
                 <div class="provider-header">
                     <span class="provider-label">Provider</span>
@@ -1592,9 +1565,6 @@
                 </div>
             </div>
 
-            <!-- ══════════════════════════════════
-                 OTHER HOSTED PROVIDERS
-            ══════════════════════════════════ -->
             <div class="provider-block">
                 <div class="provider-header">
                     <span class="provider-label">Provider</span>
@@ -1668,9 +1638,6 @@
                 </div>
             </div>
 
-            <!-- ══════════════════════════════════
-                 LOCAL / BYO ENDPOINT PROVIDERS
-            ══════════════════════════════════ -->
             <div class="provider-block">
                 <div class="provider-header">
                     <span class="provider-label">Provider</span>
@@ -1708,7 +1675,6 @@
         function toggle(card) {
             card.classList.toggle('open');
         }
-        // Hamburger
         (function() {
             var hamburger = document.querySelector('.hamburger');
             var mobileMenu = document.getElementById('mobileMenu');
@@ -1718,7 +1684,6 @@
                 mobileMenu.classList.toggle('open');
             });
         })();
-        // Close desktop dropdown on outside click
         document.addEventListener('click', function(e) {
             document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
                 if (!d.contains(e.target)) d.classList.remove('open');

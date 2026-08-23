@@ -1,5 +1,3 @@
-/* ===== PRIVACY PAGE STYLES ===== */
-
 body {
   min-height: 100vh;
   display: flex;
@@ -8,7 +6,6 @@ body {
 
 main { flex: 1; }
 
-/* ---------- privacy content ---------- */
 .privacy-section {
   background: var(--black);
   padding: 90px 60px 100px;

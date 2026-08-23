@@ -1,6 +1,3 @@
-/* ===== INDEX PAGE JS ===== */
-
-// IDE OS tab selection
 (function () {
   const subTabsEl = document.getElementById('subTabs');
   if (!subTabsEl) return;

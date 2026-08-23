@@ -1,6 +1,3 @@
-/* ===== INDEX PAGE STYLES ===== */
-
-/* ---------- hero wrapper with tech crosshair corner nodes ---------- */
 .hero-wrapper {
   background: var(--black);
   padding: 30px 40px 10px 40px;
@@ -20,10 +17,6 @@
   padding: 75px 60px 60px;
   gap: 48px;
 }
-
-/* Corner nodes + hero border handled by rulers.css */
-
-/* section-label-strip replaced by .section-transition in rulers.css */
 
 .hero .hero-glow {
   position: absolute;
@@ -123,7 +116,6 @@
   max-width: 720px;
 }
 
-/* ---------- hero video ---------- */
 .hero-video-wrap {
   width: 100%;
   max-width: 900px;
@@ -195,7 +187,6 @@
   .hero h1 { font-size: 32px !important; }
 }
 
-/* ---------- image showcase section ---------- */
 .image-showcase {
   background: var(--black);
   padding: 0 40px 70px;
@@ -255,7 +246,6 @@
   .image-showcase-frame .corner-node { display: none; }
 }
 
-/* ---------- install section ---------- */
 .install-section {
   background: var(--black);
   padding: 0 40px 40px 40px;
@@ -263,14 +253,11 @@
   justify-content: center;
 }
 
-/* Framed image container — same crosshair treatment as hero */
 .install-frame {
   position: relative;
   width: 100%;
   overflow: visible;
 }
-
-/* install-frame border handled by rulers.css */
 
 .install-full-img {
   display: block;
@@ -279,15 +266,10 @@
   object-fit: cover;
 }
 
-/* Reuse corner-dot inside install-frame */
 .install-frame .corner-dot.top-left    { top: -4px; left: -4px; }
 .install-frame .corner-dot.top-right   { top: -4px; right: -4px; }
 .install-frame .corner-dot.bottom-left  { bottom: -4px; left: -4px; }
 .install-frame .corner-dot.bottom-right { bottom: -4px; right: -4px; }
-
-
-
-/* IDE download button */
 .ide-download-btn {
   display: inline-flex;
   align-items: center;
@@ -312,7 +294,6 @@
   .install-preview, .preview-pane, .preview-placeholder { min-height: 280px; }
 }
 
-/* ---------- plan to execution section ---------- */
 .pte-section {
   background: var(--black);
   border-top: 1px solid var(--line);
@@ -399,7 +380,6 @@
   min-height: 200px;
 }
 
-/* placeholder when no image */
 .pte-col-img-placeholder {
   width: 100%;
   aspect-ratio: 16/10;
@@ -420,7 +400,6 @@
   .pte-cols { grid-template-columns: 1fr; gap: 40px; }
 }
 
-/* ---------- providers section ---------- */
 .providers {
   background: #dedfde;
   border-top: 1px solid var(--line);
@@ -485,7 +464,6 @@
   .providers-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 12px; }
 }
 
-/* ---------- cta banner ---------- */
 .cta-banner {
   background: var(--black);
   border-top: 1px solid var(--line);
@@ -547,7 +525,6 @@
 
 .cta-btn:hover { opacity: 0.9; }
 
-/* ---------- black hole ascii (.ascii-logo / .cta-logo) ---------- */
 .cta-logo {
   position: absolute;
   left: 54%;
@@ -573,13 +550,11 @@
   opacity: 0.85;
 }
 
-/* rulers always on top of black hole art */
 .cta-banner canvas,
 .cta-banner .corner-node {
   z-index: 10 !important;
 }
 
-/* Remove vertical ruler lines from CTA section on all viewports */
 .cta-banner.ruler-frame::before,
 .cta-banner.ruler-frame::after {
   display: none !important;
@@ -597,13 +572,11 @@
     font-size: 12px;
     padding: 8px 14px;
   }
-  /* Hide black hole on mobile */
   .cta-logo {
     display: none !important;
   }
 }
 
-/* ---------- articles section ---------- */
 .articles {
   background: #dedfde;
   border-top: 1px solid var(--line);
@@ -649,7 +622,6 @@
   display: block;
 }
 
-/* placeholder when no image */
 .article-thumb .thumb-placeholder {
   position: absolute;
   inset: 0;
@@ -689,7 +661,6 @@
   .articles-grid { grid-template-columns: 1fr; }
 }
 
-/* ---------- why loophole section ---------- */
 .why-loophole {
   background: var(--black);
   border-top: 1px solid var(--line);
@@ -789,7 +760,6 @@
     gap: 36px;
   }
 }
-/* ---------- loophole editor intro section ---------- */
 .loophole-editor-intro {
   background: var(--black);
   border-bottom: 1px solid var(--line);
@@ -827,7 +797,6 @@
   .lei-heading { font-size: 32px; }
 }
 
-/* ---------- how it works steps section ---------- */
 .hiw-section {
   background: var(--black);
   border-bottom: 1px solid var(--line);
@@ -857,7 +826,6 @@
   direction: ltr;
 }
 
-/* Outer shell — hatched pattern all the way to the edge */
 .hiw-step-outer {
   position: relative;
   padding: 14px;
@@ -877,14 +845,12 @@
 .hiw-step-outer .corner-node,
 .hiw-step-outer .node-dot { display: none; }
 
-/* Gap layer — solid background color creates the visible gap between hatch and inner frame */
 .hiw-step-frame-gap {
   background: var(--black);
   padding: 10px;
   border-radius: 2px;
 }
 
-/* Inner image frame */
 .hiw-step-frame {
   position: relative;
   width: 100%;
@@ -952,13 +918,11 @@
     box-sizing: border-box;
   }
 }
-/* Closed section transitions — top + bottom border lines */
 .section-transition--bordered {
   border-top: 1px solid rgba(255,255,255,0.25);
   border-bottom: 1px solid rgba(0,0,0,0.15);
 }
 
-/* ── More Features Section ───────────────────── */
 :root {
   --mf-bg: #444255;
   --mf-text: #e8edf5;
@@ -976,7 +940,6 @@
   box-sizing: border-box;
 }
 
-/* Header: label + heading + cta */
 .mf-header {
   max-width: 520px;
   margin-bottom: 56px;
@@ -1029,7 +992,6 @@
   border-color: rgba(255,255,255,0.3);
 }
 
-/* Preview cards row */
 .mf-previews {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1042,7 +1004,6 @@
   gap: 20px;
 }
 
-/* Hatched outer frame — same style as hiw-step-outer */
 .mf-preview-outer {
   background-color: rgba(255,255,255,0.12);
   background-image: repeating-linear-gradient(
@@ -1056,14 +1017,12 @@
   border-radius: 4px;
 }
 
-/* Gap layer */
 .mf-preview-gap {
   background: var(--mf-bg);
   padding: 8px;
   border-radius: 2px;
 }
 
-/* Inner clean frame */
 .mf-preview-frame {
   width: 100%;
   aspect-ratio: 4/3;
@@ -1084,7 +1043,6 @@
   justify-content: center;
 }
 
-/* Feature info below each preview */
 .mf-preview-info {
   display: flex;
   flex-direction: column;
@@ -1124,7 +1082,6 @@
   .mf-previews { grid-template-columns: 1fr; gap: 32px; }
 }
 
-/* ── Section rulers ───────────────────────────── */
 .hiw-ruler-top,
 .hiw-ruler-bottom,
 .articles-ruler-top,
@@ -1156,22 +1113,18 @@
   padding: 0;
 }
 
-/* Ruler sits above HOW IT WORKS tag — remove duplicate top border */
 .hiw-tag-ruler + .section-transition--bordered {
   border-top: none;
 }
 
-/* Remove border that creates duplicate line below loophole-editor-intro — ruler handles it */
 .loophole-editor-intro {
   border-bottom: none !important;
 }
 
-/* Remove bottom border from HOW IT WORKS tag — hiw-section ruler handles the divider */
 .hiw-tag-ruler + .section-transition--bordered {
   border-bottom: none !important;
 }
 
-/* Ruler sits exactly on the seam between loophole-editor-intro and hiw-section */
 .hiw-ruler-top {
   display: block;
   width: 100%;
@@ -1191,7 +1144,6 @@
   }
 }
 
-/* ── Section dissolve transition ─────────────── */
 .section-dissolve {
   line-height: 0;
   display: block;
@@ -1224,16 +1176,12 @@
   padding: 0;
 }
 
-/* ===========================================
-   MORE-FEATURES SECTION — ruler grid overlay
-   =========================================== */
 
 .mf-ruler-grid {
   position: relative;
   overflow: visible;
 }
 
-/* Full CSS grid pattern — vertical + horizontal lines */
 .mf-ruler-grid::before {
   content: '';
   position: absolute;
@@ -1241,7 +1189,6 @@
   pointer-events: none;
   z-index: 0;
   background-image:
-    /* Vertical lines every ~11% (~9 columns) */
     repeating-linear-gradient(
       to right,
       rgba(255,255,255,0.07) 0px,
@@ -1249,7 +1196,6 @@
       transparent 1px,
       transparent calc(100% / 9)
     ),
-    /* Horizontal lines every 40px */
     repeating-linear-gradient(
       to bottom,
       rgba(255,255,255,0.05) 0px,
@@ -1259,7 +1205,6 @@
     );
 }
 
-/* Crosshair / plus markers at every grid intersection — canvas-drawn via pseudo on vline divs */
 .mf-vline {
   position: absolute;
   top: 0;
@@ -1270,7 +1215,6 @@
   z-index: 1;
 }
 
-/* 8 evenly spaced vertical lines */
 .mf-vline-1 { left: 11.11%; }
 .mf-vline-2 { left: 22.22%; }
 .mf-vline-3 { left: 33.33%; }
@@ -1280,7 +1224,6 @@
 .mf-vline-7 { left: 77.77%; }
 .mf-vline-8 { left: 88.88%; }
 
-/* Small + crosshair markers along each vertical line */
 .mf-vline::before,
 .mf-vline::after {
   content: '';
@@ -1290,14 +1233,12 @@
   background: rgba(255,255,255,0.28);
   pointer-events: none;
 }
-/* Horizontal arm of crosshair */
 .mf-vline::before {
   width: 8px;
   height: 1px;
   top: 25%;
   margin-left: -4px;
 }
-/* Vertical tick mark */
 .mf-vline::after {
   width: 1px;
   height: 8px;
@@ -1305,7 +1246,6 @@
   margin-left: 0;
 }
 
-/* Second crosshair at 60% down */
 .mf-vline-cross {
   position: absolute;
   left: 50%;
@@ -1317,14 +1257,11 @@
   pointer-events: none;
 }
 
-/* Make sure content sits above the grid */
 .mf-ruler-grid .mf-header,
 .mf-ruler-grid .mf-previews {
   position: relative;
   z-index: 2;
 }
-
-/* Corner nodes override for dark section */
 .mf-ruler-grid .corner-node::before,
 .mf-ruler-grid .corner-node::after {
   background: rgba(255,255,255,0.35);
@@ -1334,13 +1271,10 @@
   border-color: rgba(255,255,255,0.45);
 }
 
-
-/* ---------- mf-wrapper — positions wormhole relative to section ---------- */
 .mf-wrapper {
   position: relative;
 }
 
-/* ---------- wormhole ascii (.wormhole-logo) ---------- */
 .hiw-section {
   position: relative;
 }
@@ -1372,7 +1306,6 @@
   color: #000000;
 }
 
-/* ---------- hiw step screenshots ---------- */
 .hiw-step-img {
   width: 100%;
   height: 100%;
@@ -1384,8 +1317,6 @@
   position: absolute;
   inset: 0;
 }
-
-/* Hide wormhole on mobile */
 @media (max-width: 768px) {
   .wormhole-logo {
     display: none !important;
