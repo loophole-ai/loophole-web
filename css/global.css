@@ -13,12 +13,37 @@
   --mid: #555364;
 }
 
+/* Custom font imports */
+@font-face {
+  font-family: 'Loophole Light';
+  src: url('../fonts/light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Loophole Medium';
+  src: url('../fonts/medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Loophole Bold';
+  src: url('../fonts/bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
   background: var(--black);
   color: var(--white);
-  font-family: 'Funnel Sans', sans-serif;
+  font-family: 'Loophole Light', sans-serif;
   overflow-x: hidden;
 }
 
@@ -50,7 +75,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Funnel Display', sans-serif;
+  font-family: 'Loophole Bold', sans-serif;
   font-weight: 700;
   font-size: 22px;
   color: #242230;
@@ -98,7 +123,7 @@ nav {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-family: 'Funnel Sans', sans-serif;
+  font-family: 'Loophole Medium', sans-serif;
   transition: color 0.18s ease;
 }
 
@@ -119,7 +144,7 @@ nav {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 12px;
   height: 100%;
   padding-left: 12px;
 }
@@ -132,7 +157,7 @@ nav {
 }
 
 .btn-contact {
-  font-family: 'Funnel Sans', sans-serif;
+  font-family: 'Loophole Medium', sans-serif;
   font-weight: 600;
   font-size: 13.5px;
   color: #ffffff;
@@ -154,7 +179,7 @@ nav {
 }
 
 .btn-signup {
-  font-family: 'Funnel Sans', sans-serif;
+  font-family: 'Loophole Medium', sans-serif;
   font-weight: 600;
   font-size: 13.5px;
   color: #111118;
@@ -263,20 +288,19 @@ nav {
 
 .announce {
   position: relative;
-  width: 100%;
-  background: var(--nav-btn-accent);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 9px 20px;
+  background: #1b1b1b;
+  border: none;
+  padding: 12px 24px;
   text-align: center;
-  font-size: 13.5px;
-  font-family: 'Space Mono', monospace;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  color: #111118;
+  font-size: 16px;
+  font-family: 'Loophole Medium', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  white-space: nowrap;
 }
 
 .announce-inner {
@@ -337,7 +361,7 @@ footer {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-family: 'Funnel Display', sans-serif;
+  font-family: 'Loophole Bold', sans-serif;
   font-weight: 700;
   font-size: 17px;
   letter-spacing: -0.01em;
@@ -469,7 +493,7 @@ footer::before {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: rgba(0,0,0,0.6);
-  font-family: 'Funnel Sans', sans-serif;
+  font-family: 'Loophole Medium', sans-serif;
   text-decoration: none;
   border-radius: 3px;
   white-space: nowrap;
@@ -494,7 +518,7 @@ footer::before {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-family: 'Funnel Sans', sans-serif;
+  font-family: 'Loophole Medium', sans-serif;
   transition: color 0.18s ease;
 }
 
@@ -524,7 +548,7 @@ footer::before {
   border: none;
   cursor: pointer;
   padding: 16px 20px;
-  font-family: 'Funnel Sans', sans-serif;
+  font-family: 'Loophole Medium', sans-serif;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -575,4 +599,27 @@ footer::before {
 
 .mob-dropdown-menu a:hover {
   opacity: 1;
+}
+/* Footer logo section */
+.footer-logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.footer-logo img {
+  width: 310px;
+  height: 310px;
+  filter: invert(1);
+}
+
+.footer-logo-text {
+  font-family: 'Loophole Bold', sans-serif;
+  font-weight: 700;
+  font-size: 200px;
+  color: #111118;
+  letter-spacing: -0.03em;
 }
