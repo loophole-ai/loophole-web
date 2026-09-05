@@ -288,11 +288,12 @@ nav {
 
 .announce {
   position: relative;
+  width: 100%;
   background: #1b1b1b;
   border: none;
-  padding: 12px 24px;
+  padding: 10px 24px;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   font-family: 'Loophole Medium', sans-serif;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -300,7 +301,8 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;
+  box-sizing: border-box;
+  z-index: 90;
 }
 
 .announce-inner {
@@ -332,11 +334,10 @@ nav {
 }
 
 .announce a {
-  color: #111118;
+  color: #ffffff;
   text-decoration: underline;
   text-underline-offset: 3px;
   font-weight: 700;
-  margin-left: 2px;
   transition: opacity 0.2s ease;
 }
 
@@ -608,12 +609,14 @@ footer::before {
   gap: 18px;
   margin-top: 60px;
   margin-bottom: 40px;
+  overflow: hidden;
 }
 
 .footer-logo img {
   width: 310px;
   height: 310px;
   filter: invert(1);
+  flex-shrink: 0;
 }
 
 .footer-logo-text {
@@ -622,4 +625,29 @@ footer::before {
   font-size: 200px;
   color: #111118;
   letter-spacing: -0.03em;
+}
+
+@media (max-width: 860px) {
+  .footer-logo-section {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 40px;
+    margin-bottom: 28px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .footer-logo img {
+    width: min(50vw, 160px);
+    height: min(50vw, 160px);
+  }
+
+  .footer-logo-text {
+    font-size: clamp(32px, calc((100vw - 40px) / 6.5), 120px);
+    white-space: nowrap;
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+  }
 }
