@@ -62,13 +62,13 @@ header { position: relative; }
 
 nav {
   position: relative;
-  background: var(--nav-bg);
+  background: #1b1b1b;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
   height: 64px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .brand {
@@ -78,10 +78,21 @@ nav {
   font-family: 'Loophole Bold', sans-serif;
   font-weight: 700;
   font-size: 22px;
-  color: #242230;
+  color: #ffffff;
   letter-spacing: -0.01em;
   padding-right: 24px;
   height: 100%;
+  position: relative;
+}
+
+.brand::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .brand .mark {
@@ -92,7 +103,7 @@ nav {
   justify-content: center;
 }
 .brand .mark svg,
-.brand .mark img { display: block; width: 30px; height: 30px; filter: invert(1); }
+.brand .mark img { display: block; width: 30px; height: 30px; }
 
 .footer-brand .mark svg,
 .footer-brand .mark img { display: block; width: 26px; height: 26px; filter: invert(1); }
@@ -117,7 +128,7 @@ nav {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--nav-text);
+  color: #ffffff;
   text-decoration: none;
   font-size: 12.5px;
   font-weight: 600;
@@ -128,7 +139,7 @@ nav {
 }
 
 .nav-links a:hover {
-  color: var(--nav-text-hover);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .nav-links a svg {
@@ -152,8 +163,27 @@ nav {
 .cta-group {
   display: inline-flex;
   align-items: center;
-  height: 38px;
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.08));
+  height: 64px;
+  position: relative;
+  padding: 0 16px;
+}
+
+.cta-group::before,
+.cta-group::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cta-group::before {
+  left: 0;
+}
+
+.cta-group::after {
+  right: 0;
 }
 
 .btn-contact {
@@ -181,22 +211,22 @@ nav {
 .btn-signup {
   font-family: 'Loophole Medium', sans-serif;
   font-weight: 600;
-  font-size: 13.5px;
-  color: #111118;
-  background: var(--nav-btn-accent);
+  font-size: 12.5px;
+  color: #ffffff;
+  background: transparent;
   text-decoration: none;
-  padding: 10px 28px 10px 24px;
-  height: 38px;
+  padding: 0;
+  height: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
-  transition: background-color 0.2s ease, transform 0.15s ease;
-  z-index: 2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.18s ease;
 }
 
 .btn-signup:hover {
-  background: var(--nav-btn-accent-hover);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .hamburger {
@@ -214,7 +244,7 @@ nav {
   display: block;
   width: 22px;
   height: 2px;
-  background: var(--nav-text-hover);
+  background: #ffffff;
   transition: transform 0.25s ease, opacity 0.15s ease;
 }
 
@@ -231,8 +261,11 @@ nav {
   .nav-links { display: none; }
   .brand {
     font-size: 18px;
-    padding-right: 0;
+    padding-right: 10px;
     flex-shrink: 0;
+  }
+  .brand::after {
+    right: -10px;
   }
   .cta-group {
     display: none;
@@ -246,9 +279,9 @@ nav {
 .mobile-menu {
   display: none;
   flex-direction: column;
-  background: var(--nav-bg);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  background: #1b1b1b;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.35s ease, opacity 0.3s ease;
@@ -257,23 +290,30 @@ nav {
 .mobile-menu.open { max-height: 700px; opacity: 1; }
 @media (max-width: 990px) { .mobile-menu { display: flex; } }
 .mobile-menu a {
-  color: var(--nav-text-hover);
+  color: #ffffff;
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 16px 20px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.mobile-menu a:active { background: rgba(0, 0, 0, 0.04); }
+
+.mobile-menu a:last-of-type {
+  border-bottom: none;
+}
+
+.mobile-menu a:active { background: rgba(255, 255, 255, 0.04); }
 .mobile-menu .mob-download {
   padding: 16px 20px;
   display: flex;
   gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .mobile-menu .mob-download .btn-contact,
 .mobile-menu .mob-download .btn-signup {
@@ -514,7 +554,7 @@ footer::before {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--nav-text);
+  color: #ffffff;
   font-size: 12.5px;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -524,7 +564,7 @@ footer::before {
 }
 
 .nav-dropdown-toggle:hover {
-  color: var(--nav-text-hover);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .nav-dropdown-toggle .chevron {
@@ -537,7 +577,7 @@ footer::before {
 
 .mob-dropdown {
   width: 100%;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .mob-dropdown-toggle {
@@ -554,7 +594,7 @@ footer::before {
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--nav-text-hover);
+  color: #ffffff;
   box-sizing: border-box;
 }
 
@@ -592,7 +632,7 @@ footer::before {
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--nav-text-hover);
+  color: #ffffff;
   text-decoration: none;
   border-bottom: none;
   opacity: 0.65;
