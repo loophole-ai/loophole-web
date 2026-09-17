@@ -1,1692 +1,611 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Models - Loophole</title>
-    <meta name="description" content="AI models supported by Loophole IDE — Claude, OpenAI, xAI, Gemini, DeepSeek, Mistral, Groq, Inception, and more.">
-    <link rel="icon" href="assets/logo/logo.png" type="image/png">
-    <link rel="stylesheet" href="css/global.css">
-    <style>
-        :root {
-            --bg-body: #fafafa;
-            --bg-container: #ffffff;
-            --text-main: #111111;
-            --text-muted: #666666;
-            --border-color: #e5e5e5;
-            --accent-black: #000000;
-            --font-stack: 'Space Mono', monospace;
-            --container-width: 1024px;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: var(--font-stack);
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            line-height: 1.6;
-            font-size: 14px;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            padding: 0;
-        }
-        .site-container {
-            background-color: var(--bg-container);
-            width: 100%;
-            max-width: var(--container-width);
-            display: flex;
-            flex-direction: column;
-        }
-        a { text-decoration: none; color: inherit; cursor: pointer; }
-        .flex { display: flex; }
-        .items-center { align-items: center; }
-        .section-box { border-bottom: 1px solid var(--border-color); width: 100%; padding: 60px 40px; }
-        .btn {
-            padding: 12px 24px;
-            border: 1px solid var(--accent-black);
-            font-family: var(--font-stack);
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 13px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: transparent;
-        }
-        .btn-black { background: var(--accent-black); color: white; }
-        .btn-black:hover { background: #333; }
-/* ── Index-style Nav ── */
-        nav {
-            background: #eeeeee;
-            height: 64px;
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Space Mono', monospace;
-            font-weight: 700;
-            font-size: 18px;
-            color: #242230;
-            letter-spacing: -0.01em;
-            text-decoration: none;
-        }
-        .brand .mark img { display: block; width: 28px; height: 28px; filter: invert(1); }
-        .nav-links-main {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            list-style: none;
-            flex: 1;
-            justify-content: flex-end;
-            padding-right: 28px;
-        }
-        .nav-links-main a {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #454354;
-            text-decoration: none;
-            font-size: 12.5px;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            transition: color 0.18s ease;
-        }
-        .nav-links-main a:hover { color: #111118; }
-        .nav-dropdown { position: relative; }
-        .nav-dropdown-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #454354;
-            font-size: 12.5px;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            font-family: 'Space Mono', monospace;
-            transition: color 0.18s ease;
-        }
-        .nav-dropdown-toggle:hover { color: #111118; }
-        .nav-dropdown-menu {
-            display: none;
-            position: absolute;
-            top: calc(100% + 8px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: #f5f5f4;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 4px;
-            list-style: none;
-            padding: 4px;
-            min-width: 130px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            z-index: 999;
-        }
-        .nav-dropdown.open .nav-dropdown-menu { display: block; }
-        .nav-dropdown-menu li a {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            padding: 7px 12px;
-            font-size: 11.5px;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: rgba(0,0,0,0.6);
-            text-decoration: none;
-            border-radius: 3px;
-            white-space: nowrap;
-            transition: background 0.15s ease, color 0.15s ease;
-        }
-        .nav-dropdown-menu li a:hover { background: rgba(0,0,0,0.06); color: rgba(0,0,0,0.9); }
-        .nav-right { display: flex; align-items: center; gap: 0; height: 100%; padding-left: 12px; }
-        .cta-group { display: inline-flex; align-items: center; height: 38px; }
-        .btn-signup {
-            font-family: 'Loophole Medium', sans-serif;
-            font-weight: 600;
-            font-size: 13.5px;
-            color: #111118;
-            background: #00f098;
-            text-decoration: none;
-            padding: 10px 28px 10px 24px;
-            height: 38px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-            transition: background-color 0.2s ease;
-        }
-        .btn-signup:hover { background: #03dc8b; }
-        .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; background: none; border: none; padding: 8px; margin-left: 12px; }
-        .hamburger span { display: block; width: 22px; height: 2px; background: #111118; transition: transform 0.25s ease, opacity 0.15s ease; }
-        .hamburger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-        .mobile-menu { display: none; flex-direction: column; background: #eeeeee; border-top: 1px solid rgba(0,0,0,0.12); border-bottom: 1px solid rgba(0,0,0,0.12); overflow: hidden; max-height: 0; transition: max-height 0.35s ease, opacity 0.3s ease; opacity: 0; }
-        .mobile-menu.open { max-height: 700px; opacity: 1; }
-        .mobile-menu a { color: #111118; text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,0.12); display: flex; align-items: center; gap: 10px; }
-        .mobile-menu .mob-download { padding: 16px 20px; display: flex; gap: 12px; }
-        .mobile-menu .mob-download .btn-signup { flex: 1; border-radius: 6px; justify-content: center; margin: 0; height: 42px; font-size: 13px; }
-        .mob-dropdown { width: 100%; border-bottom: 1px solid rgba(0,0,0,0.12); }
-        .mob-dropdown-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; background: none; border: none; cursor: pointer; padding: 16px 20px; font-family: 'Space Mono', monospace; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #111118; box-sizing: border-box; }
-        .mob-dropdown-toggle span { display: flex; align-items: center; gap: 10px; }
-        .mob-chevron { transition: transform 0.2s ease; flex-shrink: 0; }
-        .mob-dropdown.open .mob-chevron { transform: rotate(180deg); }
-        .mob-dropdown-menu { display: none; flex-direction: column; padding: 0 20px 8px 44px; }
-        .mob-dropdown.open .mob-dropdown-menu { display: flex; }
-        .mob-dropdown-menu a { display: flex; align-items: center; gap: 7px; padding: 10px 0; font-size: 13px; border-bottom: none; opacity: 0.65; }
-        .mob-dropdown-menu a:hover { opacity: 1; }
-        @media (max-width: 990px) {
-            nav { padding: 0 16px; height: 56px; }
-            .nav-links-main { display: none; }
-            .cta-group { display: none; }
-            .hamburger { display: flex; }
-            .mobile-menu { display: flex; }
-        }
-        footer { width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); }
-        .footer-col { border-right: 1px solid var(--border-color); padding: 30px 40px; text-align: center; font-size: 13px; color: var(--text-muted); border-top: 1px solid var(--border-color); }
-        .footer-col:last-child { border-right: none; }
-        .footer-col a:hover { color: var(--text-main); }
-        .legal { width: 100%; padding: 30px; text-align: center; font-size: 12px; color: #999; border-top: 1px solid var(--border-color); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Models · Loophole</title>
+<link rel="icon" href="assets/logo/logo.png" type="image/png">
+<link rel="stylesheet" href="css/global.css">
+<style>
+/* ── Models content styles (matches pricing page theme) ── */
+:root {
+  --pr-bg: #1c1c1c;
+  --pr-bg-alt: #222222;
+  --pr-border: rgba(255,255,255,0.1);
+  --pr-text: #ffffff;
+  --pr-muted: rgba(255,255,255,0.45);
+  --pr-dim: rgba(255,255,255,0.25);
+  --pr-accent: #00f098;
+  --pr-accent-hover: #03dc8b;
+  --pr-group-bg: rgba(255,255,255,0.04);
+}
 
-        /* ── Provider block ── */
-        .provider-block {
-            margin-bottom: 56px;
-        }
-        .provider-block:last-child { margin-bottom: 0; }
-        .provider-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .provider-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-        .provider-name {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        @media (min-width: 769px) {
-            .provider-name::before { content: '[ '; }
-            .provider-name::after  { content: ' ]'; }
-        }
-        .provider-count {
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-left: auto;
-            letter-spacing: 0.1em;
-        }
-        .provider-note {
-            font-size: 12px;
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 18px;
-        }
+body { background: var(--pr-bg); }
 
-        /* ── Model card ── */
-        .model-card {
-            border: 1px solid var(--border-color);
-            margin-bottom: 10px;
-        }
-        .model-card:last-child { margin-bottom: 0; }
-        .model-card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 24px;
-            cursor: pointer;
-            user-select: none;
-            transition: background 0.15s;
-        }
-        .model-card-header:hover { background: #f7f7f7; }
-        .model-name {
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-        }
-        .model-tag {
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            padding: 3px 8px;
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            margin-left: 12px;
-        }
-        .model-tag.tag-latest {
-            border-color: #111;
-            color: #111;
-        }
-        .model-tag.tag-fast {
-            border-color: #2a9d5c;
-            color: #2a9d5c;
-        }
-        .model-tag.tag-vision {
-            border-color: #7c5cdb;
-            color: #7c5cdb;
-        }
-        .model-tag.tag-cheap {
-            border-color: #d98c00;
-            color: #d98c00;
-        }
-        .expand-icon {
-            font-size: 18px;
-            color: var(--text-muted);
-            transition: transform 0.2s;
-            flex-shrink: 0;
-            margin-left: 16px;
-        }
-        .model-card.open .expand-icon { transform: rotate(45deg); }
+/* ── Models hero ── */
+.models-hero {
+  padding: 80px 60px 60px;
+  border-bottom: 1px solid var(--pr-border);
+  background: var(--pr-bg);
+}
+.models-hero-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pr-muted);
+  margin-bottom: 20px;
+}
+.models-hero h1 {
+  font-family: 'Loophole Bold', sans-serif;
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.0;
+  color: var(--pr-text);
+}
 
-        /* ── Expanded details ── */
-        .model-details {
-            display: none;
-            border-top: 1px solid var(--border-color);
-            padding: 24px;
-            background: #fafafa;
-        }
-        .model-card.open .model-details { display: block; }
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border-color);
-            border: 1px solid var(--border-color);
-            margin-bottom: 20px;
-        }
-        .detail-cell {
-            background: #fff;
-            padding: 16px 20px;
-        }
-        .detail-label {
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-        }
-        .detail-value {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-        .model-description {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.8;
-        }
+/* ── Catalog panel ── */
+.catalog-section {
+  padding: 60px;
+  background: var(--pr-bg);
+}
+.panel {
+  border: 1px solid var(--pr-border);
+  background: var(--pr-bg-alt);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--pr-border);
+}
+.panel-head .label {
+  font-family: 'Space Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pr-text);
+}
+.panel-head .count {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--pr-dim);
+  font-variant-numeric: tabular-nums;
+}
+.panel-head .count b { color: var(--pr-muted); font-weight: 700; }
 
-        /* ── Simple model list (providers without static pricing data) ── */
-        .simple-list-card {
-            border: 1px solid var(--border-color);
-            padding: 20px 24px;
-        }
-        .simple-list-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 14px;
-        }
-        .simple-chip {
-            font-size: 11px;
-            padding: 6px 10px;
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            background: #fafafa;
-        }
+.controls {
+  display: flex;
+  gap: 10px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--pr-border);
+  background: var(--pr-group-bg);
+}
+.controls input[type="text"] {
+  flex: 1;
+  background: var(--pr-bg);
+  border: 1px solid var(--pr-border);
+  color: var(--pr-text);
+  font-family: 'Space Mono', monospace;
+  font-size: 12.5px;
+  padding: 10px 14px;
+  border-radius: 3px;
+  outline: none;
+}
+.controls input[type="text"]::placeholder { color: var(--pr-dim); }
+.controls input[type="text"]:focus { border-color: rgba(0,240,152,0.4); }
+.controls select {
+  background: var(--pr-bg);
+  border: 1px solid var(--pr-border);
+  color: var(--pr-text);
+  font-family: 'Space Mono', monospace;
+  font-size: 12.5px;
+  padding: 10px 14px;
+  border-radius: 3px;
+  outline: none;
+  min-width: 170px;
+  cursor: pointer;
+}
+.controls button {
+  font-family: 'Loophole Medium', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: var(--pr-text);
+  background: transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.controls button:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
 
-        @media (max-width: 768px) {
-            body { padding: 0; }
-            .site-container { border: none; box-shadow: none; }
-            .nav-links { display: none; }
-            footer { grid-template-columns: 1fr; }
-            .footer-col { border-right: none; }
-            .section-box { padding: 40px 24px; }
-            .details-grid { grid-template-columns: repeat(2, 1fr); }
-            .model-card-header { padding: 16px 18px; }
-            .model-details { padding: 18px; }
-        }
-        @media (max-width: 480px) {
-            .details-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+/* ── Table ── */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 760px; }
+thead th {
+  text-align: left;
+  font-family: 'Space Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pr-accent);
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--pr-border);
+  white-space: nowrap;
+}
+thead th.num { text-align: right; }
+
+.group-row td {
+  padding: 8px 14px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pr-muted);
+  background: var(--pr-group-bg);
+  border-top: 1px solid var(--pr-border);
+  border-bottom: 1px solid var(--pr-border);
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.group-row .gcount { color: var(--pr-dim); font-weight: 500; margin-left: 6px; text-transform: none; letter-spacing: normal; }
+
+tbody tr.model-row { border-bottom: 1px solid var(--pr-border); }
+tbody tr.model-row:hover { background: rgba(0,240,152,0.05); }
+tbody td { padding: 14px 24px; vertical-align: top; font-family: 'Loophole Light', sans-serif; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--pr-text); font-family: 'Space Mono', monospace; }
+td.num.zero { color: var(--pr-dim); }
+.model-name {
+  font-family: 'Loophole Medium', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--pr-text);
+  border-bottom: 1px dotted rgba(0,240,152,0.4);
+  padding-bottom: 1px;
+  display: inline-block;
+}
+tr.model-row:hover .model-name { color: var(--pr-accent); border-bottom-color: var(--pr-accent); }
+.model-id {
+  display: block;
+  margin-top: 4px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--pr-dim);
+}
+.badge {
+  display: inline-block;
+  margin-left: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border: 1px solid rgba(0,240,152,0.4);
+  color: var(--pr-accent);
+  border-radius: 2px;
+  vertical-align: middle;
+}
+.empty-row td {
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--pr-dim);
+  font-family: 'Loophole Light', sans-serif;
+  font-size: 12.5px;
+}
+
+.note {
+  padding: 16px 24px;
+  font-family: 'Loophole Light', sans-serif;
+  font-size: 11.5px;
+  color: var(--pr-muted);
+  line-height: 1.8;
+  border-top: 1px solid var(--pr-border);
+  background: var(--pr-group-bg);
+}
+
+@media (max-width: 860px) {
+  .models-hero { padding: 50px 24px 40px; }
+  .catalog-section { padding: 40px 24px; }
+  .controls { flex-wrap: wrap; }
+  .controls select { flex: 1; }
+}
+</style>
 </head>
 <body>
-    <div class="site-container">
 
-        <nav>
-            <a class="brand" href="index.html">
-                <span class="mark">
-                    <img src="assets/logo/logo.png" alt="Loophole logo">
-                </span>
-                loophole
-            </a>
-            <ul class="nav-links-main">
-                <li>
-                    <a href="pricing.html">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        PRICING
-                    </a>
-                </li>
-                <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" onclick="this.closest('.nav-dropdown').classList.toggle('open')">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M10 10v10"/></svg>
-                        RESOURCES
-                        <svg class="chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                    </button>
-                    <ul class="nav-dropdown-menu">
-                        <li><a href="blog.html">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h12"/></svg>
-                            Blog
-                        </a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="models.html">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
-                        MODELS
-                    </a>
-                </li>
-                <li>
-                    <a href="https://github.com/loophole-ai/loophole-ide" target="_blank">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                        GITHUB
-                    </a>
-                </li>
-            </ul>
-            <div class="nav-right">
-                <div class="cta-group">
-                    <a href="https://github.com/loophole-ai/loophole-ide/releases" class="btn-signup">Download</a>
-                </div>
-                <button class="hamburger" aria-label="Menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </nav>
+  <header>
+    <nav>
+      <div class="brand">
+        <span class="mark">
+          <img src="assets/logo/logo.png" alt="Loophole logo">
+        </span>
+        loophole
+      </div>
 
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="pricing.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> PRICING</a>
-            <div class="mob-dropdown">
-                <button class="mob-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">
-                    <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M10 10v10"/></svg> RESOURCES</span>
-                    <svg class="mob-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                </button>
-                <div class="mob-dropdown-menu">
-                    <a href="blog.html"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h12"/></svg> Blog</a>
-                </div>
-            </div>
-            <a href="models.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg> MODELS</a>
-            <a href="https://github.com/loophole-ai/loophole-ide" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> GITHUB</a>
-            <div class="mob-download">
-                <a href="https://github.com/loophole-ai/loophole-ide/releases" class="btn-signup">Download</a>
-            </div>
+      <ul class="nav-links">
+        <li>
+          <a href="pricing.html">
+            PRICING
+          </a>
+        </li>
+        <li class="nav-dropdown">
+          <button class="nav-dropdown-toggle" onclick="this.closest('.nav-dropdown').classList.toggle('open')">
+            RESOURCES
+            <svg class="chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="models.html" class="active">
+            MODELS
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/loophole-ai/loophole-ide" target="_blank">
+            GITHUB
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-right">
+        <div class="cta-group">
+          <a href="https://github.com/loophole-ai/loophole-ide/releases" class="btn-signup">Download</a>
+        </div>
+        <button class="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="pricing.html">PRICING</a>
+      <div class="mob-dropdown">
+        <button class="mob-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">
+          <span>RESOURCES</span>
+          <svg class="mob-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="mob-dropdown-menu">
+          <a href="blog.html">Blog</a>
+        </div>
+      </div>
+      <a href="models.html">MODELS</a>
+      <a href="https://github.com/loophole-ai/loophole-ide" target="_blank">GITHUB</a>
+      <div class="mob-download">
+        <a href="https://github.com/loophole-ai/loophole-ide/releases" class="btn-signup">Download</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="models-hero">
+    <div class="models-hero-label">Models</div>
+    <h1>Model Catalog</h1>
+  </div>
+
+  <section class="catalog-section">
+    <div class="panel">
+      <div class="panel-head">
+        <span class="label">All Models</span>
+        <span class="count"><b id="shownCount">0</b> / <span id="totalCount">0</span></span>
+      </div>
+
+      <div class="controls">
+        <input type="text" id="filterInput" placeholder="Filter by model name…">
+        <select id="providerSelect">
+          <option value="">All providers</option>
+        </select>
+        <button id="resetBtn">Reset</button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th class="num">Context</th>
+              <th class="num">Input $/M</th>
+              <th class="num">Output $/M</th>
+              <th class="num">Cache Read $/M</th>
+              <th class="num">Cache Write $/M</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+      <p class="note">vLLM, LM Studio, MLX, Ollama (beyond the recommended pulls below), OpenAI-Compatible, LiteLLM, Google Vertex AI, Microsoft Azure AI Foundry, and AWS Bedrock connect to whatever endpoint or deployment you point them at, so Loophole doesn't pin static pricing for those — model lists are autodetected from your endpoint.</p>
+    </div>
+  </section>
+
+
+  <footer>
+    <div class="footer-ruler-corners"></div>
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <span class="mark">
+          <img src="assets/logo/logo.png" alt="Loophole logo">
+        </span>
+        loophole
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <a href="https://github.com/loophole-ai/loophole-ide" target="_blank">GitHub</a>
+          <a href="https://x.com/loopholeai" target="_blank">X [Twitter]</a>
         </div>
 
-        <section class="section-box">
-            <h1 style="font-size: 36px; margin-bottom: 12px; letter-spacing: -1px;">Supported Models</h1>
-            <p style="color: var(--text-muted); margin-bottom: 56px; font-size: 13px; line-height: 1.8;">Loophole connects directly to your chosen AI provider. Bring your own API key — no middleman, no markup. Click any model to expand its details. Pricing shown is per 1M tokens and reflects each provider's published rates at time of writing — always confirm current pricing with the provider.</p>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">Anthropic</span>
-                    <span class="provider-count">8 models</span>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Claude Fable 5</span>
-                            <span class="model-tag tag-latest">Beast</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$10 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$50 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (toggle)</div></div>
-                        </div>
-                        <p class="model-description">Part of Anthropic's Mythos tier, released June 9 2026. Anthropic's flagship model with a 1M-token context window and configurable extended thinking. Best for the hardest reasoning, research, and coding tasks in Loophole.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Claude Opus 5</span>
-                            <span class="model-tag tag-latest">Latest</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$5 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$25 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (toggle)</div></div>
-                        </div>
-                        <p class="model-description">Released July 24 2026, with extended thinking on by default. Anthropic's top general-purpose model for complex reasoning, advanced coding, and long-context work. Recommended for Plan & Execution mode in Loophole.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Claude Opus 4.8</span>
-                            <span class="model-tag tag-latest">Powerful</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$5 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$25 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (toggle)</div></div>
-                        </div>
-                        <p class="model-description">Released May 2026 with a 1M-token context window. A previous-generation Opus model, still excellent for deep reasoning and large-codebase work.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Claude Opus 4.7</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$5 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$25 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (toggle)</div></div>
-                        </div>
-                        <p class="model-description">A prior 1M-context Opus release, kept available for projects pinned to this snapshot.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Claude Opus 4.6</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$5 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$25 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (toggle)</div></div>
-                        </div>
-                        <p class="model-description">Another 1M-context Opus snapshot from the 4.6 generation, offered for compatibility with older projects.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Claude Sonnet 5</span>
-                            <span class="model-tag tag-cheap">Intro pricing</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$2 / 1M*</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$10 / 1M*</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (toggle)</div></div>
-                        </div>
-                        <p class="model-description">Released June 30 2026. *Intro pricing of $2/$10 per 1M runs through August 31 2026, after which it moves to $3/$15. A 1M-token context window with a strong balance of speed and capability.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Claude Sonnet 4.6</span>
-                            <span class="model-tag tag-fast">Recommended</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$3 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$15 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (toggle)</div></div>
-                        </div>
-                        <p class="model-description">The sweet spot between power and speed with a 1M-token context window. Great for everyday coding, inline diffs, and multi-turn agentic tasks — the default recommendation for most Loophole workflows.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Claude Haiku 4.5</span>
-                            <span class="model-tag tag-cheap">Cheap</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">200K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">64K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$1 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$5 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">Anthropic's fastest and most affordable current model. Ideal for autocomplete, quick edits, and high-throughput agentic sub-tasks where speed matters more than depth.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">OpenAI</span>
-                    <span class="provider-count">12 models</span>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">GPT-5.6 Sol</span>
-                            <span class="model-tag tag-fast">Fast</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$5 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$30 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (low/med/high)</div></div>
-                        </div>
-                        <p class="model-description">Released July 9 2026 as part of the GPT-5.6 family. Sol is the high-effort reasoning variant, tuned for the hardest coding and agentic tasks.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">GPT-5.6 Terra</span>
-                            <span class="model-tag tag-latest">Powerful</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$2.50 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$15 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (low/med/high)</div></div>
-                        </div>
-                        <p class="model-description">Mid-tier of the GPT-5.6 family, balancing cost and reasoning depth for everyday agentic coding.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">GPT-5.6 Luna</span>
-                            <span class="model-tag tag-cheap">Cheap</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$1 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$6 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (low effort default)</div></div>
-                        </div>
-                        <p class="model-description">The lightweight member of the GPT-5.6 family. Cheapest option with a full 1.05M context window — good for high-volume, lower-stakes calls.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">GPT-5.5</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$5 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$30 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (low/med/high)</div></div>
-                        </div>
-                        <p class="model-description">Previous-generation flagship, kept available for projects that haven't moved to the 5.6 family yet.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">GPT-5.4 Pro</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$15 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$60 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (low/med/high)</div></div>
-                        </div>
-                        <p class="model-description">The highest-cost, highest-effort model in the 5.4 line — for tasks where correctness matters more than price.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">GPT-5.4</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$5 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$30 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (low/med/high)</div></div>
-                        </div>
-                        <p class="model-description">Standard 5.4-generation model with a large context window and configurable reasoning effort.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">GPT-5.3 Codex</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">400K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$2 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$8 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">A coding-specialized model tuned for fast, agentic code edits rather than open-ended reasoning.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">o3</span>
-                            <span class="model-tag tag-latest">Reasoning</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">200K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">50K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$10 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$40 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (fixed, not shown)</div></div>
-                        </div>
-                        <p class="model-description">OpenAI's o-series reasoning model. Uses hidden extended thinking to solve hard problems, debug complex systems, and plan multi-step agentic sequences. Best paired with Loophole's Plan mode.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">GPT-5.4 mini</span>
-                            <span class="model-tag tag-fast">Fast</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">400K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.50 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$2 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (low/med/high)</div></div>
-                        </div>
-                        <p class="model-description">A smaller, cheaper 5.4-generation model with configurable reasoning effort — good for quick agentic sub-tasks.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">GPT-4o</span>
-                            <span class="model-tag tag-vision">Vision</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">16K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$2.50 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$10 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">OpenAI's established multimodal model. Handles text, images, and code with strong all-around reasoning — a solid choice for UI screenshots and general coding tasks.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">GPT-4o mini</span>
-                            <span class="model-tag tag-cheap">Cheap</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">16K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.15 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0.60 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">OpenAI's lightweight model — extremely cheap and fast. Great for high-frequency tasks like inline completions, quick file edits, and background sub-agent calls where cost efficiency is the priority.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">GPT-4.1 nano</span>
-                            <span class="model-tag tag-cheap">Cheap</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.10 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0.40 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">The smallest and cheapest GPT-4.1 model, with a surprisingly large 1M+ token context window — useful for cheap long-context retrieval tasks.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">xAI</span>
-                    <span class="provider-count">5 models</span>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Grok 4.5</span>
-                            <span class="model-tag tag-latest">Latest</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">500K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$2 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$6 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (low/med/high)</div></div>
-                        </div>
-                        <p class="model-description">Released July 8 2026. xAI's flagship model with configurable reasoning effort and a 500K-token context window.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Grok 4.20 Reasoning</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">2M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">20K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$3 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$15 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (always on)</div></div>
-                        </div>
-                        <p class="model-description">A massive 2M-token context window with reasoning always enabled — suited for very large codebases and long documents.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Grok 4.3</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">20K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$1.25 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$2.50 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (toggle)</div></div>
-                        </div>
-                        <p class="model-description">A mid-priced, 1M-context Grok model with optional reasoning — a good general-purpose default from xAI.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Grok 4.20 Non-Reasoning</span>
-                            <span class="model-tag tag-fast">Fast</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">2M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">20K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$3 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$15 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">Same 2M-token context as the reasoning variant, without extended thinking — for faster, cheaper-latency responses.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Grok Build 0.1</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">256K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">16K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$1 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$2 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">A code-focused agent model from xAI, priced for high-volume agentic coding sub-tasks.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">Google Gemini</span>
-                    <span class="provider-count">6 models</span>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Gemini 3.6 Flash</span>
-                            <span class="model-tag tag-latest">Latest</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">64K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$1.50 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$7.50 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (toggle)</div></div>
-                        </div>
-                        <p class="model-description">Released July 21 2026. Google's latest Flash model with a 1M+ token context window and configurable thinking budget.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Gemini 3.5 Flash</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">64K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$1.50 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$9 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (toggle)</div></div>
-                        </div>
-                        <p class="model-description">Released May 19 2026. The previous-generation Flash model — still a strong, fast, multimodal default.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Gemini 3.5 Flash-Lite</span>
-                            <span class="model-tag tag-fast">Fast</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">64K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.30 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$2.50 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">Released July 21 2026 at roughly 462 tokens/sec. The cheapest, fastest current Gemini model — good for autocomplete and lightweight sub-tasks.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Gemini 3.1 Pro</span>
-                            <span class="model-tag tag-latest">Powerful</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">65K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$2 / 1M*</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$12 / 1M*</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (toggle)</div></div>
-                        </div>
-                        <p class="model-description">Released February 19 2026. Google's Pro-tier reasoning model. *Rate shown is for prompts up to 200K tokens; pricing rises to $4/$18 above that.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Gemini 3.1 Flash-Lite</span>
-                            <span class="model-tag tag-cheap">Cheap</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.125 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0.75 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">Released May 7 2026. Google's cheapest current model, still with a full 1M-token context window.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Gemini 2.5 Pro</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">8K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$1.25 / 1M*</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$10 / 1M*</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (toggle)</div></div>
-                        </div>
-                        <p class="model-description">Legacy model, scheduled for retirement on October 16 2026. *Rate shown is for prompts up to 200K tokens; pricing rises to $2.50/$15 above that.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">DeepSeek</span>
-                    <span class="provider-count">2 models</span>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">DeepSeek V4 Pro</span>
-                            <span class="model-tag tag-latest">Latest</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.44 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0.87 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (think tags)</div></div>
-                        </div>
-                        <p class="model-description">DeepSeek's flagship V4 model, with a large context window, built-in reasoning, and very low per-token pricing.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">DeepSeek V4 Flash</span>
-                            <span class="model-tag tag-cheap">Cheap</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">1.05M tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.14 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0.28 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (think tags)</div></div>
-                        </div>
-                        <p class="model-description">A faster, cheaper V4 variant — among the lowest-cost reasoning models available in Loophole.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">Mistral</span>
-                    <span class="provider-count">5 models</span>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Mistral Large (latest)</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">131K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">8K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$2 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$6 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">Mistral's flagship general-purpose model — strong all-round performance for reasoning and coding tasks.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Magistral Medium (latest)</span>
-                            <span class="model-tag tag-vision">Reasoning</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">256K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">8K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.30 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0.90 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (always on)</div></div>
-                        </div>
-                        <p class="model-description">Mistral's dedicated reasoning model, with thinking always enabled via visible think tags.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Devstral (latest)</span>
-                            <span class="model-tag tag-fast">Free</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">131K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">8K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">A free, code-focused agentic model from Mistral — also available as an open-weight download (~14GB).</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Codestral (latest)</span>
-                            <span class="model-tag tag-fast">Recommended</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">256K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">8K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.30 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0.90 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">Purpose-built for fill-in-the-middle autocomplete. Recommended by Loophole for inline code completion.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Mistral Small (latest)</span>
-                            <span class="model-tag tag-cheap">Cheap</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">131K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">4K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.10 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0.30 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">Mistral's budget-tier chat model — cheap and fast for lightweight tasks.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">Groq</span>
-                    <span class="provider-count">5 models</span>
-                </div>
-                <p class="provider-note">Groq serves open-weight models on custom LPU hardware for very low latency.</p>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">GPT-OSS 120B</span>
-                            <span class="model-tag tag-latest">Powerful</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">131K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.50 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$2 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (think tags)</div></div>
-                        </div>
-                        <p class="model-description">OpenAI's open-weight 120B model, served on Groq's LPUs for very fast inference.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Qwen 3.6 27B</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">131K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">10K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.29 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0.39 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (toggle)</div></div>
-                        </div>
-                        <p class="model-description">Alibaba's Qwen 3.6, mid-sized with optional reasoning, served at Groq's characteristic low latency.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Groq Compound</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">131K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">10K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.59 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0.79 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">Groq's own compound system model, built for agentic tool-calling workloads.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Llama 3.3 70B Versatile</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.59 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0.79 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">Meta's Llama 3.3 70B, a dependable open-weight general-purpose model.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">GPT-OSS 20B</span>
-                            <span class="model-tag tag-cheap">Cheap</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">131K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">8K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0.10 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0.40 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">Yes (think tags)</div></div>
-                        </div>
-                        <p class="model-description">The smaller OpenAI open-weight model, also on Groq's LPUs — cheap, fast, with reasoning available.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">Inception Labs</span>
-                    <span class="provider-count">3 models</span>
-                </div>
-                <p class="provider-note">Inception's diffusion-based language models are purpose-built for fast, fill-in-the-middle autocomplete.</p>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Mercury Edit 2</span>
-                            <span class="model-tag tag-fast">Recommended</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">512 tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">Inception's diffusion-based fill-in-the-middle model, purpose-built for autocomplete. Loophole's recommended pick for inline code completion.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Mercury Coder Small</span>
-                            <span class="model-tag tag-fast">Fast</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">32K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">512 tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">A smaller, faster FIM autocomplete model for even lower-latency inline completions.</p>
-                    </div>
-                </div>
-
-                <div class="model-card" onclick="toggle(this)">
-                    <div class="model-card-header">
-                        <div class="flex items-center">
-                            <span class="model-name">Mercury 2</span>
-                        </div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="model-details">
-                        <div class="details-grid">
-                            <div class="detail-cell"><div class="detail-label">Context Window</div><div class="detail-value">128K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Tokens</div><div class="detail-value">4K tokens</div></div>
-                            <div class="detail-cell"><div class="detail-label">Input Cost</div><div class="detail-value">$0 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Output Cost</div><div class="detail-value">$0 / 1M</div></div>
-                            <div class="detail-cell"><div class="detail-label">Vision</div><div class="detail-value">No</div></div>
-                            <div class="detail-cell"><div class="detail-label">Tool Use</div><div class="detail-value">Yes</div></div>
-                            <div class="detail-cell"><div class="detail-label">Reasoning</div><div class="detail-value">No</div></div>
-                        </div>
-                        <p class="model-description">Inception's general-purpose chat model, for conversation and reasoning beyond pure autocomplete.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">OpenRouter</span>
-                    <span class="provider-count">aggregator</span>
-                </div>
-                <div class="simple-list-card">
-                    <p class="provider-note" style="margin-bottom: 0;">OpenRouter proxies a single API key to dozens of underlying providers. Pricing and context windows mirror whatever model you pick below (same figures as that model's native provider, plus a small OpenRouter margin on some models) — check openrouter.ai/models for live rates. Models available through Loophole's OpenRouter integration include:</p>
-                    <div class="simple-list-items">
-                        <span class="simple-chip">anthropic/claude-fable-5</span>
-                        <span class="simple-chip">anthropic/claude-opus-5</span>
-                        <span class="simple-chip">anthropic/claude-opus-4-8</span>
-                        <span class="simple-chip">anthropic/claude-sonnet-5</span>
-                        <span class="simple-chip">anthropic/claude-sonnet-4-6</span>
-                        <span class="simple-chip">anthropic/claude-haiku-4-5</span>
-                        <span class="simple-chip">openai/gpt-5.6-sol</span>
-                        <span class="simple-chip">openai/gpt-5.6-terra</span>
-                        <span class="simple-chip">openai/gpt-5.6-luna</span>
-                        <span class="simple-chip">openai/gpt-5.5</span>
-                        <span class="simple-chip">openai/gpt-oss-120b</span>
-                        <span class="simple-chip">openai/gpt-oss-20b</span>
-                        <span class="simple-chip">google/gemini-3.6-flash</span>
-                        <span class="simple-chip">google/gemini-3.5-flash</span>
-                        <span class="simple-chip">google/gemini-3.1-pro-preview</span>
-                        <span class="simple-chip">google/gemini-3.1-flash-lite</span>
-                        <span class="simple-chip">google/gemma-4-31b-it</span>
-                        <span class="simple-chip">google/gemma-4-26b-a4b-it</span>
-                        <span class="simple-chip">deepseek/deepseek-v4-pro</span>
-                        <span class="simple-chip">deepseek/deepseek-v4-flash</span>
-                        <span class="simple-chip">deepseek/deepseek-r1</span>
-                        <span class="simple-chip">meta-llama/llama-4-maverick</span>
-                        <span class="simple-chip">meta-llama/llama-4-scout</span>
-                        <span class="simple-chip">x-ai/grok-4.5</span>
-                        <span class="simple-chip">x-ai/grok-4.3</span>
-                        <span class="simple-chip">mistralai/mistral-large-latest</span>
-                        <span class="simple-chip">mistralai/magistral-medium-latest</span>
-                        <span class="simple-chip">mistralai/mistral-small-latest</span>
-                        <span class="simple-chip">mistralai/codestral-latest</span>
-                        <span class="simple-chip">mistralai/devstral-latest</span>
-                        <span class="simple-chip">qwen/qwen3.7-plus</span>
-                        <span class="simple-chip">qwen/qwen3.7-max</span>
-                        <span class="simple-chip">qwen/qwen3-235b-a22b</span>
-                        <span class="simple-chip">qwen/qwen3-32b</span>
-                        <span class="simple-chip">qwen/qwen3-coder-480b-a35b</span>
-                        <span class="simple-chip">moonshotai/kimi-k3</span>
-                        <span class="simple-chip">moonshotai/kimi-k2.7-code</span>
-                        <span class="simple-chip">moonshotai/kimi-k2.6</span>
-                        <span class="simple-chip">z-ai/glm-5.2</span>
-                        <span class="simple-chip">xiaomi/mimo-v2.5-pro</span>
-                        <span class="simple-chip">xiaomi/mimo-v2.5</span>
-                        <span class="simple-chip">openrouter/auto</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">Cohere</span>
-                    <span class="provider-count">4 models</span>
-                </div>
-                <div class="simple-list-card">
-                    <p class="provider-note" style="margin-bottom: 0;">Command-family models from Cohere. Loophole doesn't pin static pricing/context data for this provider — check cohere.com for current specs.</p>
-                    <div class="simple-list-items">
-                        <span class="simple-chip">command-a-plus</span>
-                        <span class="simple-chip">command-a</span>
-                        <span class="simple-chip">command-a-reasoning</span>
-                        <span class="simple-chip">command-r</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">Perplexity</span>
-                    <span class="provider-count">3 models</span>
-                </div>
-                <div class="simple-list-card">
-                    <p class="provider-note" style="margin-bottom: 0;">Perplexity's Sonar models, which combine a language model with live web search. Check perplexity.ai/api for current pricing.</p>
-                    <div class="simple-list-items">
-                        <span class="simple-chip">sonar-pro</span>
-                        <span class="simple-chip">sonar-reasoning-pro</span>
-                        <span class="simple-chip">sonar-deep-research</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">Together AI</span>
-                    <span class="provider-count">7 models</span>
-                </div>
-                <div class="simple-list-card">
-                    <p class="provider-note" style="margin-bottom: 0;">Open-weight models hosted by Together AI. Check together.ai/pricing for current rates.</p>
-                    <div class="simple-list-items">
-                        <span class="simple-chip">deepseek-ai/DeepSeek-V4-Pro</span>
-                        <span class="simple-chip">zai-org/GLM-5.2</span>
-                        <span class="simple-chip">MiniMaxAI/MiniMax-M3</span>
-                        <span class="simple-chip">moonshotai/Kimi-K2.7-Code</span>
-                        <span class="simple-chip">Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8</span>
-                        <span class="simple-chip">google/gemma-4-31B-it</span>
-                        <span class="simple-chip">openai/gpt-oss-20b</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">Fireworks AI</span>
-                    <span class="provider-count">7 models</span>
-                </div>
-                <div class="simple-list-card">
-                    <p class="provider-note" style="margin-bottom: 0;">Open-weight models hosted by Fireworks AI. Check fireworks.ai/pricing for current rates.</p>
-                    <div class="simple-list-items">
-                        <span class="simple-chip">gpt-oss-120b</span>
-                        <span class="simple-chip">deepseek-v4-pro</span>
-                        <span class="simple-chip">glm-5.2</span>
-                        <span class="simple-chip">kimi-k2.7-code</span>
-                        <span class="simple-chip">kimi-k2-thinking</span>
-                        <span class="simple-chip">qwen3-coder-480b-a35b-instruct</span>
-                        <span class="simple-chip">gemma-4-31b-it</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="provider-block">
-                <div class="provider-header">
-                    <span class="provider-label">Provider</span>
-                    <span class="provider-name">Local &amp; Custom Endpoints</span>
-                    <span class="provider-count">6 providers</span>
-                </div>
-                <div class="simple-list-card">
-                    <p class="provider-note" style="margin-bottom: 0;">These providers don't ship a fixed model list — Loophole autodetects or connects to whatever you point it at:</p>
-                    <div class="simple-list-items">
-                        <span class="simple-chip">Ollama — local models, autodetected from your Ollama install</span>
-                        <span class="simple-chip">vLLM — self-hosted inference server, autodetected</span>
-                        <span class="simple-chip">LM Studio — local models via LM Studio's server</span>
-                        <span class="simple-chip">OpenAI-Compatible — any custom OpenAI-style endpoint</span>
-                        <span class="simple-chip">Google Vertex AI — enterprise Gemini via GCP project/region</span>
-                        <span class="simple-chip">Microsoft Azure AI Foundry — enterprise OpenAI models via Azure</span>
-                        <span class="simple-chip">AWS Bedrock — enterprise model access via AWS region</span>
-                        <span class="simple-chip">LiteLLM — proxy to 100+ providers via a LiteLLM gateway</span>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <footer>
-            <div class="footer-col"><a href="https://github.com/loophole-ai/loophole-ide">Github</a></div>
-            <div class="footer-col"><a href="https://github.com/loophole-ai/loophole-ide/discussions">Discussion</a></div>
-        </footer>
-        <div class="legal">
-            &copy; 2026 Loophole IDE &nbsp;   
+        <div class="footer-col">
+          <a href="footer/privacy.html">Privacy Policy</a>
+          <a href="footer/terms.html">Terms of Service</a>
+          <a href="footer/acceptable-use.html">Acceptable Use</a>
+          <a href="footer/security.html">Security</a>
         </div>
+      </div>
 
     </div>
 
-    <script>
-        function toggle(card) {
-            card.classList.toggle('open');
-        }
-        (function() {
-            var hamburger = document.querySelector('.hamburger');
-            var mobileMenu = document.getElementById('mobileMenu');
-            if (!hamburger || !mobileMenu) return;
-            hamburger.addEventListener('click', function() {
-                hamburger.classList.toggle('active');
-                mobileMenu.classList.toggle('open');
-            });
-        })();
-        document.addEventListener('click', function(e) {
-            document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
-                if (!d.contains(e.target)) d.classList.remove('open');
-            });
-        });
-    </script>
+    <div class="footer-logo-section">
+      <span class="footer-logo">
+        <img src="assets/logo/logo.png" alt="Loophole logo">
+      </span>
+      <span class="footer-logo-text">loophole</span>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Loophole AI. All rights reserved.</span>
+    </div>
+  </footer>
+
+<script src="js/main.js"></script>
+<script src="js/rulers.js"></script>
+
+<script>
+const fmt = n => n === 0 ? '$0' : '$' + (Number.isInteger(n) ? n : n.toFixed(3).replace(/0+$/,'').replace(/\.$/,''));
+function fmtContext(n){
+  if(n >= 1_000_000) {
+    const m = n/1_000_000;
+    return (Number.isInteger(m) ? m : m.toFixed(2).replace(/0+$/,'').replace(/\.$/,'')) + 'M';
+  }
+  return n.toLocaleString();
+}
+
+const providers = [
+  {
+    key:'anthropic', name:'anthropic',
+    models:[
+      {name:'Claude Fable 5',        id:'claude-fable-5',              context:1_000_000, input:10.00, output:50.00, cacheRead:1.00, cacheWrite:12.50, tag:'Mythos'},
+      {name:'Claude Opus 5',         id:'claude-opus-5',               context:1_000_000, input:5.00,  output:25.00, cacheRead:0.50, cacheWrite:6.25},
+      {name:'Claude Opus 4.8',       id:'claude-opus-4-8',             context:1_000_000, input:5.00,  output:25.00, cacheRead:0.50, cacheWrite:6.25},
+      {name:'Claude Opus 4.7',       id:'claude-opus-4-7',             context:1_000_000, input:5.00,  output:25.00, cacheRead:0.50, cacheWrite:6.25},
+      {name:'Claude Opus 4.6',       id:'claude-opus-4-6',             context:1_000_000, input:5.00,  output:25.00, cacheRead:0.50, cacheWrite:6.25},
+      {name:'Claude Sonnet 5',       id:'claude-sonnet-5',             context:1_000_000, input:2.00,  output:10.00, cacheRead:0.20, cacheWrite:2.50},
+      {name:'Claude Sonnet 4.6',     id:'claude-sonnet-4-6',           context:1_000_000, input:3.00,  output:15.00, cacheRead:0.30, cacheWrite:3.75, tag:'Recommended'},
+      {name:'Claude Sonnet 4.5',     id:'claude-sonnet-4-5-20250929',  context:200_000,   input:3.00,  output:15.00, cacheRead:0.30, cacheWrite:3.75},
+      {name:'Claude Haiku 4.5',      id:'claude-haiku-4-5',            context:200_000,   input:1.00,  output:5.00,  cacheRead:0.10, cacheWrite:1.25},
+      {name:'Claude 3.7 Sonnet',     id:'claude-3-7-sonnet-20250219',  context:200_000,   input:3.00,  output:15.00, cacheRead:0.30, cacheWrite:3.75},
+    ]
+  },
+  {
+    key:'openai', name:'openai',
+    models:[
+      {name:'GPT-5.6 Sol',    id:'gpt-5.6',        context:1_050_000, input:5.00, output:30.00, cacheRead:0.50, tag:'Flagship'},
+      {name:'GPT-5.6 Terra',  id:'gpt-5.6-terra',  context:1_050_000, input:2.00, output:12.00, cacheRead:0.20},
+      {name:'GPT-5.6 Luna',   id:'gpt-5.6-luna',   context:1_050_000, input:0.20, output:1.20,  cacheRead:0.02},
+      {name:'GPT-5.5',        id:'gpt-5.5',        context:1_050_000, input:5.00, output:30.00, cacheRead:0.50},
+      {name:'GPT-5.4',        id:'gpt-5.4',        context:1_050_000, input:2.50, output:15.00, cacheRead:0.25},
+      {name:'GPT-5.4 mini',   id:'gpt-5.4-mini',   context:400_000,   input:0.75, output:4.50,  cacheRead:0.075},
+      {name:'GPT-5.4 nano',   id:'gpt-5.4-nano',   context:400_000,   input:0.20, output:1.25,  cacheRead:0.02},
+    ]
+  },
+  {
+    key:'xai', name:'xai',
+    models:[
+      {name:'Grok 4.6',                        id:'grok-4.6',                        context:500_000,   input:2.00, output:6.00, cacheRead:0.50, tag:'Latest'},
+      {name:'Grok 4.5',                        id:'grok-4.5',                        context:500_000,   input:2.00, output:6.00, cacheRead:0.30},
+      {name:'Grok 4.3',                        id:'grok-4.3',                        context:1_000_000, input:1.25, output:2.50, cacheRead:0.20},
+      {name:'Grok 4.20 Reasoning',             id:'grok-4.20-0309-reasoning',        context:1_000_000, input:1.25, output:2.50},
+      {name:'Grok 4.20 Non-Reasoning',         id:'grok-4.20-0309-non-reasoning',    context:1_000_000, input:1.25, output:2.50},
+      {name:'Grok 4.20 Multi-Agent',           id:'grok-4.20-multi-agent-0309',      context:1_000_000, input:1.25, output:2.50},
+    ]
+  },
+  {
+    key:'gemini', name:'gemini',
+    models:[
+      {name:'Gemini 3.8 Flash',       id:'gemini-3.8-flash',      context:1_048_576, input:0.75,  output:3.75,  cacheRead:0.075, tag:'Latest'},
+      {name:'Gemini 3.7 Flash',       id:'gemini-3.7-flash',      context:1_048_576, input:0.75,  output:3.75},
+      {name:'Gemini 3.6 Flash',       id:'gemini-3.6-flash',      context:1_048_576, input:1.50,  output:7.50},
+      {name:'Gemini 3.5 Flash',       id:'gemini-3.5-flash',      context:1_048_576, input:0.15,  output:0.60},
+      {name:'Gemini 3.5 Flash-Lite',  id:'gemini-3.5-flash-lite', context:1_048_576, input:0.30,  output:2.50},
+      {name:'Gemini 3.1 Pro',         id:'gemini-3.1-pro-preview',context:1_048_576, input:2.00,  output:12.00},
+      {name:'Gemini 3.1 Flash-Lite',  id:'gemini-3.1-flash-lite', context:1_048_576, input:0.075, output:0.30},
+      {name:'Gemini 2.5 Pro',         id:'gemini-2.5-pro',        context:1_048_576, input:1.25,  output:10.00},
+      {name:'Gemini 2.5 Flash',       id:'gemini-2.5-flash',      context:1_048_576, input:0.15,  output:0.60},
+      {name:'Gemini 2.5 Flash-Lite',  id:'gemini-2.5-flash-lite', context:1_048_576, input:0.075, output:0.30},
+    ]
+  },
+  {
+    key:'deepseek', name:'deepseek',
+    models:[
+      {name:'DeepSeek V4 Pro',   id:'deepseek-v4-pro',   context:1_000_000, input:0.66, output:1.98, cacheRead:0.022, tag:'Reasoning'},
+      {name:'DeepSeek V4 Flash', id:'deepseek-v4-flash', context:1_000_000, input:0.22, output:0.66, cacheRead:0.007},
+    ]
+  },
+  {
+    key:'mistral', name:'mistral',
+    models:[
+      {name:'GLM 5.2',                 id:'zai-glm-5-2',               context:1_000_000, input:1.40, output:4.40, cacheRead:0.14},
+      {name:'Mistral Large (latest)',  id:'mistral-large-latest',      context:256_000,   input:0.50, output:1.50},
+      {name:'Mistral Medium (latest)', id:'mistral-medium-latest',     context:256_000,   input:1.50, output:7.50, tag:'Reasoning'},
+      {name:'Mistral Small (latest)',  id:'mistral-small-latest',      context:256_000,   input:0.15, output:0.60, tag:'Reasoning'},
+      {name:'Codestral (latest)',      id:'codestral-latest',          context:128_000,   input:0.30, output:0.90, tag:'FIM'},
+      {name:'Devstral Medium',         id:'devstral-medium-latest',    context:256_000,   input:0.40, output:2.00},
+      {name:'Ministral 14B',           id:'ministral-14b-latest',      context:256_000,   input:0.20, output:0.20},
+      {name:'Ministral 8B',            id:'ministral-8b-latest',       context:256_000,   input:0.15, output:0.15},
+      {name:'Ministral 3B',            id:'ministral-3b-latest',       context:256_000,   input:0.10, output:0.10},
+    ]
+  },
+  {
+    key:'groq', name:'groq',
+    models:[
+      {name:'GPT-OSS 120B',            id:'openai/gpt-oss-120b',        context:128_000, input:0.15,  output:0.60},
+      {name:'GPT-OSS 20B',             id:'openai/gpt-oss-20b',         context:128_000, input:0.075, output:0.30},
+      {name:'Qwen 3.6 27B',            id:'qwen/qwen3.6-27b',           context:131_072, input:0.60,  output:3.00},
+      {name:'Qwen 3 32B',              id:'qwen/qwen3-32b',             context:131_072, input:0.29,  output:0.59},
+      {name:'Groq Compound',           id:'groq/compound',              context:131_072, input:0.15,  output:0.75},
+      {name:'Groq Compound Mini',      id:'groq/compound-mini',         context:131_072, input:0.15,  output:0.75},
+      {name:'Llama 3.3 70B Versatile', id:'llama-3.3-70b-versatile',    context:128_000, input:0.59,  output:0.79},
+      {name:'Llama 3.1 8B Instant',    id:'llama-3.1-8b-instant',       context:128_000, input:0.05,  output:0.08},
+    ]
+  },
+  {
+    key:'openrouter', name:'openrouter',
+    models:[
+      {name:'Claude Fable 5',          id:'anthropic/claude-fable-5',        context:1_000_000, input:10.00, output:50.00, cacheRead:1.00},
+      {name:'Claude Opus 5',           id:'anthropic/claude-opus-5',         context:1_000_000, input:5.00,  output:25.00, cacheRead:0.50},
+      {name:'Claude Opus 4.8',         id:'anthropic/claude-opus-4.8',       context:1_000_000, input:5.00,  output:25.00, cacheRead:0.50},
+      {name:'Claude Opus 4.7',         id:'anthropic/claude-opus-4.7',       context:1_000_000, input:5.00,  output:25.00, cacheRead:0.50},
+      {name:'Claude Sonnet 5',         id:'anthropic/claude-sonnet-5',       context:1_000_000, input:2.00,  output:10.00, cacheRead:0.20},
+      {name:'Claude Sonnet 4.6',       id:'anthropic/claude-sonnet-4.6',     context:1_000_000, input:3.00,  output:15.00, cacheRead:0.30},
+      {name:'Gemini 3.8 Flash',        id:'google/gemini-3.8-flash',         context:1_048_576, input:0.75,  output:3.75,  cacheRead:0.075},
+      {name:'Gemini 3.7 Flash',        id:'google/gemini-3.7-flash',         context:1_048_576, input:0.75,  output:3.75},
+      {name:'Gemini 2.5 Pro',          id:'google/gemini-2.5-pro',           context:1_048_576, input:1.25,  output:10.00},
+      {name:'Gemini 2.5 Flash',        id:'google/gemini-2.5-flash',         context:1_048_576, input:0.15,  output:0.60},
+      {name:'GPT-5.6 Sol',             id:'openai/gpt-5.6',                  context:1_050_000, input:5.00,  output:30.00, cacheRead:0.50},
+      {name:'GPT-5.5',                 id:'openai/gpt-5.5',                  context:1_050_000, input:5.00,  output:30.00, cacheRead:0.50},
+      {name:'Grok 4.6',                id:'x-ai/grok-4.6',                   context:500_000,   input:2.00,  output:6.00,  cacheRead:0.50},
+      {name:'Mistral Large',           id:'mistralai/mistral-large-2512',    context:256_000,   input:0.50,  output:1.50},
+      {name:'Devstral',                id:'mistralai/devstral-2512',         context:256_000,   input:0.40,  output:2.00},
+      {name:'GLM 5.2',                 id:'z-ai/glm-5.2',                    context:1_000_000, input:1.40,  output:4.40,  cacheRead:0.14},
+      {name:'DeepSeek V4 Pro',         id:'deepseek/deepseek-v4-pro',        context:1_000_000, input:0.66,  output:1.98,  cacheRead:0.022},
+      {name:'DeepSeek R1',             id:'deepseek/deepseek-r1',            context:128_000,   input:0.80,  output:2.40},
+      {name:'Qwen3 235B A22B',         id:'qwen/qwen3-235b-a22b',            context:40_960,    input:0.10,  output:0.10},
+    ]
+  },
+  {
+    key:'ollama', name:'ollama (recommended pulls)',
+    models:[
+      {name:'Qwen2.5 Coder 7B',   id:'qwen2.5-coder:7b',   context:32_000,  input:0, output:0},
+      {name:'Qwen2.5 Coder 3B',   id:'qwen2.5-coder:3b',   context:32_000,  input:0, output:0},
+      {name:'Qwen2.5 Coder 1.5B', id:'qwen2.5-coder:1.5b', context:32_000,  input:0, output:0},
+      {name:'Qwen2.5 Coder',      id:'qwen2.5-coder',      context:128_000, input:0, output:0},
+      {name:'Llama 3.1',          id:'llama3.1',           context:128_000, input:0, output:0},
+      {name:'QwQ',                id:'qwq',                context:128_000, input:0, output:0, tag:'Reasoning'},
+      {name:'DeepSeek R1',        id:'deepseek-r1',        context:128_000, input:0, output:0, tag:'Reasoning'},
+      {name:'Devstral (latest)',  id:'devstral:latest',    context:131_000, input:0, output:0},
+    ]
+  },
+  {
+    key:'apple', name:'apple foundation models',
+    models:[
+      {name:'Foundation (afm)',            id:'foundation', context:4_096,  input:0, output:0, tag:'On-device'},
+      {name:'System (on-device)',          id:'system',      context:4_096,  input:0, output:0, tag:'On-device'},
+      {name:'Private Cloud Compute',       id:'pcc',         context:32_000, input:0, output:0, tag:'PCC'},
+    ]
+  },
+];
+
+const tbody = document.getElementById('tableBody');
+const filterInput = document.getElementById('filterInput');
+const providerSelect = document.getElementById('providerSelect');
+const shownCountEl = document.getElementById('shownCount');
+const totalCountEl = document.getElementById('totalCount');
+
+const totalModels = providers.reduce((sum, p) => sum + p.models.length, 0);
+totalCountEl.textContent = totalModels;
+
+providers.forEach(p => {
+  const opt = document.createElement('option');
+  opt.value = p.key;
+  opt.textContent = p.name + ' (' + p.models.length + ')';
+  providerSelect.appendChild(opt);
+});
+
+function render(){
+  const q = filterInput.value.trim().toLowerCase();
+  const providerFilter = providerSelect.value;
+  tbody.innerHTML = '';
+  let shown = 0;
+
+  providers.forEach(p => {
+    if(providerFilter && providerFilter !== p.key) return;
+    const matches = p.models.filter(m =>
+      !q || m.name.toLowerCase().includes(q) || m.id.toLowerCase().includes(q)
+    );
+    if(matches.length === 0) return;
+
+    const groupRow = document.createElement('tr');
+    groupRow.className = 'group-row';
+    groupRow.innerHTML = `<td colspan="6">${p.name}<span class="gcount">(${matches.length} model${matches.length===1?'':'s'})</span></td>`;
+    tbody.appendChild(groupRow);
+
+    matches.forEach(m => {
+      shown++;
+      const tr = document.createElement('tr');
+      tr.className = 'model-row';
+      tr.innerHTML = `
+        <td>
+          <span class="model-name">${m.name}</span>${m.tag ? `<span class="badge">${m.tag}</span>` : ''}
+          <span class="model-id">${m.id}</span>
+        </td>
+        <td class="num">${fmtContext(m.context)}</td>
+        <td class="num${m.input===0?' zero':''}">${fmt(m.input)}</td>
+        <td class="num${m.output===0?' zero':''}">${fmt(m.output)}</td>
+        <td class="num${!m.cacheRead?' zero':''}">${m.cacheRead !== undefined ? fmt(m.cacheRead) : '—'}</td>
+        <td class="num${!m.cacheWrite?' zero':''}">${m.cacheWrite !== undefined ? fmt(m.cacheWrite) : '—'}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  });
+
+  if(shown === 0){
+    const tr = document.createElement('tr');
+    tr.className = 'empty-row';
+    tr.innerHTML = `<td colspan="6">No models match "${q}".</td>`;
+    tbody.appendChild(tr);
+  }
+
+  shownCountEl.textContent = shown;
+}
+
+filterInput.addEventListener('input', render);
+providerSelect.addEventListener('change', render);
+document.getElementById('resetBtn').addEventListener('click', () => {
+  filterInput.value = '';
+  providerSelect.value = '';
+  render();
+});
+
+render();
+
+(function() {
+  var hamburger = document.querySelector('.hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (!hamburger || !mobileMenu) return;
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+})();
+
+document.addEventListener('click', function(e) {
+  document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
+    if (!d.contains(e.target)) d.classList.remove('open');
+  });
+});
+</script>
 </body>
 </html>
